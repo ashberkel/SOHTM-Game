@@ -1,47 +1,53 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8">
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Blank template</title>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Grenze+Gotisch:wght@100..900&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Victor+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
         <style>
-            .uiContainer {
+            #uiCont {
             display: grid;
             grid-template-rows: 73vh 24vh;
             grid-template-columns: 78vw 20.5vw;
             grid-template-areas: 'view inventory' 'dialogue inventory';
             }
-            .playerView {
-                background-color:red;
+            #playView {
+                background-color:#000;
                 grid-area: view;
             }
-            .inventoryBox {
+            #invBox {
                 background-color: rgba(255, 255, 255, 0.15);
                 grid-area: inventory;
                 border-left: 3px solid white;
                 font-family: "Grenze Gotisch", serif;
-                font-size:50px;
+                font-size:40px;
                 color:white;
                 text-align: center;
             }
-            .dialogueBox {
+            #diaBox {
                 background-color: rgba(255, 255, 255, 0.05);
                 grid-area: dialogue;
                 border-top: 3px solid white;
                 padding: 10px 20px;
                 font-family: "Victor Mono", serif;
-                font-size:18px;
+                font-size:16px;
                 color:white;
             }
         </style>
     </head>
 <body>
-    <div class="uiContainer">
-        <div class="playerView">These are pretty images</div>
-        <div class="inventoryBox">Inventory</div>
-        <div class="dialogueBox">This is where text will be</div>
+    <div id="uiCont">
+        <div id="playView">
+            <button onclick="diaAdd()">Click me</button>
+        </div>
+        <div id="invBox">Inventory</div>
+        <div id="diaBox"></div>
       </div>
+      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+      <script src="/myJS.js"></script>
 </html>
