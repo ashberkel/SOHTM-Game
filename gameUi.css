@@ -1,0 +1,37 @@
+#uiCont {
+    display: grid;
+    grid-template-rows: 73vh 24vh;
+    grid-template-columns: 78vw 20.5vw;
+    grid-template-areas: 'view inventory' 'dialogue inventory';
+    }
+    #playView {
+        background-color:#000;
+        grid-area: view;
+    }
+    #invBox {
+        background-color: rgba(255, 255, 255, 0.15);
+        grid-area: inventory;
+        border-left: 3px solid white;
+        font-family: "Grenze Gotisch", serif;
+        font-size:40px;
+        color:white;
+        text-align: center;
+    }
+    #diaBox {
+        background-color: rgba(255, 255, 255, 0.05);
+        grid-area: dialogue;
+        border-top: 3px solid white;
+        padding: 10px 20px;
+        font-family: "Victor Mono", serif;
+        font-size:16px;
+        color:white;
+    }
+    .look:hover {
+        cursor: url('./images/cursors/curLook.svg'), auto;   
+    }
+    .talk:hover {
+        cursor: url('./images/cursors/curTalk.svg'), auto;   
+    }
+    .grab:hover {
+        cursor: url('./images/cursors/curGrab.svg'), auto;   
+    }
