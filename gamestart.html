@@ -14,12 +14,18 @@
 <body>
     <div id="uiCont">
         <div id="playView">
-            <button class="grab" onclick="diaAdd(Frank)">Frank</button>
-            <button class="talk" onclick="diaAdd(Rosie)">Rosie</button>
-            <img class="look" id="inv0" src="test stuff\crate.png">
+            <div id="mapMove">
+            <div class="clickables">
+                <button class="chars" id="frank">Frank</button>
+                <button class="chars" id="rosie" onclick="leftMove()">Rosie</button>
+                <button class="items" id="crate"><img src="test stuff\crate.png"></button>
+            </div>
+            </div>
         </div>
         <div id="invBox">Inventory</div>
         <div id="diaBox"></div>
+        <!--keep diaButton out of diaBox;diaBox needs to be empty to load dialogue from-->
+        <button id="diaButton">>>></button>
       </div>
       <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
       <script src="/myJS.js"></script>

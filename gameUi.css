@@ -1,37 +1,80 @@
+/* styling for content containers*/
 #uiCont {
     display: grid;
-    grid-template-rows: 73vh 24vh;
-    grid-template-columns: 78vw 20.5vw;
+    grid-template-columns: 825px 259px;
+    grid-template-rows: 425px 159px;
     grid-template-areas: 'view inventory' 'dialogue inventory';
-    }
-    #playView {
-        background-color:#000;
-        grid-area: view;
-    }
-    #invBox {
-        background-color: rgba(255, 255, 255, 0.15);
-        grid-area: inventory;
-        border-left: 3px solid white;
-        font-family: "Grenze Gotisch", serif;
-        font-size:40px;
-        color:white;
-        text-align: center;
-    }
-    #diaBox {
-        background-color: rgba(255, 255, 255, 0.05);
-        grid-area: dialogue;
-        border-top: 3px solid white;
-        padding: 10px 20px;
-        font-family: "Victor Mono", serif;
-        font-size:16px;
-        color:white;
-    }
-    .look:hover {
-        cursor: url('./images/cursors/curLook.svg'), auto;   
-    }
-    .talk:hover {
-        cursor: url('./images/cursors/curTalk.svg'), auto;   
-    }
-    .grab:hover {
-        cursor: url('./images/cursors/curGrab.svg'), auto;   
-    }
+}
+#playView {
+    background-color:yellow;
+    grid-area: view;
+    overflow:hidden;
+    width:815px;
+    height:415px;
+}
+#invBox {
+    background-color: rgba(255, 255, 255, 0.15);
+    grid-area: inventory;
+    border-left: 3px solid white;
+    font-family: "Grenze Gotisch", serif;
+    font-size:40px;
+    color:white;
+    text-align: center;
+}
+#diaBox {
+    background-color: rgba(255, 255, 255, 0.05);
+    grid-area: dialogue;
+    border-top: 3px solid white;
+    padding: 10px 20px;
+    font-family: "Victor Mono", serif;
+    font-size:16px;
+    color:white;
+}
+/* styling for general interacting*/
+#diaButton {
+    position:absolute;
+    left:765px;
+    bottom: 15px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border:2px solid white;
+    grid-area: dialogue;
+    padding: 5px 10px;
+    font-family: "Victor Mono", serif;
+    font-size:18px;
+    color:#CCFF00;
+    display:none;
+}
+#diaButton:hover {
+    background-color: black;
+    border:2px solid #CCFF00;
+    color:white;
+}
+#diaButton:active
+{
+    background-color: #CCFF00;
+    border:2px solid black;
+    color:black;
+}
+.poi:hover {
+    cursor: url('./images/cursors/curLook.svg'), auto;}
+.chars:hover {
+    cursor: url('./images/cursors/curTalk.svg'), auto;}
+.items:hover {
+    cursor: url('./images/cursors/curGrab.svg'), auto;}
+
+/* styling for area1*/
+ #mapMove {
+    background-image: url("./images/quilt1.png");
+    background-repeat: no-repeat;
+    position:relative;
+    left:0px;
+    top:0px;
+    width:10000px;
+    height:10000px;
+ }
+
+ #crate {
+    position:relative;
+    left: 1200px;
+    top: 100px;
+ }
