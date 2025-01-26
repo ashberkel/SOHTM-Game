@@ -15,20 +15,20 @@
 #invBox {
     background-color: rgba(255, 255, 255, 0.15);
     grid-area: inventory;
-    border-left: 3px solid white;
+    border-left: 2px solid #e0e0e0;
     font-family: "Grenze Gotisch", serif;
     font-size:40px;
-    color:white;
+    color:#e0e0e0;
     text-align: center;
 }
 #diaBox {
     background-color: rgba(255, 255, 255, 0.05);
     grid-area: dialogue;
-    border-top: 3px solid white;
+    border-top: 2px solid #e0e0e0;
     padding: 10px 20px;
     font-family: "Victor Mono", serif;
     font-size:16px;
-    color:white;
+    color:#e0e0e0;
 }
 /* styling for general interacting*/
 #diaButton {
@@ -36,7 +36,7 @@
     left:765px;
     bottom: 15px;
     background-color: rgba(255, 255, 255, 0.05);
-    border:2px solid white;
+    border:1.5px solid #e0e0e0;
     grid-area: dialogue;
     padding: 5px 10px;
     font-family: "Victor Mono", serif;
@@ -47,7 +47,7 @@
 #diaButton:hover {
     background-color: black;
     border:2px solid #CCFF00;
-    color:white;
+    color: #e0e0e0;
 }
 #diaButton:active
 {

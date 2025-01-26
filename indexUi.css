@@ -5,9 +5,9 @@ html {
     }
     .title-container {
       display: grid;
-      grid-template-columns: 54% auto;
-      gap: 50px;
-      padding: 30px 20px 0;
+      grid-template-columns: 52% auto;
+      gap: 15px;
+      padding: 30px 10px 20px;
       text-align:center;
     }
     span {
@@ -22,27 +22,28 @@ html {
       font-style: normal;
       color: #000;
       text-shadow: 2px 1px 0 #ff2525;
-      -webkit-text-stroke: 1px #ebebeb;
+      -webkit-text-stroke: 1px #444;
       margin:0;
     }
     h2 {
       margin-top:25px;
       font-family: "Grenze Gotisch", serif;
-      font-size:7.5vmin;
+      font-size:5.5vmin;
       line-height: 70%;
       text-align:center;
       font-weight: 400;
       font-style: normal;
-      color: #CCFF00;
+      color: #ff2525;
+      display:inline;
     }
     #instructions {
       margin:0px;
       font-family: "Victor Mono", serif;
-      font-size:2.3vmin;
+      font-size:2.1vmin;
       text-align:center;
       font-weight: 400;
       font-style: normal;
-      color: #FFFFFF;
+      color: #e0e0e0;
       padding:15px;
     }
     p {
@@ -52,7 +53,7 @@ html {
       text-align:center;
       font-weight: 400;
       font-style: normal;
-      color: #ebebeb;
+      color: #e0e0e0;
     }
     strong {
       color:#ff2525;
@@ -68,4 +69,17 @@ html {
         border: 10px solid transparent;
         border-image: url(images/uiBorder.svg) 100 round;
     }
-    
+        /* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #000; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #222; 
+}
