@@ -10,21 +10,25 @@ const items = [
     {name: "Key", num: 1, desc: "This key is oddly shaped."}];
 console.log(items[1].desc);
 
+// dialogue coding start
 // click to start dialogue code
 var diaId;
 var dia;
 const diaButton = document.getElementById("diaButton");
-
 const myClickables = document.querySelectorAll('.clickables button');
 
+//makes items clickable to free onClick function up for special uses
 myClickables.forEach(clickable => {
     clickable.addEventListener('click', processClick);
 });
 
-function processClick() {
+//sorting clickables to match html id with array data
+function processClick()
+{
     window.diaId = this.id;
     diaButton.style.display = "inline";
-    switch(window.diaId) {
+    switch(window.diaId)
+    {
         case "frank": 
         dia = ["Frank doesn't look too happy."]; break;
         case "rosie": 
@@ -35,9 +39,8 @@ function processClick() {
     setTimeout(function(){document.getElementById('diaBox').innerHTML = ""; diaButton.style.display = "none";},3000);
     //fix so that I calling a clearTimeout on the setTimeout 
 }
-// movement stuff
+// movement stuff (use onclick="moveDown()" as example for movement buttons)
 const mapMoveJs = document.getElementById("mapMove");
-
 function moveLeft() {
     const curHor = getComputedStyle(mapMoveJs).getPropertyValue("left");
     console.log(curHor);
