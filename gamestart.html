@@ -13,6 +13,16 @@
         <link href="https://fonts.googleapis.com/css2?family=Romanesco&family=Victor+Mono:ital,wght@1,300&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Cormorant+Upright:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+    ::-moz-selection
+    {
+        color: #301b10;
+        background: #e0d5bc;
+    }
+
+::selection {
+  color: #301b10;
+  background: #e0d5bc;
+}
         body {
             background-color: #e0d5bc;
             color: #301b10;
@@ -23,15 +33,17 @@
         }
         h1 {
             font-family: "Romanesco", serif;
+            font-optical-sizing: auto;
             font-weight: 400;
             font-size: 157px;
-            display:inline-block;
             transform: scaleY(0.4);
             transform-origin: 0 0;
             margin-top: -1%;
-            margin-bottom: -200%;
+            margin-bottom: -5%;
             font-style: normal;
+            text-align: center;
         }
+
         h2 {
             font-family: "Victor Mono", serif;
             font-optical-sizing: auto;
@@ -40,20 +52,23 @@
             letter-spacing: 11px;
             font-style: normal;
             text-transform: uppercase;
-            margin-top: -7%;
+            margin-top: -10.5%;
             text-align: center;
         }
 
-        hr {
-        border: 1.5px solid #301b10;
-        padding:0px;
+        hr
+        {
+            border: 1.5px solid #301b10;
+            padding:0px;
         }
 
         .content-container {
             display: grid;
             grid-template-columns: 32% auto auto;
             padding: 0px 12px;
+            margin-top: 15px;
             text-align:justify;
+
         }
 
         .content-container div {
@@ -114,7 +129,7 @@
         </div>
         <div>
             <p>
-            To present this innovation to the public, they have crafted something surpassing the traditional airship, officially christened<br><b>"RAS Empress"</b>. Were it not for the press witnessing the unveiling of this airliner, the statistics proclaimed might seem fantastical. The ship measures 600 feet in length, 80 feet in width, and nearly 50,000 long tons in weight—exclusive of the zeppelin that elevates this titanic vessel.
+            To present this innovation to the public, they have crafted something surpassing the traditional airship, officially christened the<br><b>"RAS Empress"</b>. Were it not for the press witnessing the unveiling of this airliner, the statistics proclaimed might seem fantastical. The ship measures 600 feet in length, 80 feet in width, and nearly 50,000 long tons in weight—exclusive of the zeppelin that elevates this titanic vessel.
             <br><br>
             The Chief Scientist of the Infinite Current Project remarked upon the Empress: <i>"It is not every day one can claim the creation of history. Yet my team has revolutionized travel in future generations."</i>
             </p>
