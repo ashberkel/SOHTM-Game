@@ -4,7 +4,9 @@
     grid-template-columns: 825px 259px;
     grid-template-rows: 425px 159px;
     grid-template-areas: 'view inventory' 'dialogue inventory';
+    position:absolute;
 }
+
 #playView {
     background-color:yellow;
     grid-area: view;
@@ -12,6 +14,44 @@
     width:815px;
     height:415px;
 }
+
+#moveUp {
+    z-index: 99;
+    width: 45px;
+    position: relative;
+    top: 5px;
+    left: 370px;   
+}
+
+#moveRight {
+    z-index: 98;
+    transform: rotate(90deg);
+    width: 45px;
+    position: relative;
+    top: 190px;
+    left: 710px;   
+}
+
+#moveDown {
+    z-index: 97;
+    transform: rotate(180deg);
+    width: 45px;
+    position: relative;
+    top: 350px;
+    left: 265px;  
+    
+}
+
+#moveLeft {
+    z-index: 96;
+    transform: rotate(270deg);
+    width: 45px;
+    position: relative;
+    top: 200px;
+    left: -135px;  
+    
+}
+
 #invBox {
     background-color: rgba(255, 255, 255, 0.15);
     grid-area: inventory;
@@ -34,7 +74,16 @@
 
 .invItems
 {
-    background-color: yellowgreen;
+    background-color: rgb(31, 31, 31);
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    margin:auto;
+}
+
+.filled
+{
+    background-color: rgb(17, 212, 82);
     width: 100px;
     height: 100px;
     text-align: center;
@@ -89,6 +138,7 @@
     position:relative;
     left:0px;
     top:0px;
+    margin-top:85px;
     width:10000px;
     height:10000px;
  }
@@ -96,5 +146,10 @@
  #crate {
     position:relative;
     left: 1200px;
+    top: 100px;
+ }
+ #door {
+    position:relative;
+    left: 600px;
     top: 100px;
  }

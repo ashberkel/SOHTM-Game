@@ -9,17 +9,22 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Grenze+Gotisch:wght@100..900&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Victor+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="gameUi.css">
-        <script async src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="global.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     </head>
 <body>
     <div id="uiCont">
         <div id="playView">
+            <img id="moveUp" src="images\cursors\curNav.svg" />
+            <img id="moveRight" src="images\cursors\curNav.svg" />
+            <img id="moveDown" src="images\cursors\curNav.svg" />
+            <img id="moveLeft" src="images\cursors\curNav.svg" />
             <div id="mapMove">
             <div class="clickables">
-                <button class="chars" id="frank"onclick="moveDown()">Frank</button>
-                <button class="chars" id="rosie" onclick="moveLeft()">Rosie</button>
+                <button class="chars" id="frank">Frank</button>
+                <button class="chars" id="rosie">Rosie</button>
                 <button class="items" id="crate"><img src="test stuff\crate.png"></button>
+                <button class="items" id="door"><img src="test stuff\door.png"></button>
             </div>
             </div>
         </div>
@@ -38,25 +43,6 @@
         <!--keep diaButton out of diaBox;diaBox needs to be empty to load dialogue from-->
         <button id="diaButton">>>></button>
       </div>
-      <script async src="/globalJS.js"></script>
-      <script async src="/scene1JS.js"></script>
-      <script>
-        //jQuery Practice
-
-        $("#crate").click(function()
-            {
-                $(".invItems").each(function()
-                {
-                    if (!$(this).hasClass("filled"))
-                    {
-                        $(this).prepend("Yo!"); 
-                        $(this).addClass("filled"); 
-                        return false;
-                    }
-                }
-                )
-            });
-
-
-      </script>
+      <script async src="/global.js"></script>
+      <script async src="/scene1.js"></script>
 </html>

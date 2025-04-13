@@ -15,15 +15,16 @@ html {
     }
     h1 {
       font-family: "Eater", serif;
-      font-size:14vmin;
+      font-size:13vmin;
       text-align:center;
-      line-height: 65%;
+      line-height: 75%;
       font-weight: 400;
       font-style: normal;
       color: #000;
       text-shadow: 3px 2px 0 #CCFF00;
       -webkit-text-stroke: 1px #ff2525;
       margin:0;
+      padding-top:10px;
     }
     h2 {
       margin-top:25px;
