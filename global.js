@@ -1,4 +1,4 @@
-// movement stuff
+// NOTE: THIS MOVEMENT MIGHT BE BETTER FOR 'large rooms' LIKE BALLROOM, NOT ODD SHAPED PATHS LIKE HALLS!
 const mapMoveJs = document.getElementById("mapMove");
 
 $("#moveRight").click(function()
@@ -43,6 +43,7 @@ $("#crate").click(function()
         }
         )
     });
+    
 //Inventory remove each slot
 $("#door").click(function()
             {

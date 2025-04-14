@@ -8,11 +8,15 @@
 }
 
 #playView {
-    background-color:yellow;
+    background-color:rgb(58, 58, 0);
     grid-area: view;
     overflow:hidden;
     width:815px;
     height:415px;
+}
+
+.movementHide {
+    display:none;
 }
 
 #moveUp {
@@ -138,7 +142,7 @@
     position:relative;
     left:0px;
     top:0px;
-    margin-top:85px;
+    margin-top:-65px;
     width:10000px;
     height:10000px;
  }

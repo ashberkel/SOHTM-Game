@@ -8,11 +8,10 @@ console.log(chars[0].desc);
 
 const items = [
     {name: "Box", num: 0, desc: "It's worn and water damaged."},
-    {name: "Key", num: 1, desc: "This key is oddly shaped.", dia:"Huh? What do you want?_You want me to open that door?_Fat chance; no one goes in or out.", diaSplit = dia.split("_")}]
+    {name: "Key", num: 1, desc: "This key is oddly shaped.", dia:"Huh? What do you want?_You want me to open that door?_Fat chance; no one goes in or out."}]
 
 
 console.log(items[0].desc);
-console.log(items[1].diaSplit[2]);
 
 // dialogue coding start
 // click to start dialogue code
