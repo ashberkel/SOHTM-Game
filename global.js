@@ -1,34 +1,56 @@
-// NOTE: THIS MOVEMENT MIGHT BE BETTER FOR 'large rooms' LIKE BALLROOM, NOT ODD SHAPED PATHS LIKE HALLS!
+//movement logic
 const mapMoveJs = document.getElementById("mapMove");
-
-$("#moveRight").click(function()
+$(".movement").click(function()
+{   
+    const curHor = parseInt(getComputedStyle(mapMoveJs).getPropertyValue("left"));
+    const curVert = parseInt(getComputedStyle(mapMoveJs).getPropertyValue("top"));
+    var elementId = $(this).attr("id");
+    console.log("Clicked button: " + $(this).attr("id"));
+    if (elementId == "moveRight")
     {
-    const curHor = getComputedStyle(mapMoveJs).getPropertyValue("left");
-    console.log(curHor);
-    var newLft = parseInt(curHor) - 825;
-    mapMoveJs.style.left = newLft + "px";})
-
-$("#moveLeft").click(function()
+        console.log(`Your STARTING point was: ${curHor}px horizontal and ${curVert}px vertical`);
+        var newRight = parseInt(curHor) - 825;
+        mapMoveJs.style.left = newRight + "px";
+        console.log('Your CURRENT point is' + newRight + 'px horizontal and ' + curVert + ' vertical');
+        if (newRight === -825 && curVert === 0)
+        {
+            $("#moveUp, #moveLeft, #moveRight").toggleClass("movementHide");
+        }
+    }
+    else if (elementId == "moveLeft")
     {
-    const curHor = getComputedStyle(mapMoveJs).getPropertyValue("left");
-    console.log(curHor);
-    var newRght = parseInt(curHor) + 825;
-    mapMoveJs.style.left = newRght + "px";})
-
-    $("#moveUp").click(function()
+        console.log(`Your STARTING point was: ${curHor}px horizontal and ${curVert}px vertical`);
+        var newLeft = parseInt(curHor) + 825;
+        mapMoveJs.style.left = newLeft + "px";
+        console.log(`Your CURRENT point is ${newLeft}px horizontal and ${curVert}px vertical`);
+        if (newLeft === 0 && curVert === 0)
+        {
+            $("#moveUp, #moveLeft, #moveRight").toggleClass("movementHide");
+        }
+    }
+    else if (elementId == "moveUp")
     {
-    const curVert = getComputedStyle(mapMoveJs).getPropertyValue("top");
-    console.log(curVert);
-    var newUp = parseInt(curVert) + 425;
-    mapMoveJs.style.top = newUp + "px";})
-
-    $("#moveDown").click(function()
+        console.log(`Your STARTING point was: ${curHor}px horizontal and ${curVert}px vertical`);
+        var newUp = parseInt(curVert) + 425;
+        mapMoveJs.style.top = newUp + "px";
+        console.log(`Your CURRENT point is ${curHor}px horizontal and ${newUp}px vertical`);
+        if (curHor === -825 && newUp === 425)
+            {
+                $("#moveUp, #moveDown, #moveLeft").toggleClass("movementHide");
+            }
+    }
+    else if (elementId == "moveDown")
     {
-    const curVert = getComputedStyle(mapMoveJs).getPropertyValue("top");
-    console.log(curVert);
-    var newDown = parseInt(curVert) - 425;
-    mapMoveJs.style.top = newDown + "px";})
-
+        console.log(`Your STARTING point was: ${curHor}px horizontal and ${curVert}px vertical`);
+        var newDown = parseInt(curVert) - 425;
+        mapMoveJs.style.top = newDown + "px";
+        console.log(`Your CURRENT point is ${curHor}px horizontal and ${newDown}px vertical`);
+        if (curHor === -825 && newDown === 0)
+            {
+                $("#moveUp, #moveDown, #moveLeft").toggleClass("movementHide");
+            }
+    }
+})
 //Inventory fill each slot
 $("#crate").click(function()
     {
