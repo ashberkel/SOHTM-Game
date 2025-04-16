@@ -6,6 +6,15 @@ $(".movement").click(function()
     const curVert = parseInt(getComputedStyle(mapMoveJs).getPropertyValue("top"));
     var elementId = $(this).attr("id");
     console.log("Clicked button: " + $(this).attr("id"));
+    if (curHor === 0 && curVert ===0)
+    {
+        const doorOpen = new Audio("assets/openDoor.wav");
+        doorOpen.play();
+    }
+    else {
+    const footSteps = new Audio("assets/footSteps.wav");
+    footSteps.play();
+    }
     if (elementId == "moveRight")
     {
         console.log(`Your STARTING point was: ${curHor}px horizontal and ${curVert}px vertical`);
@@ -59,7 +68,9 @@ $("#crate").click(function()
             if (!$(this).hasClass("filled"))
             {
                 $(this).prepend("Yo!"); 
-                $(this).addClass("filled"); 
+                $(this).addClass("filled");
+                const pickupSound = new Audio("assets/clickSoundPick.mp3");
+                pickupSound.play(); 
                 return false;
             }
         }
@@ -74,7 +85,9 @@ $("#door").click(function()
                     if ($(this).hasClass("filled"))
                     {
                         $(this).empty("Yo!"); 
-                        $(this).removeClass("filled"); 
+                        $(this).removeClass("filled");
+                        const useSound = new Audio("assets/clickSoundUse.mp3");
+                        useSound.play();  
                         return false;
                     }
                 }
