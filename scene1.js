@@ -1,9 +1,8 @@
 console.log('The JS has loaded!');
 //array of characters, items, points of interest
-var dia;
 const chars = [
-    {name: "Frank", num: 0, occupation: "Captain", desc: "Frank doesn't look happy to see you."},
-    {name: "Rose", num: 1, occupation: "Scientist", desc: "Rosie looks troubled."}];
+    {name: "Frank", num: 0, occupation: "Captain", desc: "Frank doesn't look happy to see you.", intro: "...what? What are you starin' at?_Whatever, just mind yer own business."},
+    {name: "Rose", num: 1, occupation: "Scientist", desc: "Rosie looks troubled.", locketGet: "..._Wait, where did you..._...pardon, forget I said anything."}];
 console.log(chars[0].desc);
 
 const items = [
@@ -26,7 +25,7 @@ myClickables.forEach(clickable => {
     clickable.addEventListener('click', processClick);
 });
 
-//sorting clickables to match html id with array data
+/* //sorting clickables to match html id with array data
 function processClick()
 {
     window.diaId = this.id;
@@ -42,7 +41,7 @@ function processClick()
 
     setTimeout(function(){document.getElementById('diaBox').innerHTML = ""; diaButton.style.display = "none";},3000);
     //fix so that I calling a clearTimeout on the setTimeout 
-}
+} */
 
 //use this as a means to construct the ship and people
 let spaceship = {

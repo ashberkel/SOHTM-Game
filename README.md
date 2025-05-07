@@ -13,10 +13,12 @@ Ragtime Annie
 SFX from https://opengameart.org/
 metalHit by marcelofg55
 lowRumble by Musheran
-doorCreak by spookymodem
+doorCreak(modified) by spookymodem
 shortWinds by IgnasD
 windOut by AntumDeluge
 weirdMutters by primbal
 creepyDrums and briefShock by MouthlessGames
 clickSounds by pauliuw
-footSteps(modified) by congusbongus
+
+SFX from https://freesound.org/
+footSteps (modified) by saha213131

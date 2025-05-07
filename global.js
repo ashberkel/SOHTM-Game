@@ -60,6 +60,7 @@ $(".movement").click(function()
             }
     }
 })
+
 //Inventory fill each slot
 $("#crate").click(function()
     {
@@ -93,3 +94,25 @@ $("#door").click(function()
                 }
                 )
             });
+
+//Dialogue splitting -- FIX WHY THE DIABUTTON DISAPPEARS
+function diaSplit(dia) {
+    const splitUp = dia.split("_");
+    var n = 0;
+    diaButton.style.display = "inline";
+    document.getElementById('diaBox').innerHTML = splitUp[n];
+    $("#diaButton").click(function(){
+        n += 1;
+        if (splitUp[n] !== undefined)
+        {
+        document.getElementById('diaBox').innerHTML = splitUp[n];
+        }
+        else {
+        document.getElementById('diaBox').innerHTML = "";
+        diaButton.style.display = "none";
+        n = 0;
+    }
+    console.log(`Current n count is` + n);
+    })
+    console.log(splitUp[1]);
+}
