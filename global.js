@@ -1,4 +1,4 @@
-//movement logic
+//movement logic -- FIX ARROW PLACEMENT
 const mapMoveJs = document.getElementById("mapMove");
 $(".movement").click(function()
 {   
@@ -23,7 +23,7 @@ $(".movement").click(function()
         console.log('Your CURRENT point is' + newRight + 'px horizontal and ' + curVert + ' vertical');
         if (newRight === -825 && curVert === 0)
         {
-            $("#moveUp, #moveLeft, #moveRight").toggleClass("movementHide");
+            $("#moveUp, #moveLeft, #moveRight").toggleClass("hide");
         }
     }
     else if (elementId == "moveLeft")
@@ -34,7 +34,7 @@ $(".movement").click(function()
         console.log(`Your CURRENT point is ${newLeft}px horizontal and ${curVert}px vertical`);
         if (newLeft === 0 && curVert === 0)
         {
-            $("#moveUp, #moveLeft, #moveRight").toggleClass("movementHide");
+            $("#moveUp, #moveLeft, #moveRight").toggleClass("hide");
         }
     }
     else if (elementId == "moveUp")
@@ -45,7 +45,7 @@ $(".movement").click(function()
         console.log(`Your CURRENT point is ${curHor}px horizontal and ${newUp}px vertical`);
         if (curHor === -825 && newUp === 425)
             {
-                $("#moveUp, #moveDown, #moveLeft").toggleClass("movementHide");
+                $("#moveUp, #moveDown, #moveLeft").toggleClass("hide");
             }
     }
     else if (elementId == "moveDown")
@@ -56,7 +56,7 @@ $(".movement").click(function()
         console.log(`Your CURRENT point is ${curHor}px horizontal and ${newDown}px vertical`);
         if (curHor === -825 && newDown === 0)
             {
-                $("#moveUp, #moveDown, #moveLeft").toggleClass("movementHide");
+                $("#moveUp, #moveDown, #moveLeft").toggleClass("hide");
             }
     }
 })
@@ -95,24 +95,26 @@ $("#door").click(function()
                 )
             });
 
-//Dialogue splitting -- FIX WHY THE DIABUTTON DISAPPEARS
+//Dialogue splitting
 function diaSplit(dia) {
     const splitUp = dia.split("_");
     var n = 0;
     diaButton.style.display = "inline";
     document.getElementById('diaBox').innerHTML = splitUp[n];
+    $('#moveIcons').addClass("hide");
+    $("#diaButton").off("click");
     $("#diaButton").click(function(){
         n += 1;
-        if (splitUp[n] !== undefined)
+        if (splitUp[n] != undefined)
         {
         document.getElementById('diaBox').innerHTML = splitUp[n];
         }
         else {
         document.getElementById('diaBox').innerHTML = "";
         diaButton.style.display = "none";
+        $('#moveIcons').removeClass("hide");
         n = 0;
     }
     console.log(`Current n count is` + n);
     })
-    console.log(splitUp[1]);
 }

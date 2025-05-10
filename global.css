@@ -15,8 +15,9 @@
     height:415px;
 }
 
-.movementHide {
-    display:none;
+
+.hide {
+    visibility: hidden;
 }
 
 #moveUp {

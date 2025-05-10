@@ -9,39 +9,7 @@ const items = [
     {name: "Box", num: 0, desc: "It's worn and water damaged."},
     {name: "Key", num: 1, desc: "This key is oddly shaped.", dia:"Huh? What do you want?_You want me to open that door?_Fat chance; no one goes in or out."}]
 
-
 console.log(items[0].desc);
-
-// dialogue coding start
-// click to start dialogue code
-var diaId;
-
-
-const diaButton = document.getElementById("diaButton");
-const myClickables = document.querySelectorAll('.clickables button');
-
-//makes items clickable to free onClick function up for special uses
-myClickables.forEach(clickable => {
-    clickable.addEventListener('click', processClick);
-});
-
-/* //sorting clickables to match html id with array data
-function processClick()
-{
-    window.diaId = this.id;
-    diaButton.style.display = "inline";
-    switch(window.diaId)
-    {
-        case "frank": 
-        dia = ["Frank doesn't look too happy."]; break;
-        case "rosie": 
-        dia = ["Rosie looks happy to see you!"]; break;
-    }
-    document.getElementById('diaBox').innerHTML = dia;
-
-    setTimeout(function(){document.getElementById('diaBox').innerHTML = ""; diaButton.style.display = "none";},3000);
-    //fix so that I calling a clearTimeout on the setTimeout 
-} */
 
 //use this as a means to construct the ship and people
 let spaceship = {

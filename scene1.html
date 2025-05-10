@@ -15,10 +15,12 @@
 <body>
     <div id="uiCont">
         <div id="playView">
-            <img class="movement movementHide" id="moveUp" src="images\cursors\curNav.svg" />
-            <img class="movement" id="moveRight" src="images\cursors\curNav.svg" />
-            <img class="movement movementHide" id="moveDown" src="images\cursors\curNav.svg" />
-            <img class="movement movementHide" id="moveLeft" src="images\cursors\curNav.svg" />
+            <div id="moveIcons">
+                <img class="movement hide" id="moveUp" src="images\cursors\curNav.svg" />
+                <img class="movement" id="moveRight" src="images\cursors\curNav.svg" />
+                <img class="movement hide" id="moveDown" src="images\cursors\curNav.svg" />
+                <img class="movement hide" id="moveLeft" src="images\cursors\curNav.svg" />
+            </div>
             <div id="mapMove">
             <div class="clickables">
                 <button class="chars" id="frank" onclick="diaSplit(chars[0].intro)">Frank</button>
