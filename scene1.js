@@ -1,15 +1,38 @@
 console.log('The JS has loaded!');
 //array of characters, items, points of interest
 const chars = [
-    {name: "Frank", num: 0, occupation: "Captain", desc: "Frank doesn't look happy to see you.", intro: "...what? What are you starin' at?_Whatever, just mind yer own business."},
-    {name: "Rose", num: 1, occupation: "Scientist", desc: "Rosie looks troubled.", locketGet: "..._Wait, where did you..._...pardon, forget I said anything."}];
-console.log(chars[0].desc);
+    {name: "Frank", firstTalk: false, occupation: "Captain", desc: "Frank is the ship's janitor. He doesn't look happy to see you.", 
+      diaOptions: function()
+      {
+        var dia;
+        if (this.firstTalk == false)
+        {
+          this.firstTalk = true;
+          console.log("First time you've met this character?" + this.firstTalk);
+          dia = "Guess you're the new meat?_Well, whatever. I'm Frank. Just don't get in my way."
+          return dia;
+        }
+        else if (items[0].inInv == true)
+        {
+          dia = "Wait...where the hell did you get that?_Did you go into my room or something??";
+          return dia;
+        }
+        else {
+          console.log(this.firstTalk);
+          console.log("First time you've met this character?" + this.firstTalk);
+          dia = "Don't you have anything better to do??";
+          return dia;
+        }
+      },
+    },
+    {name: "Rose", firstTalk: false, occupation: "Scientist", desc: "Rosie looks troubled.", locketGet: "..._Wait, where did you..._...pardon, forget I said anything."}];
+    console.log(typeof chars);
+    console.log(chars[0].desc);
 
 const items = [
-    {name: "Box", num: 0, desc: "It's worn and water damaged."},
-    {name: "Key", num: 1, desc: "This key is oddly shaped.", dia:"Huh? What do you want?_You want me to open that door?_Fat chance; no one goes in or out."}]
-
-console.log(items[0].desc);
+    {name: "Crate", inInv: false, desc: "It's worn and water damaged."},
+    {name: "Key", inInv: false, desc: "This key is oddly shaped."}]
+  console.log(items[0].inInv);
 
 //use this as a means to construct the ship and people
 let spaceship = {

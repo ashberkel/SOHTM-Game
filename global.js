@@ -62,13 +62,25 @@ $(".movement").click(function()
 })
 
 //Inventory fill each slot
-$("#crate").click(function()
+$(".items").click(function()
     {
+        thisItem = this;
+        console.log("Clicked on:", thisItem.id);
+        items.forEach(n =>
+        {
+            if (thisItem.id === n.name)
+            {
+                console.log("Comparing to item:", n.name);
+                n.inInv = true;
+                console.log("You got the" + n.name + items[0].inInv);
+            }
+            else {}
+        });
         $(".invItems").each(function()
         {
             if (!$(this).hasClass("filled"))
             {
-                $(this).prepend("Yo!"); 
+                $(this).prepend(thisItem.id); 
                 $(this).addClass("filled");
                 const pickupSound = new Audio("assets/clickSoundPick.mp3");
                 pickupSound.play(); 
