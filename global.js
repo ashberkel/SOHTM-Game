@@ -1,4 +1,4 @@
-//movement logic -- FIX ARROW PLACEMENT
+//movement logic -- FIX ARROW PLACEMENT & FIX COORDINATES (UP / DOWN INVERTED CUZ OF QUILT)
 const mapMoveJs = document.getElementById("mapMove");
 $(".movement").click(function()
 {   
@@ -40,7 +40,7 @@ $(".movement").click(function()
     else if (elementId == "moveUp")
     {
         console.log(`Your STARTING point was: ${curHor}px horizontal and ${curVert}px vertical`);
-        var newUp = parseInt(curVert) + 425;
+        var newUp = parseInt(curVert) - 425;
         mapMoveJs.style.top = newUp + "px";
         console.log(`Your CURRENT point is ${curHor}px horizontal and ${newUp}px vertical`);
         if (curHor === -825 && newUp === 425)
@@ -51,7 +51,7 @@ $(".movement").click(function()
     else if (elementId == "moveDown")
     {
         console.log(`Your STARTING point was: ${curHor}px horizontal and ${curVert}px vertical`);
-        var newDown = parseInt(curVert) - 425;
+        var newDown = parseInt(curVert) + 425;
         mapMoveJs.style.top = newDown + "px";
         console.log(`Your CURRENT point is ${curHor}px horizontal and ${newDown}px vertical`);
         if (curHor === -825 && newDown === 0)

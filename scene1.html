@@ -47,4 +47,39 @@
       </div>
       <script async src="/global.js"></script>
       <script async src="/scene1.js"></script>
+      <script>
+        //intro dialogue
+        window.onload = function() {
+            console.log("The Window onload is working!")
+            firstDia = "..._Well, that would be mighty impressive._Except I'm on the damn thing and apparently there's some sort of delay._ATTENTION ALL PASSENGERS...WE AGAIN APOLOGIZE FOR THE DELAY. FOR CLASS B AND UP, REFRESHMENTS ARE BEING OFFERED IN..._Well. Better go see if I can find anything out..."
+            splitUp = firstDia.split("_");
+            var n = 0;
+            diaBox = document.getElementById('diaBox')
+            diaButton.style.display = "inline";
+            diaBox.innerHTML = splitUp[n];
+            $('#moveIcons').addClass("hide");
+            $("#diaButton").off("click");
+            $("#diaButton").click(function(){
+                n += 1;
+                if (splitUp[n] != undefined)
+                {
+                diaBox.classList.remove("diaEmphasis");
+                diaBox.innerHTML = splitUp[n];
+                if (n == 3)
+                    {
+                    diaBox.classList.add("diaEmphasis");
+                    diaBox.innerHTML = splitUp[n]
+                    const footSteps = new Audio("assets/footSteps.wav");
+                    footSteps.play();
+                    }
+                }
+                else {
+                diaBox.innerHTML = "";
+                diaButton.style.display = "none";
+                $('#moveIcons').removeClass("hide");
+                n = 0;
+            }
+            console.log(`Current n count is` + n);
+            })}; 
+    </script>
 </html>

@@ -1,4 +1,3 @@
-console.log('The JS has loaded!');
 //array of characters, items, points of interest
 const chars = [
     {name: "Frank", firstTalk: false, occupation: "Captain", desc: "Frank is the ship's janitor. He doesn't look happy to see you.", 
