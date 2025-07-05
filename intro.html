@@ -64,7 +64,7 @@
 
         .content-container {
             display: grid;
-            grid-template-columns: 32% auto auto;
+            grid-template-columns: 33% auto auto;
             padding: 0px 12px;
             margin-top: 15px;
             text-align:justify;
@@ -83,26 +83,37 @@
         p {
             font-family: "Cormorant Upright", serif;
             font-weight: 400;
-            font-size: 20px;
+            font-size: 19px;
             line-height:108%;
         }
-        #nextPage {
+        .choices {
+            padding: 10px;
+        }
+        span {
+            font-family: "Victor Mono", serif;
+            font-optical-sizing: auto;
+            text-transform: uppercase;
+            font-style: normal;
+            font-weight: 800;
+            font-size: 15px;
+        }
+        .nextPage:hover {
             background-color: #e0d5bc;
             border: 2px solid #301b10;
             color: #301b10;
-            padding: 9px 20px;
+            padding: 2px 10px;
             font-family: "Victor Mono", serif;
             font-weight: 600;
-            font-size: 18px;
+            font-size: 15px;
         }
-        #nextPage:hover {
+        .nextPage {
             background-color: #301b10;
             border: 2px solid #e0d5bc;
             color: #e0d5bc;
-            padding: 9px 20px;
+            padding: 2px 10px;
             font-family: "Victor Mono", serif;
             font-weight: 600;
-            font-size: 18px;
+            font-size: 15px;
         }
     </style>
     </head>
@@ -133,17 +144,28 @@
             <br><br>
             The Chief Scientist of the Infinite Current Project remarked upon the Empress: <i>"It is not every day one can claim the creation of history. Yet my team has revolutionized travel in future generations."</i>
             </p>
-            <button id="nextPage">Continue</button>
+            <div id = "choices" style="background-color: #301b10; color:#e0d5bc">
+            <p>
+            <span>Which type of animal speaks to you? Make your choice to begin.</span>
+            </p>
+            <button class="nextPage" id="DogMC">Canine</button>
+            <button class="nextPage" id="CatMC">Feline</button>
+            <button class="nextPage" id="SnakeMC">Reptile</button>
+            </div>
         </div>
     </div>
 
-
     <script>
-    const button = document.getElementById("nextPage");
-
-    button.addEventListener("click", function() {
-    window.location.href = "scene1.html";
-    });
+    const buttons = document.getElementsByClassName("nextPage");
+    for (let i = 0; i < buttons.length; i++)
+    {
+        buttons[i].addEventListener("click", function()
+        {
+        const clickedID = this.id
+        localStorage.setItem("MCChoice", clickedID);
+        window.location.href = "scene1.html";
+        });
+    };
     </script>
 </body>
 </html>

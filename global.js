@@ -1,3 +1,5 @@
+const MCChoice = localStorage.getItem("MCChoice");
+console.log("Your MCChoice is: " + MCChoice);
 //movement logic -- FIX ARROW PLACEMENT & FIX COORDINATES (UP / DOWN INVERTED CUZ OF QUILT)
 const mapMoveJs = document.getElementById("mapMove");
 $(".movement").click(function()
