@@ -1,67 +1,51 @@
 const MCChoice = localStorage.getItem("MCChoice");
 console.log("Your MCChoice is: " + MCChoice);
 //movement logic -- FIX ARROW PLACEMENT & FIX COORDINATES (UP / DOWN INVERTED CUZ OF QUILT)
-const mapMoveJs = document.getElementById("mapMove");
-$(".movement").click(function()
-{   
-    const curHor = parseInt(getComputedStyle(mapMoveJs).getPropertyValue("left"));
-    const curVert = parseInt(getComputedStyle(mapMoveJs).getPropertyValue("top"));
-    var elementId = $(this).attr("id");
-    console.log("Clicked button: " + $(this).attr("id"));
-    if (curHor === 0 && curVert ===0)
-    {
-        const doorOpen = new Audio("assets/openDoor.wav");
-        doorOpen.play();
-    }
-    else {
-    const footSteps = new Audio("assets/footSteps.wav");
-    footSteps.play();
-    }
-    if (elementId == "moveRight")
-    {
-        console.log(`Your STARTING point was: ${curHor}px horizontal and ${curVert}px vertical`);
-        var newRight = parseInt(curHor) - 825;
-        mapMoveJs.style.left = newRight + "px";
-        console.log('Your CURRENT point is' + newRight + 'px horizontal and ' + curVert + ' vertical');
-        if (newRight === -825 && curVert === 0)
-        {
-            $("#moveUp, #moveLeft, #moveRight").toggleClass("hide");
-        }
-    }
-    else if (elementId == "moveLeft")
-    {
-        console.log(`Your STARTING point was: ${curHor}px horizontal and ${curVert}px vertical`);
-        var newLeft = parseInt(curHor) + 825;
-        mapMoveJs.style.left = newLeft + "px";
-        console.log(`Your CURRENT point is ${newLeft}px horizontal and ${curVert}px vertical`);
-        if (newLeft === 0 && curVert === 0)
-        {
-            $("#moveUp, #moveLeft, #moveRight").toggleClass("hide");
-        }
-    }
-    else if (elementId == "moveUp")
-    {
-        console.log(`Your STARTING point was: ${curHor}px horizontal and ${curVert}px vertical`);
-        var newUp = parseInt(curVert) - 425;
-        mapMoveJs.style.top = newUp + "px";
-        console.log(`Your CURRENT point is ${curHor}px horizontal and ${newUp}px vertical`);
-        if (curHor === -825 && newUp === 425)
-            {
-                $("#moveUp, #moveDown, #moveLeft").toggleClass("hide");
-            }
-    }
-    else if (elementId == "moveDown")
-    {
-        console.log(`Your STARTING point was: ${curHor}px horizontal and ${curVert}px vertical`);
-        var newDown = parseInt(curVert) + 425;
-        mapMoveJs.style.top = newDown + "px";
-        console.log(`Your CURRENT point is ${curHor}px horizontal and ${newDown}px vertical`);
-        if (curHor === -825 && newDown === 0)
-            {
-                $("#moveUp, #moveDown, #moveLeft").toggleClass("hide");
-            }
-    }
-})
+$(document).ready(function()
+{
+  X = 0
+  Y = 0
+  Z = 0
+  coord = ""
+  room = ``
+  $(".movement").click(function()
+  {
+  	ID = this.id
+    if (ID == "moveRight")
+     {X += 1}
+    else if (ID == "moveLeft")
+     {X -= 1}
+    else if (ID == "moveUp")
+     {Y += 1}
+    else {Y -= 1}
+   coord = `${Z},${X},${Y}`
+   switch(coord) {
+   case "0,0,0":
+   room = "Bedroom"
+   $("#moveUp").addClass("hide");
+   $("#moveDown").addClass("hide");
+   $("#moveLeft").addClass("hide");
+   $("#moveRight").toggleClass("hide");
+      $("#playView").css("background-image", "url('images/rooms/MCBed.jpg')");
+   break;
+   case "0,1,0":
+   room = "Hallway"
+   $("#moveUp").removeClass("hide");
+   $("#moveDown").addClass("hide");
+   $("#moveLeft").removeClass("hide");
+   $("#moveRight").addClass("hide");
+   $("#playView").css("background-image", "url('images/rooms/MCHall.jpg')");
+   break;
+   case "0,1,1":
+   room = "Elevator"
+   $("#moveDown").toggleClass("hide");
+   $("#moveLeft").addClass("hide");
+      $("#playView").css("background-image", "url('images/rooms/Elev.jpg')");
+   break;
+   }
+     $("#coordinates").text("Coordinates:" + coord + "Room:" + room)
+  });
+});
 
 //Inventory fill each slot
 $(".items").click(function()
