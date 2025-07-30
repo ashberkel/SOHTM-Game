@@ -8,7 +8,7 @@
 }
 
 #playView {
-    background-image: url('images/rooms/MCBed.jpg');
+    background-image: url('images/rooms/MCHall.jpg');
     background-size: 825px 425px;
     background-color:rgb(0, 0, 0);
     grid-area: view;
@@ -133,15 +133,5 @@
     cursor: url('./images/cursors/curTalk.svg'), auto;}
 .items:hover {
     cursor: url('./images/cursors/curGrab.svg'), auto;}
-
-/* styling for area1*/
- #Crate {
-    position:relative;
-    left: 50px;
-    top: 50px;
- }
- #Door {
-    position:relative;
-    left: 10px;
-    top: 10px;
- }
+.clickables:hover {
+    cursor: url('./images/cursors/curLook.svg'), auto;}
