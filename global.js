@@ -1,6 +1,6 @@
 const MCChoice = localStorage.getItem("MCChoice");
 console.log("Your MCChoice is: " + MCChoice);
-//movement logic -- FIX ARROW PLACEMENT & FIX COORDINATES (UP / DOWN INVERTED CUZ OF QUILT)
+//movement logic
 $(document).ready(function()
 {
   X = 0
@@ -22,31 +22,65 @@ $(document).ready(function()
    switch(coord) {
    case "0,0,0":
    room = "Bedroom"
-   $("#moveUp").addClass("hide");
-   $("#moveDown").addClass("hide");
-   $("#moveLeft").addClass("hide");
+    $(".clickables").addClass("hide");
+    $(".clickables.MCRoom").removeClass("hide");
+   $("#moveUp, #moveDown, #moveLeft").addClass("hide");
    $("#moveRight").toggleClass("hide");
-      $("#playView").css("background-image", "url('images/rooms/MCBed.jpg')");
+      $("#playView").css("background-image", "url('images/rooms/MCRoom.jpg')");
    break;
    case "0,1,0":
    room = "Hallway"
-   $("#moveUp").removeClass("hide");
-   $("#moveDown").addClass("hide");
-   $("#moveLeft").removeClass("hide");
-   $("#moveRight").addClass("hide");
+    $(".clickables").addClass("hide");
+    $(".clickables.MCHall").removeClass("hide");
+    $("#moveDown, #moveRight").addClass("hide");
+   $("#moveUp, #moveLeft").removeClass("hide");
    $("#playView").css("background-image", "url('images/rooms/MCHall.jpg')");
    break;
    case "0,1,1":
    room = "Elevator"
-   $("#moveDown").toggleClass("hide");
-   $("#moveLeft").addClass("hide");
+    $(".clickables").addClass("hide");
+    $(".clickables.elevator").removeClass("hide");
+   $("#moveLeft").addClass("hide"); 
+   $("#moveDown"). removeClass("hide");
       $("#playView").css("background-image", "url('images/rooms/Elev.jpg')");
+   break;
+      case "0,1,2":
+   room = "Floors"
+    $(".clickables").addClass("hide");
+    $(".clickables.Floors").removeClass("hide");
+   $("#moveUp").addClass("hide"); 
+   $("#moveDown"). removeClass("hide");
+      $("#playView").css("background-image", "url('images/rooms/Floors.jpg')");
    break;
    }
      $("#coordinates").text("Coordinates:" + coord + "Room:" + room)
   });
 });
+//Clickables
+$(".clickables").click(function() {
+    const thisItem = this;
+    for (const n of clickable) {
+        if (thisItem.id === "mirror") {
+            if (MCChoice === "MCCat") {
+                $("#MCMirrorPic").attr("src", "images/characters/MCCat.png");
+            } else {
+                $("#MCMirrorPic").attr("src", "images/characters/MCDog.png");
+            }
+            dia = n.desc;
+                diaSplit(dia, () => {
+                // Clear the image after diaSplit finishes
+                $("#MCMirrorPic").attr("src", "");
+            });
+            break; // stop searching after mirror
+        }
 
+        if (thisItem.id === n.name) {
+            dia = n.desc;
+            diaSplit(dia);
+            break; // stop searching after match
+        }
+    }
+});
 //Inventory fill each slot
 $(".items").click(function()
     {
@@ -94,7 +128,7 @@ $("#door").click(function()
             });
 
 //Dialogue splitting
-function diaSplit(dia) {
+function diaSplit(dia, onDone) {
     const splitUp = dia.split("_");
     var n = 0;
     diaButton.style.display = "inline";
@@ -114,5 +148,6 @@ function diaSplit(dia) {
         n = 0;
     }
     console.log(`Current n count is` + n);
+    if (onDone) onDone();
     })
 }

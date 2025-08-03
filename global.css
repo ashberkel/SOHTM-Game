@@ -8,7 +8,7 @@
 }
 
 #playView {
-    background-image: url('images/rooms/MCHall.jpg');
+    background-image: url('images/rooms/MCRoom.jpg');
     background-size: 825px 425px;
     background-color:rgb(0, 0, 0);
     grid-area: view;
@@ -17,6 +17,7 @@
 
 .hide {
     visibility: hidden;
+    pointer-events: none;
 }
 
 #moveUp {

@@ -11,10 +11,18 @@
         <link href="https://fonts.googleapis.com/css2?family=Victor+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="global.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <style>
+            #MCMirrorPic {
+                position: absolute;
+                top: 0;
+                left: 50%;
+            }
+        </style>
     </head>
 <body>
     <div id="uiCont">
         <div id="playView">
+            <img src="" id ="MCMirrorPic">
             <div id="moveIcons">
                 <img class="movement hide" id="moveUp" src="images\cursors\curNav.svg" />
                 <img class="movement" id="moveRight" src="images\cursors\curNav.svg" />
@@ -23,13 +31,13 @@
             </div>
             <div id="mapMove">
                     <svg width="2000px" height = "2000px">
-                        <rect class="clickables MCRoom hide" id="mirror" x="340" y="20" width="140" height="250" fill="rgba(100,0,0,.5)" />
-                        <rect class="clickables MCRoom hide" id="newspaper" x="30" y="270" width="150" height="40" fill="rgba(0,100,0,.5)" />
-                        <rect class="clickables MCRoom hide" id="bed" x="500" y="50" width="350" height="400" fill="rgba(0,0,100,.5)" />
-                        <rect class="clickables MCHall" id="number1" x="125" y="20" width="60" height="40" fill="rgba(100,0,0,.5)" />
-                        <rect class="clickables MCHall" id="number2" x="640" y="15" width="60" height="40" fill="rgba(0,100,0,.5)" />
-                        <polygon class="clickables MCHall" id="carpet" points="250,250 450,250 100,0 100,200" style="fill:rgba(0,0,100,.5)" />
-
+                        <rect class="clickables MCRoom" id="mirror" x="340" y="20" width="140" height="250" fill="rgba(100,0,0,.5)" />
+                        <rect class="clickables MCRoom" id="newspaper" x="30" y="270" width="150" height="40" fill="rgba(0,0,0,.0)" />
+                        <rect class="clickables MCRoom" id="bed" x="500" y="50" width="350" height="400" fill="rgba(0,0,0,.0)" />
+                        <rect class="clickables MCHall hide" id="doorNum" x="125" y="20" width="60" height="40" fill="rgba(0,0,0,.0)" />
+                        <rect class="clickables MCHall hide" id="doorNum" x="640" y="15" width="60" height="40" fill="rgba(0,0,0,.0)" />
+                        <polygon class="clickables MCHall hide" id="carpet" points="377,230 444,230 750,800 100,800" fill="rgba(0,0,0,.0)" />
+                        <rect class="clickables elevator hide" id="elevator" x="290" y="120" width="240" height="700" fill="rgba(0,100,0,.5)" />
                     </svg>
             </div>
         </div>
