@@ -1,4 +1,5 @@
 /* styling for content containers*/
+
 #uiCont {
     display: grid;
     grid-template-columns: 825px 259px;
@@ -127,6 +128,9 @@
     background-color: #CCFF00;
     border:2px solid black;
     color:black;
+}
+.movement:hover {
+    cursor: none;
 }
 .poi:hover {
     cursor: url('./images/cursors/curLook.svg'), auto;}

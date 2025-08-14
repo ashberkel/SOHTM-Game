@@ -62,9 +62,9 @@ $(".clickables").click(function() {
     for (const n of clickable) {
         if (thisItem.id === "mirror") {
             if (MCChoice === "MCCat") {
-                $("#MCMirrorPic").attr("src", "images/characters/MCCat.png");
+                $("#MCMirrorPic").attr("src", "images/characters/MCCat.gif");
             } else {
-                $("#MCMirrorPic").attr("src", "images/characters/MCDog.png");
+                $("#MCMirrorPic").attr("src", "images/characters/MCDog.gif");
             }
             dia = n.desc;
                 diaSplit(dia, () => {
