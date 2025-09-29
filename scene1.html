@@ -30,6 +30,7 @@
                 <img class="movement hide" id="moveLeft" src="images\cursors\curNav.svg" />
             </div>
             <div id="mapMove">
+                    <img style="position:relative; top:100px; left:100px; width:600px;"id="newspaperHand" src="images\newspaperHold.png">
                     <svg width="2000px" height = "2000px">
                         <rect class="clickables MCRoom" id="mirror" x="340" y="20" width="140" height="250" fill="rgba(0,0,0,0)" />
                         <rect class="clickables MCRoom" id="newspaper" x="30" y="270" width="150" height="40" fill="rgba(0,0,0,.0)" />
@@ -89,7 +90,7 @@
                 diaBox.innerHTML = splitUp[n];
                 if (n == 3)
                     {
-                    const Sound = new Audio("assets/clickSoundUse.mp3");
+                    const Sound = new Audio("assets/intercom.mp3");
                     Sound.play();
                     diaBox.classList.add("diaEmphasis");
                     diaBox.innerHTML = splitUp[n]
@@ -98,6 +99,7 @@
                 else {
                 diaBox.innerHTML = "";
                 diaButton.style.display = "none";
+                $('#newspaperHand').addClass("hide");
                 $('#moveIcons').removeClass("hide");
                 n = 0;
             }
