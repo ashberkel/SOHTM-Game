@@ -8,10 +8,13 @@ $(document).ready(function()
     Z = 3
     coord = ""
     room = ``
+    const walkNoise = new Audio("assets/footSteps.wav");
     const dining3Music = new Audio("assets/Ragtime_Annie.mp3");
     const dining6Music = new Audio("assets/Intro_And_Tarantelle.mp3");
     $(".movement, .floors").click(function()
     {
+        walkNoise.play();
+        walkNoise.volume = .2;
         ID = this.id
         if (ID == "floorB1")
             {Z = 0}

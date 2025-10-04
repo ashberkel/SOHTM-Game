@@ -28,7 +28,7 @@ const chars = [
     console.log(typeof chars);
     console.log(chars[0].desc);
 
-const clickable = [
+const clickables = [
     {name: "mirror", desc: "Still got the same dead look in my eyes. It'd be nice if I left that back in Eastwyn."},
     {name: "newspaper", desc: "Enough of that self-serving crap. Ain't helping my mood."},
     {name: "bed", desc: "Middle class comfort? Maybe, but it's too gaudy for my tastes."},
@@ -36,8 +36,3 @@ const clickable = [
     {name: "doorNum", desc: "Numbers with no real meaning._Besides telling me where I'm supposed to sleep, there's nothing else to figure out."},
     {name: "carpet", desc: "Maybe the ship stopped cuz the crew’s just sittin’ somewhere, mesmerized by these godawful carpet patterns."},
     {name: "elevator", desc: "Real pretty design. Hope it works better than the rest of this ship."}]
-
-const items = [
-    {name: "Crate", inInv: false, desc: "It's worn and water damaged."},
-    {name: "Key", inInv: false, desc: "This key is oddly shaped."}]
-  console.log(items[0].inInv);
