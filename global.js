@@ -232,7 +232,7 @@ $(".clickables").click(function() {
                 break;}
             
             if (thisItem.id === n.name) {
-                dia = n.desc;
+                dia = n.dia;
                 diaSplit(dia);
                 break; // stop searching after match
                 }
@@ -241,10 +241,12 @@ $(".clickables").click(function() {
 //Characters
 $(".characters").click(function() {
     const thisChar = this;
+    $("#roomFade").removeClass("hide");
     for (const n of character) {
         if (thisChar.id === n.name) {
-            dia = n.dia;
+            dia = n.diaOptions();
             diaSplit(dia);
+            n.firstTalk = true;
             break; // stop searching after match
             }
         }
@@ -313,6 +315,7 @@ $(".characters").click(function() {
                 document.getElementById('diaBox').innerHTML = "";
                 diaButton.style.display = "none";
                 $('#moveIcons').removeClass("hide");
+                $("#roomFade").addClass("hide");
                 n = 0;
             }
             console.log(`Current n count is` + n);
