@@ -98,7 +98,7 @@ $(document).ready(function()
             $("#moveLeft, #moveUp"). removeClass("hide");
             $("#playView").css("background-image", "url('images/rooms/DiningHall.jpg')");
             dining3Music.play();
-            dining3Music.volume = .3;
+            dining3Music.volume = .2;
             break;
             //FIX THE CLICKABLES ON ANYTHING BELOW
             case "4,2,2":
@@ -107,9 +107,12 @@ $(document).ready(function()
             $("#moveRight, #moveDown"). removeClass("hide");
             $("#playView").css("background-image", "url('images/rooms/DiningLft.jpg')");
             dining3Music.play();
-            dining3Music.volume = .5;
+            dining3Music.volume = .3;
             break;
             case "4,3,2":
+            $(".clickables").addClass("hide");
+            $(".clickables.DiningLeft").removeClass("hide");
+            $(".clickables#charCapn").removeClass("hide");
             room = "DiningRight"
             $("#moveRight, #moveDown").addClass("hide");
             $("#moveLeft"). removeClass("hide");
@@ -155,7 +158,7 @@ $(document).ready(function()
                 $(".clickables.elevator").removeClass("hide");
                 $("#moveUp, #moveRight").addClass("hide");
                 $("#moveDown").removeClass("hide");
-                $("#playView").css("background-image", "url('images/rooms/FloorsB346O-.jpg')");
+                $("#playView").css("background-image", "url('images/rooms/Floors34O-.jpg')");
                 break;
             case "7,1,1":
                 room = "ElevatorO1"
@@ -234,8 +237,19 @@ $(".clickables").click(function() {
                 break; // stop searching after match
                 }
             }
-        });
-        //Inventory fill each slot
+});
+//Characters
+$(".characters").click(function() {
+    const thisChar = this;
+    for (const n of character) {
+        if (thisChar.id === n.name) {
+            dia = n.dia;
+            diaSplit(dia);
+            break; // stop searching after match
+            }
+        }
+});
+//Inventory fill each slot
         $(".items").click(function()
         {
             thisItem = this;
@@ -264,7 +278,7 @@ $(".clickables").click(function() {
             )
         });
         
-        //Inventory remove each slot
+    //Inventory remove each slot
         $("#door").click(function()
         {
             $(".invItems").each(function()

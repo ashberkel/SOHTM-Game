@@ -1,15 +1,15 @@
 //array of characters, items, points of interest
-const chars = [
-    {name: "Frank", firstTalk: false, occupation: "Captain", desc: "Frank is the ship's janitor. He doesn't look happy to see you.", 
+const character = [
+    {name: "charCapn", firstTalk: false, 
       diaOptions: function()
       {
         var dia;
         if (this.firstTalk == false)
         {
-          this.firstTalk = true;
           console.log("First time you've met this character?" + this.firstTalk);
-          dia = "Guess you're the new meat?_Well, whatever. I'm Frank. Just don't get in my way."
+          dia = "???: G'evening, sir. I hope you're enjoying the refreshments._Enjoying it enough. What's the deal anyways?_???: We've had some issues with our heading, that's all. Bad data. We're trying to figure out how to get back on course._Hm._???: Sir?_Gotta call bullshit when I hear it. The wind doesn't sound like we're moving, and the clouds are near stopped out the window._???: ...interesting. I don't think I have your name._I didn't give it. But it's Nicholas Carter._???: That’s...Detective Carter, isn’t it? I’m Captain Niccals._Captain Niccals: I couldn't quite place that face until you said it. Quite famous work you do._I just like making sure problems get solved._Captain Niccals: Problems.._Captain Niccals: ...._Captain Niccals: Look, I'll be frank. Normally I wouldn't even be humoring you, but these are...odd circumstances._Captain Niccals: It's...looking like someone from our own crew is causing the issue. It's the only explanation._Causing the problem?_ Captain Niccals: Basically, our engines are dead in the water. Someone sabotaged it._Captain Niccals: And the narrow group of people who could even get close to the reactor is..._So...basically. It may not be smart to rely on inside help only._ Captain Niccals: Mm. Seems so. I can't exactly just let you waltz in just like that...it isn't my authority. _ Captain Niccals: But...may I see your holocard for a moment._Knock yourself out._ ...._ Captain Niccals: There. I've given you access to a few more floors, notably the first class ballroom._Captain Niccals: Head scientist Gven is up there now trying to keep the peace._Why is she there and the captain down uh...here in the slums?_Captain Niccals: I might be captain, but I'm really just pointing the nose ahead. She's the one actually keeping us afloat._ Right..._Captain Niccals: Talk to her. Show her your holocard...I've left a note so that she'll humor you. From there, who knows.._Captain Niccals: But it's the only real place to start. She knows more about this mess than I do._...and she can be trusted?_Captain Niccals: This ship is her magnum opus. I hardly believe she'd sabotage things after all this._Right...fine. Not really one for R&R anyways. I'll be back if I have anything._ Captain Niccals: Good man."
           return dia;
+          this.firstTalk = true;
         }
         else if (items[0].inInv == true)
         {
@@ -17,18 +17,15 @@ const chars = [
           return dia;
         }
         else {
-          console.log(this.firstTalk);
           console.log("First time you've met this character?" + this.firstTalk);
-          dia = "Don't you have anything better to do??";
+          dia = "Captain Niccals: I wish I could help you more...I really  do. But I think it's better if you do some work on your own before we chat some more.";
           return dia;
         }
       },
-    },
-    {name: "Rose", firstTalk: false, occupation: "Scientist", desc: "Rosie looks troubled.", locketGet: "..._Wait, where did you..._...pardon, forget I said anything."}];
-    console.log(typeof chars);
-    console.log(chars[0].desc);
+    },]
+    console.log(chars[0].name);
 
-const clickables = [
+const clickable = [
     {name: "mirror", desc: "Still got the same dead look in my eyes. It'd be nice if I left that back in Eastwyn."},
     {name: "newspaper", desc: "Enough of that self-serving crap. Ain't helping my mood."},
     {name: "bed", desc: "Middle class comfort? Maybe, but it's too gaudy for my tastes."},

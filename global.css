@@ -134,7 +134,7 @@
 }
 .poi:hover {
     cursor: url('./images/cursors/curLook.svg'), auto;}
-.chars:hover {
+.characters:hover {
     cursor: url('./images/cursors/curTalk.svg'), auto;}
 .items:hover {
     cursor: url('./images/cursors/curGrab.svg'), auto;}
