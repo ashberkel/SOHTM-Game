@@ -30,12 +30,12 @@
                 <img class="movement hide" id="moveLeft" src="images\cursors\curNav.svg" />
             </div>
             <div id="mapMove">
-                    <img style="position:absolute; top:85px; left:70px; width:700px;" id="newspaperHand" src="images\newspaperHold.png">
-                    <img style="position:absolute; top:280px; left:25px; width:150px;" class="clickables MCRoom hide" id="newspaper" src="images/objects/ObNews.png">
-                    <img style="position:absolute; top:10px; left:420px; width:350px;" class="characters" id="charCapn" src="images/characters/Capn1.png">
-                    <svg width="2000px" height = "2000px">
+                <img style="position:absolute; top:85px; left:70px; width:700px;" id="newspaperHand" src="images\newspaperHold.png">
+                <img style="position:absolute; top:280px; left:25px; width:150px;" class="clickables MCRoom hide" id="newspaper" src="images/objects/ObNews.png">
+                <img style="position:absolute; top:36px; left:420px; width:300px;" class="characters hide" id="charCapn" src="images/characters/Capn1.png">
+                <svg width="2000px" height = "2000px">
                         <rect class="hide" id="roomFade" width="2000" height="2000" fill="rgba(0,0,0, .8)" />
-                        <rect class="clickables MCRoom" id="mirror" x="350" y="20" width="140" height="250" fill="rgba(0,0,0,.0)" />
+                        <rect class="clickables MCRoom" id="mirror" x="350" y="20" width="140" height="250" fill="rgba(100,0,0,.8)" />
                         <rect class="clickables MCRoom" id="bed" x="500" y="50" width="350" height="400" fill="rgba(0,0,0,.0)" />
                         <rect class="clickables MCHall hide" id="doorNum" x="125" y="20" width="60" height="40" fill="rgba(0,0,0,.0)" />
                         <rect class="clickables MCHall hide" id="doorNum" x="640" y="15" width="60" height="40" fill="rgba(0,0,0,.0)" />
@@ -46,11 +46,11 @@
                         <rect class="clickables floors inactive hide" id="floorB1" x="115" y="185" width="50" height="50" fill="rgba(0,0,0,.0)" />
                         <rect class="clickables floors inactive hide" id="floor1" x="195" y="145" width="40" height="50" fill="rgba(0,0,0,.0)" />
                         <rect class="clickables floors inactive hide" id="floor2" x="295" y="115" width="40" height="50" fill="rgba(0,0,0,.0)" />
-                        <rect class="clickables floors current hide" id="floor3" x="395" y="110" width="40" height="50" fill="rgba(0,0,0,.0)" />
-                        <rect class="clickables floors hide" id="floor4" x="495" y="115" width="40" height="50" fill="rgba(0,0,0,.0)" />
+                        <rect class="clickables floors active current hide" id="floor3" x="395" y="110" width="40" height="50" fill="rgba(0,0,0,.0)" />
+                        <rect class="clickables floors active hide" id="floor4" x="495" y="115" width="40" height="50" fill="rgba(0,0,0,.0)" />
                         <rect class="clickables floors inactive hide" id="floor5" x="595" y="145" width="40" height="50" fill="rgba(0,0,0,.0)" />
                         <rect class="clickables floors inactive hide" id="floor6" x="680" y="195" width="40" height="50" fill="rgba(0,0,0,.0)" />
-                        <rect class="clickables floors hide" id="floorO1" x="740" y="255" width="50" height="50" fill="rgba(0,0,0,.0)" />
+                        <rect class="clickables floors active hide" id="floorO1" x="740" y="255" width="50" height="50" fill="rgba(0,0,0,.0)" />
                         <rect class="clickables floors inactive hide" id="floorO2" x="790" y="325" width="50" height="50" fill="rgba(0,0,0,.0)" />
                     </svg>
             </div>
@@ -70,8 +70,8 @@
         <!--keep diaButton out of diaBox;diaBox needs to be empty to load dialogue from-->
         <button id="diaButton">>>></button>
       </div>
-      <script async src="/global.js"></script>
-      <script async src="/scene1.js"></script>
+      <script src="/global.js"></script>
+      <script async src="/scene.js"></script>
       <script>
         //intro dialogue
         window.onload = function() {
