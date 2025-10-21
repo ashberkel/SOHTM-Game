@@ -1,5 +1,6 @@
 const MCChoice = localStorage.getItem("MCChoice");
-let floorUnlock = false;
+let floorUnlock = true;
+let floor6First = true;
 console.log("Your MCChoice is: " + MCChoice);
 //movement logic
 $(document).ready(function () {
@@ -13,9 +14,10 @@ $(document).ready(function () {
     const dining3Music = new Audio("assets/Ragtime_Annie.mp3");
     const dining6Music = new Audio("assets/Intro_And_Tarantelle.mp3");
     $(".movement, .floors").click(function () {
-        walkNoise.play();
-        walkNoise.volume = .2;
         ID = this.id
+        if (ID === "moveRight" || ID === "moveLeft" || ID === "moveUp" || ID === "moveDown") {
+            walkNoise.play();
+            walkNoise.volume = .2;}
         if (ID == "floorB1") { Z = 0 }
         if (ID == "floor3") { Z = 3 }
         if (ID == "floor4") { Z = 4 }
@@ -85,7 +87,7 @@ $(document).ready(function () {
                 break;
             case "4,2,1":
                 room = "Hall4"
-                $("#moveRight, #moveDown").addClass("hide");
+                $("#moveRight, #moveDown, #charHugh").addClass("hide");
                 $("#moveLeft, #moveUp").removeClass("hide");
                 $("#playView").css("background-image", "url('images/rooms/DiningHall.jpg')");
                 dining3Music.play();
@@ -94,14 +96,14 @@ $(document).ready(function () {
             case "4,2,2":
                 room = "DiningLeft"
                 $("#moveLeft, #moveUp, #charCapn").addClass("hide");
-                $("#moveRight, #moveDown").removeClass("hide");
+                $("#moveRight, #moveDown, #charHugh").removeClass("hide");
                 $("#playView").css("background-image", "url('images/rooms/DiningLft.jpg')");
                 dining3Music.play();
                 dining3Music.volume = .3;
                 break;
             case "4,3,2":
                 room = "DiningRight"
-                $(".clickables").addClass("hide");
+                $(".clickables, #charHugh").addClass("hide");
                 $(".clickables.DiningLeft, #charCapn").removeClass("hide");
                 $("#moveRight, #moveDown").addClass("hide");
                 $("#moveLeft").removeClass("hide");
@@ -186,7 +188,7 @@ $(document).ready(function () {
                     room = "Floor6"
                     $(".floors").removeClass("current");
                     $("#floor6").addClass("current");
-                    $(".clickables").addClass("hide");
+                    $(".clickables, #charMads").addClass("hide");
                     $(".clickables.floors").removeClass("hide");
                     $("#moveUp, #moveRight").addClass("hide");
                     $("#moveDown").removeClass("hide");
@@ -196,8 +198,14 @@ $(document).ready(function () {
                     break;
                 case "6,1,1":
                     room = "Elevator6"
+                    if (floor6First === true) {
+                        firstDia = "???: Excuse me, may I see your holocard?_Knock yourself out._???: ...I see. Third Class up to First Class? You must be someone particularly special._I'm a...friend of the captain I guess._???: A friend. I suppose then we are friends too. Call me Mads."
+                        $("#roomFade").removeClass("hide");
+                        diaSplit(firstDia);
+                        floor6First = false;
+                    }
                     $(".clickables").addClass("hide");
-                    $(".clickables.elevator").removeClass("hide");
+                    $(".clickables.elevator, #charMads").removeClass("hide");
                     $("#moveDown").addClass("hide");
                     $("#moveLeft, #moveRight, #moveUp").removeClass("hide");
                     $("#playView").css("background-image", "url('images/rooms/Elev.jpg')");
@@ -206,14 +214,14 @@ $(document).ready(function () {
                     break;
                 case "6,0,1":
                     room = "Dining6Lft"
-                    $(".clickables").addClass("hide");
+                    $(".clickables, #charMads").addClass("hide");
                     $(".clickables.elevator").removeClass("hide");
                     $("#moveLeft, #moveUp").addClass("hide");
                     $("#playView").css("background-image", "url('images/rooms/Dining6Lft.jpg')");
                     break;
                 case "6,2,1":
                     room = "Dining6Rgt"
-                    $(".clickables").addClass("hide");
+                    $(".clickables, #charMads").addClass("hide");
                     $(".clickables.elevator").removeClass("hide");
                     $("#moveRight, #moveUp").addClass("hide");
                     $("#playView").css("background-image", "url('images/rooms/Dining6Rgt.jpg')");
@@ -276,7 +284,7 @@ $(document).ready(function () {
             if (thisChar.id === ch.name) {
                 dia = ch.diaOptions();
                 diaSplit(dia);
-                ch.firstTalk = true;
+                ch.firstTalk = false;
                 if (thisChar.id === "charCapn") {
                     floorUnlock = true;
                     $("#floorB1, #floor6").removeClass("inactive");
