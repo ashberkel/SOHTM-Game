@@ -46,5 +46,12 @@ const clickable = [
     {name: "luggage", desc: "Delayed indefinitely and only about four days worth of luggage. Just my luck."},
     {name: "doorNum", desc: "Numbers with no real meaning._Besides telling me where I'm supposed to sleep, there's nothing else to figure out."},
     {name: "carpet", desc: "Maybe the ship stopped cuz the crew’s just sittin’ somewhere, mesmerized by these godawful carpet patterns."},
-    {name: "elevator", desc: "Real pretty design. Hope it works better than the rest of this ship."}]
+    {name: "elevator", desc: "Real pretty design. Hope it works better than the rest of this ship."},
+    {name: "floatLights", desc: "The lights in there just float. I don't really understand how it works.."},
+    {name: "Dine4Lamp", desc: "Tacky. That's the only polite way to put it honestly."},
+    {name: "Dine4Window", desc: "At least the view is nice to look at._No bullshit, no pomp...just the sea of stars out there."},
+    {name: "largeFloat", desc: "An artificial sea of stars...at least, that's what it looks like to me._Kinda embarrassing when the real deal is right outside the window."},
+    {name: "bigSky", desc: "...._Makes you realize all the shit down here doesn't matter much."},
+    {name: "umbrella", desc: "I'm sure they're nice to have on a day flight, but right now they're just taking up the view."},
+    {name: "poolSeat", desc: "I can imagine some pretty dames soaking up the sun on these things."}]
     console.log("Loading clickables test:" + clickable[2].name);

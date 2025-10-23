@@ -30,7 +30,7 @@ $(document).ready(function () {
         coord = `${Z},${X},${Y}`
         switch (coord) {
             case "3,0,0":
-                room = "Bedroom"
+                room = "MCRoom"
                 $(".clickables").addClass("hide");
                 $(".clickables.MCRoom").removeClass("hide");
                 $("#moveUp, #moveDown, #moveLeft").addClass("hide");
@@ -38,7 +38,7 @@ $(document).ready(function () {
                 $("#playView").css("background-image", "url('images/rooms/MCRoom.jpg')");
                 break;
             case "3,1,0":
-                room = "Hallway"
+                room = "MCHall"
                 $(".clickables").addClass("hide");
                 $(".clickables.MCHall").removeClass("hide");
                 $("#moveDown, #moveRight").addClass("hide");
@@ -87,27 +87,33 @@ $(document).ready(function () {
                 break;
             case "4,2,1":
                 room = "Hall4"
+                $(".clickables").addClass("hide");
+                $(".clickables.Hall4").removeClass("hide");
                 $("#moveRight, #moveDown, #charHugh").addClass("hide");
                 $("#moveLeft, #moveUp").removeClass("hide");
-                $("#playView").css("background-image", "url('images/rooms/DiningHall.jpg')");
+                $("#playView").css("background-image", "url('images/rooms/Hallway4.jpg')");
                 dining3Music.play();
                 dining3Music.volume = .2;
                 break;
             case "4,2,2":
-                room = "DiningLeft"
+                room = "Dining4Left"
+                $(".clickables").addClass("hide");
+                $(".clickables.Dining4Left").removeClass("hide");
                 $("#moveLeft, #moveUp, #charCapn").addClass("hide");
                 $("#moveRight, #moveDown, #charHugh").removeClass("hide");
-                $("#playView").css("background-image", "url('images/rooms/DiningLft.jpg')");
+                $("#playView").css("background-image", "url('images/rooms/Dining4Lft.jpg')");
                 dining3Music.play();
                 dining3Music.volume = .3;
                 break;
             case "4,3,2":
-                room = "DiningRight"
+                room = "Dining4Right"
+                $(".clickables").addClass("hide");
+                $(".clickables.Dining4Right").removeClass("hide");
                 $(".clickables, #charHugh").addClass("hide");
                 $(".clickables.DiningLeft, #charCapn").removeClass("hide");
                 $("#moveRight, #moveDown").addClass("hide");
                 $("#moveLeft").removeClass("hide");
-                $("#playView").css("background-image", "url('images/rooms/DiningRgt.jpg')");
+                $("#playView").css("background-image", "url('images/rooms/Dining4Rgt.jpg')");
                 break;
             case "7,1,2":
                 room = "FloorO1"
@@ -130,13 +136,17 @@ $(document).ready(function () {
             case "7,2,1":
                 room = "HallO1"
                 $(".clickables").addClass("hide");
+                $(".clickables.HallO1").removeClass("hide");
+                $(".clickables").addClass("hide");
                 $(".clickables.elevator").removeClass("hide");
                 $("#moveRight, #moveDown").addClass("hide");
                 $("#moveLeft, #moveUp").removeClass("hide");
-                $("#playView").css("background-image", "url('images/rooms/ObsvHall.png')");
+                $("#playView").css("background-image", "url('images/rooms/HallO1.png')");
                 break;
             case "7,2,2":
-                room = "OutO1"
+                room = "HallO1Out"
+                $(".clickables").addClass("hide");
+                $(".clickables.HallO1Out").removeClass("hide");
                 $(".clickables").addClass("hide");
                 $(".clickables.elevator").removeClass("hide");
                 $("#moveUp, #moveLeft").addClass("hide");
