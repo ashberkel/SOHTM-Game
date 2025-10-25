@@ -308,13 +308,13 @@ $(document).ready(function () {
     $(".items").click(function () {
         thisItem = this;
         console.log("Clicked on:", thisItem.id);
-        items.forEach(n => {
-            if (thisItem.id === n.name) {
-                console.log("Comparing to item:", n.name);
-                n.inInv = true;
-                console.log("You got the" + n.name + items[0].inInv);
+        item.forEach(i => {
+            if (thisItem.id === i.name) {
+                console.log("Comparing to item:", i.name);
+                i.inInv = true;
+                $('.invItems').append("<img height ='70px' src='images/objects/" + i.name + ".png' />")
+                $(this).addClass("hide")
             }
-            else { }
         });
         $(".invItems").each(function () {
             if (!$(this).hasClass("filled")) {

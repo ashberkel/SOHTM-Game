@@ -9,7 +9,7 @@
 }
 
 #playView {
-    background-image: url('images/rooms/HallO1Out.jpg');
+    background-image: url('images/rooms/MCRoom.jpg');
     background-size: 825px 425px;
     grid-area: view;
     overflow:hidden;
@@ -87,7 +87,11 @@
 }
 
 .filled {
-    background-color: rgb(17, 212, 82);
+    background-color:black;
+    border: 2px solid rgb(17, 212, 82);
+    color: #CCFF00;
+    font-family: "Victor Mono", serif;
+    font-size:2.5vmin;
     width: 100px;
     height: 100px;
     text-align: center;

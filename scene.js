@@ -55,3 +55,8 @@ const clickable = [
     {name: "umbrella", desc: "I'm sure they're nice to have on a day flight, but right now they're just taking up the view."},
     {name: "poolSeat", desc: "I can imagine some pretty dames soaking up the sun on these things."}]
     console.log("Loading clickables test:" + clickable[2].name);
+
+    const item = [
+      {name: "crowbar", inInv: false, desc: "It's a crowbar...makes it easy to get into things that don't wanna open up."},
+      {name: "poolSeat", desc: "I can imagine some pretty dames soaking up the sun on these things."}]
+      console.log("Loading item test:" + item[0].name);
