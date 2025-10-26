@@ -58,5 +58,5 @@ const clickable = [
 
     const item = [
       {name: "crowbar", inInv: false, desc: "It's a crowbar...makes it easy to get into things that don't wanna open up."},
-      {name: "poolSeat", desc: "I can imagine some pretty dames soaking up the sun on these things."}]
+      {name: "newspaper", inInv: false, desc: "I don't really need this anymore."}]
       console.log("Loading item test:" + item[0].name);

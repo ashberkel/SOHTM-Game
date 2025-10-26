@@ -1,6 +1,8 @@
 const MCChoice = localStorage.getItem("MCChoice");
 let floorUnlock = true;
 let floor6First = true;
+let invCount = 0;
+
 console.log("Your MCChoice is: " + MCChoice);
 //movement logic
 $(document).ready(function () {
@@ -305,19 +307,26 @@ $(document).ready(function () {
         }
     });
     //Inventory fill each slot
-    $(".items").click(function () {
+    $(".items").click(function ()
+    {
         thisItem = this;
         console.log("Clicked on:", thisItem.id);
         item.forEach(i => {
             if (thisItem.id === i.name) {
                 console.log("Comparing to item:", i.name);
                 i.inInv = true;
-                $('.invItems').append("<img height ='70px' src='images/objects/" + i.name + ".png' />")
-                $(this).addClass("hide")
+                for (t in $('.invItems')) {
+                    invCount += 1;
+                    if (!$('.invItems').hasClass("hide")) {
+                        $('#' + invCount).append("<img width= '70px' src='images/objects/" + i.name + ".png' />")
+                        $(this).addClass("hide");
+                        break;}
+                    }
             }
         });
         $(".invItems").each(function () {
             if (!$(this).hasClass("filled")) {
+                $(this).addClass(thisItem.id);
                 $(this).prepend(thisItem.id);
                 $(this).addClass("filled");
                 const pickupSound = new Audio("assets/clickSoundPick.mp3");
@@ -327,6 +336,17 @@ $(document).ready(function () {
         }
         )
     });
+    //Inventory desc hover
+     $(".invItems").click(function () {
+        const thisPic = this;
+        console.log("Hovered on:", thisPic.id);
+        item.forEach(i =>
+            {if ($(thisPic).hasClass(i.name)) {
+                desc = i.desc;
+                diaHover(desc);}
+            })
+     });
+
     //Inventory remove each slot
     $("#door").click(function () {
         $(".invItems").each(function () {
@@ -340,6 +360,15 @@ $(document).ready(function () {
         }
         )
     });
+
+    //Dialogue hover
+    function diaHover(dia, onDone) {
+        document.getElementById('diaBox').innerHTML = dia;
+        const clear = () => {
+        document.getElementById('diaBox').innerHTML = "";}
+        const myTimeout = setTimeout(clear, 2000);
+        }
+
     //Dialogue splitting
     function diaSplit(dia, onDone) {
         const splitUp = dia.split("_");
