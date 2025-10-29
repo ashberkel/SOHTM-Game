@@ -91,7 +91,7 @@ $(document).ready(function () {
                 room = "Hall4"
                 $(".clickables").addClass("hide");
                 $(".clickables.Hall4").removeClass("hide");
-                $("#moveRight, #moveDown, #charHugh").addClass("hide");
+                $("#moveRight, #moveDown, #charCapn").addClass("hide");
                 $("#moveLeft, #moveUp").removeClass("hide");
                 $("#playView").css("background-image", "url('images/rooms/Hallway4.jpg')");
                 dining3Music.play();
@@ -101,8 +101,8 @@ $(document).ready(function () {
                 room = "Dining4Left"
                 $(".clickables").addClass("hide");
                 $(".clickables.Dining4Left").removeClass("hide");
-                $("#moveLeft, #moveUp, #charCapn").addClass("hide");
-                $("#moveRight, #moveDown, #charHugh").removeClass("hide");
+                $("#moveLeft, #moveUp, #charHugh").addClass("hide");
+                $("#moveRight, #moveDown, #charCapn").removeClass("hide");
                 $("#playView").css("background-image", "url('images/rooms/Dining4Lft.jpg')");
                 dining3Music.play();
                 dining3Music.volume = .3;
@@ -111,8 +111,8 @@ $(document).ready(function () {
                 room = "Dining4Right"
                 $(".clickables").addClass("hide");
                 $(".clickables.Dining4Right").removeClass("hide");
-                $(".clickables, #charHugh").addClass("hide");
-                $(".clickables.DiningLeft, #charCapn").removeClass("hide");
+                $(".clickables, #charCapn").addClass("hide");
+                $(".clickables.DiningLeft, #charHugh").removeClass("hide");
                 $("#moveRight, #moveDown").addClass("hide");
                 $("#moveLeft").removeClass("hide");
                 $("#playView").css("background-image", "url('images/rooms/Dining4Rgt.jpg')");
