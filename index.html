@@ -8,6 +8,7 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Eater&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Grenze+Gotisch:wght@100..900&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Victor+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="index.css">
         <link rel="icon" type="image/png" href="images/favIcon.png">
@@ -26,8 +27,28 @@
                     <span>This is a short experience that takes about than an hour. <strong>Be forewarned that PROGRESS DOES NOT SAVE.</strong></span>
             </div>
         </div>
+        <div class="badOmenWrap"><p id="badOmenText"></p></div>
+        <button onclick="badOmenAdd()">Testing</button>
         <iframe src="\scene.html" title="Some Other Hand Than Mine game frame"></iframe>
         
     </body>
+    <script>
+        function badOmenAdd() {
+            let badTxt = "BADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMEN"
+            const display = document.getElementById('badOmenText');
+            display.textContent = "";
+            
+            let i = 0;
+        const timer = setInterval(() => {
+            display.textContent += badTxt[i];
+            i++;
+
+        if (i >= badTxt.length) {
+            clearInterval(timer); // stop once done
+            }
+         }, 17);
+        display.textContent = "";
+        }
+    </script>
 
 </html>
