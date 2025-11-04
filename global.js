@@ -112,10 +112,11 @@ $(document).ready(function () {
                 $(".clickables").addClass("hide");
                 $(".clickables.Dining4Right").removeClass("hide");
                 $(".clickables, #charCapn").addClass("hide");
-                $(".clickables.DiningLeft, #charHugh").removeClass("hide");
+                $(".clickables.DiningLeft, #ccharHugh, #paperScrap1").removeClass("hide");
                 $("#moveRight, #moveDown").addClass("hide");
                 $("#moveLeft").removeClass("hide");
-                $("#playView").css("background-image", "url('images/rooms/Dining4Rgt.jpg')");
+                if (item[1].inInv == false) {$("#playView").css("background-image", "url('images/rooms/Dining4Rgt.jpg')");}
+                else {$("#playView").css("background-image", "url('images/rooms/Dining4RgtAft.jpg')");}
                 break;
             case "7,1,2":
                 room = "FloorO1"
@@ -162,14 +163,14 @@ $(document).ready(function () {
                 room = "FloorB1"
                 $(".clickables").addClass("hide");
                 $(".clickables.floors").removeClass("hide");
-                $("#moveUp, #moveLeft").addClass("hide");
+                $("#moveUp, #moveLeft, #crowbar").addClass("hide");
                 $("#moveDown").removeClass("hide");
                 $("#playView").css("background-image", "url('images/rooms/FloorsB-346O.jpg')");
                 break;
             case "0,1,1":
                 room = "ElevatorB1"
                 $(".clickables").addClass("hide");
-                $(".clickables.elevator").removeClass("hide");
+                $(".clickables.elevator, #crowbar").removeClass("hide");
                 $("#moveDown, #moveLeft").addClass("hide");
                 $("#moveUp").removeClass("hide");
                 $("#playView").css("background-image", "url('images/rooms/ElevB.jpg')");
@@ -222,7 +223,7 @@ $(document).ready(function () {
                     $("#moveLeft, #moveRight, #moveUp").removeClass("hide");
                     $("#playView").css("background-image", "url('images/rooms/Elev.jpg')");
                     dining6Music.play();
-                    dining6Music.volume = .5;
+                    dining6Music.volume = .3;
                     break;
                 case "6,0,1":
                     room = "Dining6Lft"
@@ -253,11 +254,11 @@ $(document).ready(function () {
     });});
     //Clickables
     $(".clickables").click(function () {
-        const thisItem = this;
+        const thisClick = this;
         let desc
-        console.log("Clickable activated:" + thisItem.id)
+        console.log("Clickable activated:" + thisClick.id)
         for (const c of clickable) {
-            if (thisItem.id === "mirror") {
+            if (thisClick.id === "mirror") {
                 if (MCChoice === "MCCat") {
                     $("#MCMirrorPic").attr("src", "images/characters/MCCat.gif");
                 } else {
@@ -280,8 +281,7 @@ $(document).ready(function () {
                 diaSplit(desc);
                 break;
             }
-
-            if (thisItem.id === c.name) {
+            if (thisClick.id === c.name) {
                 desc = c.desc;
                 diaSplit(desc);
                 break; // stop searching after match
@@ -327,11 +327,20 @@ $(document).ready(function () {
         $(".invItems").each(function () {
             if (!$(this).hasClass("filled")) {
                 $(this).addClass(thisItem.id);
-                $(this).prepend(thisItem.id);
+                $(this).prepend(thisItem.label);
                 $(this).addClass("filled");
                 const pickupSound = new Audio("assets/clickSoundPick.mp3");
                 pickupSound.play();
                 return false;
+            }
+        if (thisItem.id === "paperScrap1") {
+            diaSplit(desc);
+        }
+        if (thisItem.id === "paperScrap1" && item[0].inInv == true) {
+                item[0].inInv = false;
+                thisItem.desc = "The evidence of my dedication to seeing a case through to the end._Sounds better than tearing a hole in the wall for a damn piece of paper."
+                desc = "Ugh! Right...well._I hope that no one important saw that. I'd rather noy pay for damages because of this.";
+                diaSplit(desc);
             }
         }
         )
