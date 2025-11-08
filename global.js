@@ -1,7 +1,14 @@
+//assets
 const MCChoice = localStorage.getItem("MCChoice");
 let floorUnlock = true;
 let floor6First = true;
 let invCount = 0;
+const woodCrack = new Audio("assets/WoodCrack.mp3");
+const walkNoise = new Audio("assets/footSteps.wav");
+const dining3Music = new Audio("assets/Ragtime_Annie.mp3");
+const dining6Music = new Audio("assets/Intro_And_Tarantelle.mp3");
+const pickupSound = new Audio("assets/clickSoundPick.mp3");
+const useSound = new Audio("assets/clickSoundUse.mp3");
 
 console.log("Your MCChoice is: " + MCChoice);
 //movement logic
@@ -12,14 +19,12 @@ $(document).ready(function () {
     Z = 3
     coord = ""
     room = ``
-    const walkNoise = new Audio("assets/footSteps.wav");
-    const dining3Music = new Audio("assets/Ragtime_Annie.mp3");
-    const dining6Music = new Audio("assets/Intro_And_Tarantelle.mp3");
     $(".movement, .floors").click(function () {
         ID = this.id
         if (ID === "moveRight" || ID === "moveLeft" || ID === "moveUp" || ID === "moveDown") {
             walkNoise.play();
-            walkNoise.volume = .2;}
+            walkNoise.volume = .2;
+        }
         if (ID == "floorB1") { Z = 0 }
         if (ID == "floor3") { Z = 3 }
         if (ID == "floor4") { Z = 4 }
@@ -101,7 +106,7 @@ $(document).ready(function () {
                 room = "Dining4Left"
                 $(".clickables").addClass("hide");
                 $(".clickables.Dining4Left").removeClass("hide");
-                $("#moveLeft, #moveUp, #charHugh").addClass("hide");
+                $("#moveLeft, #moveUp, #charHugh, .dining4Wall").addClass("hide");
                 $("#moveRight, #moveDown, #charCapn").removeClass("hide");
                 $("#playView").css("background-image", "url('images/rooms/Dining4Lft.jpg')");
                 dining3Music.play();
@@ -112,11 +117,11 @@ $(document).ready(function () {
                 $(".clickables").addClass("hide");
                 $(".clickables.Dining4Right").removeClass("hide");
                 $(".clickables, #charCapn").addClass("hide");
-                $(".clickables.DiningLeft, #ccharHugh, #paperScrap1").removeClass("hide");
+                $(".clickables.DiningLeft, #charHugh, .dining4Wall").removeClass("hide");
                 $("#moveRight, #moveDown").addClass("hide");
                 $("#moveLeft").removeClass("hide");
-                if (item[1].inInv == false) {$("#playView").css("background-image", "url('images/rooms/Dining4Rgt.jpg')");}
-                else {$("#playView").css("background-image", "url('images/rooms/Dining4RgtAft.jpg')");}
+                if (item[1].inInv == false) { $("#playView").css("background-image", "url('images/rooms/Dining4Rgt.jpg')"); }
+                else { $("#playView").css("background-image", "url('images/rooms/Dining4RgtAft.jpg')"); }
                 break;
             case "7,1,2":
                 room = "FloorO1"
@@ -158,23 +163,23 @@ $(document).ready(function () {
                 break;
         }
         if (floorUnlock) {
-        switch(coord) {
-            case "0,1,2":
-                room = "FloorB1"
-                $(".clickables").addClass("hide");
-                $(".clickables.floors").removeClass("hide");
-                $("#moveUp, #moveLeft, #crowbar").addClass("hide");
-                $("#moveDown").removeClass("hide");
-                $("#playView").css("background-image", "url('images/rooms/FloorsB-346O.jpg')");
-                break;
-            case "0,1,1":
-                room = "ElevatorB1"
-                $(".clickables").addClass("hide");
-                $(".clickables.elevator, #crowbar").removeClass("hide");
-                $("#moveDown, #moveLeft").addClass("hide");
-                $("#moveUp").removeClass("hide");
-                $("#playView").css("background-image", "url('images/rooms/ElevB.jpg')");
-                break;
+            switch (coord) {
+                case "0,1,2":
+                    room = "FloorB1"
+                    $(".clickables").addClass("hide");
+                    $(".clickables.floors").removeClass("hide");
+                    $("#moveUp, #moveLeft, #crowbar").addClass("hide");
+                    $("#moveDown").removeClass("hide");
+                    $("#playView").css("background-image", "url('images/rooms/FloorsB-346O.jpg')");
+                    break;
+                case "0,1,1":
+                    room = "ElevatorB1"
+                    $(".clickables").addClass("hide");
+                    $(".clickables.elevator, #crowbar").removeClass("hide");
+                    $("#moveDown, #moveLeft").addClass("hide");
+                    $("#moveUp").removeClass("hide");
+                    $("#playView").css("background-image", "url('images/rooms/ElevB.jpg')");
+                    break;
                 case "3,1,2":
                     room = "Floor3"
                     $(".floors").removeClass("current");
@@ -239,166 +244,183 @@ $(document).ready(function () {
                     $("#moveRight, #moveUp").addClass("hide");
                     $("#playView").css("background-image", "url('images/rooms/Dining6Rgt.jpg')");
                     break;
-                    case "7,1,2":
-                        room = "FloorO1"
-                        $(".floors").removeClass("current");
-                        $("#floorO1").addClass("current");
-                        $(".clickables").addClass("hide");
-                        $(".clickables.floors").removeClass("hide");
-                        $("#moveUp, #moveRight").addClass("hide");
-                        $("#moveDown").removeClass("hide");
-                        $("#playView").css("background-image", "url('images/rooms/FloorsB346O-.jpg')");
-                        break;
-        }}
+                case "7,1,2":
+                    room = "FloorO1"
+                    $(".floors").removeClass("current");
+                    $("#floorO1").addClass("current");
+                    $(".clickables").addClass("hide");
+                    $(".clickables.floors").removeClass("hide");
+                    $("#moveUp, #moveRight").addClass("hide");
+                    $("#moveDown").removeClass("hide");
+                    $("#playView").css("background-image", "url('images/rooms/FloorsB346O-.jpg')");
+                    break;
+            }
+        }
         console.log("Coordinates:" + coord + " Room:" + room)
-    });});
-    //Clickables
-    $(".clickables").click(function () {
-        const thisClick = this;
-        let desc
-        console.log("Clickable activated:" + thisClick.id)
-        for (const c of clickable) {
-            if (thisClick.id === "mirror") {
-                if (MCChoice === "MCCat") {
-                    $("#MCMirrorPic").attr("src", "images/characters/MCCat.gif");
-                } else {
-                    $("#MCMirrorPic").attr("src", "images/characters/MCDog.gif");
-                }
-                desc = c.desc;
-                diaSplit(desc, () => {
-                    // Clear the image after diaSplit finishes
-                    $("#MCMirrorPic").attr("src", "");
-                });
-                break; // stop searching after mirror
-            }
-            if ($(this).hasClass("inactive")) {
-                desc = "Locked out. Looks like some floors are off-limits._Maybe they don't like the creaturefolk mixing with the elites.";
-                diaSplit(desc);
-                break;
-            }
-            if ($(this).hasClass("current")) {
-                desc = "I'm already on that floor.";
-                diaSplit(desc);
-                break;
-            }
-            if (thisClick.id === c.name) {
-                desc = c.desc;
-                diaSplit(desc);
-                break; // stop searching after match
-            }
-        }
     });
-    //Characters
-    $(".characters").click(function () {
-        const thisChar = this;
-        $("#roomFade").removeClass("hide");
-        for (const ch of character) {
-            if (thisChar.id === ch.name) {
-                dia = ch.diaOptions();
-                diaSplit(dia);
-                ch.firstTalk = false;
-                if (thisChar.id === "charCapn") {
-                    floorUnlock = true;
-                    $("#floorB1, #floor6").removeClass("inactive");
-                }
-                console.log("Are floors unlocked?" + floorUnlock);
-                break; // stop searching after match
+});
+//Clickables
+$(".clickables").click(function () {
+    const thisClick = this;
+    let desc
+    console.log("Clickable activated:" + thisClick.id)
+    for (const c of clickable) {
+        if (thisClick.id === "mirror") {
+            if (MCChoice === "MCCat") {
+                $("#MCMirrorPic").attr("src", "images/characters/MCCat.gif");
+            } else {
+                $("#MCMirrorPic").attr("src", "images/characters/MCDog.gif");
             }
+            desc = c.desc;
+            diaSplit(desc, () => {
+                // Clear the image after diaSplit finishes
+                $("#MCMirrorPic").attr("src", "");
+            });
+            break; // stop searching after mirror
         }
-    });
-    //Inventory fill each slot
-    $(".items").click(function ()
-    {
-        thisItem = this;
-        console.log("Clicked on:", thisItem.id);
-        item.forEach(i => {
-            if (thisItem.id === i.name) {
-                console.log("Comparing to item:", i.name);
-                i.inInv = true;
-                for (t in $('.invItems')) {
-                    invCount += 1;
-                    if (!$('.invItems').hasClass("hide")) {
-                        $('#' + invCount).append("<img width= '70px' src='images/objects/" + i.name + ".png' />")
-                        $(this).addClass("hide");
-                        break;}
-                    }
-            }
-        });
-        $(".invItems").each(function () {
-            if (!$(this).hasClass("filled")) {
-                $(this).addClass(thisItem.id);
-                $(this).prepend(thisItem.label);
-                $(this).addClass("filled");
-                const pickupSound = new Audio("assets/clickSoundPick.mp3");
-                pickupSound.play();
-                return false;
-            }
-        if (thisItem.id === "paperScrap1") {
+        if ($(this).hasClass("inactive")) {
+            desc = "Locked out. Looks like some floors are off-limits._Maybe they don't like the creaturefolk mixing with the elites.";
             diaSplit(desc);
+            break;
         }
-        if (thisItem.id === "paperScrap1" && item[0].inInv == true) {
-                item[0].inInv = false;
-                thisItem.desc = "The evidence of my dedication to seeing a case through to the end._Sounds better than tearing a hole in the wall for a damn piece of paper."
-                desc = "Ugh! Right...well._I hope that no one important saw that. I'd rather noy pay for damages because of this.";
-                diaSplit(desc);
-            }
+        if ($(this).hasClass("current")) {
+            desc = "I'm already on that floor.";
+            diaSplit(desc);
+            break;
         }
-        )
-    });
-    //Inventory desc hover
-     $(".invItems").click(function () {
-        const thisPic = this;
-        console.log("Hovered on:", thisPic.id);
-        item.forEach(i =>
-            {if ($(thisPic).hasClass(i.name)) {
-                desc = i.desc;
-                diaHover(desc);}
-            })
-     });
-
-    //Inventory remove each slot
-    $("#door").click(function () {
-        $(".invItems").each(function () {
-            if ($(this).hasClass("filled")) {
-                $(this).empty("Yo!");
-                $(this).removeClass("filled");
-                const useSound = new Audio("assets/clickSoundUse.mp3");
-                useSound.play();
-                return false;
-            }
+        if (thisClick.id === c.name) {
+            desc = c.desc;
+            diaSplit(desc);
+            break; // stop searching after match
         }
-        )
-    });
-
-    //Dialogue hover
-    function diaHover(dia, onDone) {
-        document.getElementById('diaBox').innerHTML = dia;
-        const clear = () => {
-        document.getElementById('diaBox').innerHTML = "";}
-        const myTimeout = setTimeout(clear, 2000);
-        }
-
-    //Dialogue splitting
-    function diaSplit(dia, onDone) {
-        const splitUp = dia.split("_");
-        var n = 0;
-        diaButton.style.display = "inline";
-        document.getElementById('diaBox').innerHTML = splitUp[n];
-        $('#moveIcons').addClass("hide");
-        $("#diaButton").off("click");
-        $("#diaButton").click(function () {
-            n += 1;
-            if (splitUp[n] != undefined) {
-                document.getElementById('diaBox').innerHTML = splitUp[n];
-            }
-            else {
-                document.getElementById('diaBox').innerHTML = "";
-                diaButton.style.display = "none";
-                $('#moveIcons').removeClass("hide");
-                $("#roomFade").addClass("hide");
-                n = 0;
-            }
-            console.log(`Current n count is` + n);
-            if (onDone) onDone();
-        })
     }
+});
+//Characters
+$(".characters").click(function () {
+    const thisChar = this;
+    $("#roomFade").removeClass("hide");
+    for (const ch of character) {
+        if (thisChar.id === ch.name) {
+            dia = ch.diaOptions();
+            diaSplit(dia);
+            ch.firstTalk = false;
+            if (thisChar.id === "charCapn") {
+                floorUnlock = true;
+                $("#floorB1, #floor6").removeClass("inactive");
+            }
+            console.log("Are floors unlocked?" + floorUnlock);
+            break; // stop searching after match
+        }
+    }
+});
+//MAJOR - Item Handling
+$(".items").click(function () {
+    const thisItem = this;
+    const id = thisItem.id;
+    const obj = item.find(x => x.name === thisItem.id);
+    const crowbar = item.find(x => x.name === 'crowbar');
+    item.forEach(i => {
+        //special cases
+        if (!obj) {
+            console.warn('No data object found for', id);
+            return;
+        }
+        if (id === 'paperScrap1') {
+            if (crowbar.inInv == true) {
+                woodCrack.play();
+                console.log("You DO have the crowbar.");
+                obj.inInv = true;
+                diaSplit("Ugh! Right...well._I hope that no one important saw that. I'd rather not pay for damages because of this.");
+                woodCrack.play();
+                //INSERT CROWBAR REMOVE FROM INVENTORY HERE
+                $('.dining4Wall').addClass('deleted');
+                return;
+            }
+            if (crowbar.inInv == false) {
+                diaSplit(clickable[10].desc);
+                console.log("You DON'T have the crowbar.");
+                return;
+            }
+        }
+        if (obj && !obj.inInv) {
+            console.log("Comparing to item database:", thisItem.id, " = ", i.name);
+            obj.inInv = true;
+            for (t in $('.invItems')) {
+                invCount += 1;
+                if (!$('.invItems').hasClass("hide")) {
+                    console.log("Count is", invCount)
+                    $(thisItem).addClass("hide");
+                    $("#" + invCount).addClass(obj.id);
+                    $("#" + invCount).prepend(obj.label);
+                    $("#" + invCount).append("<img width= '70px' src='images/objects/" + i.name + ".png' />")
+                    $("#" + invCount).addClass("filled");
+                    pickupSound.play();
+                    console.log("Added:", i, " to inventory");
+                    return false;
+                }
+            }
+        }
+    })
+});
+
+
+//adds to the inventory slot
+
+//Inventory desc click
+$(".invItems").click(function () {
+    const thisPic = this;
+    console.log("Click on:", thisPic.id);
+    item.forEach(i => {
+        if ($(thisPic).hasClass(i.name)) {
+            desc = i.desc;
+            invClick(desc);
+        }
+    })
+});
+
+//Inventory remove each slot
+$("#door").click(function () {
+    $(".invItems").each(function () {
+        if ($(this).hasClass("filled")) {
+            $(this).empty("Yo!");
+            $(this).removeClass("filled");
+            useSound.play();
+            return false;
+        }
+    }
+    )
+});
+
+//Inventory click
+function invClick(dia, onDone) {
+    document.getElementById('diaBox').innerHTML = dia;
+    const clear = () => {
+        document.getElementById('diaBox').innerHTML = "";
+    }
+    const myTimeout = setTimeout(clear, 2000);
+}
+
+//Dialogue splitting
+function diaSplit(dia, onDone) {
+    const splitUp = dia.split("_");
+    var n = 0;
+    diaButton.style.display = "inline";
+    document.getElementById('diaBox').innerHTML = splitUp[n];
+    $('#moveIcons').addClass("hide");
+    $("#diaButton").off("click");
+    $("#diaButton").click(function () {
+        n += 1;
+        if (splitUp[n] != undefined) {
+            document.getElementById('diaBox').innerHTML = splitUp[n];
+        }
+        else {
+            document.getElementById('diaBox').innerHTML = "";
+            diaButton.style.display = "none";
+            $('#moveIcons').removeClass("hide");
+            $("#roomFade").addClass("hide");
+            n = 0;
+        }
+        console.log(`Current n count is` + n);
+        if (onDone) onDone();
+    })
+}

@@ -27,6 +27,11 @@
     pointer-events: none;
 }
 
+.deleted {
+    display: none;
+    pointer-events: none;
+}
+
 .clickables {
     pointer-events: auto; 
 }

@@ -50,14 +50,15 @@ const clickable = [
     {name: "floatLights", desc: "The lights in there just float. I don't really understand how it works.."},
     {name: "Dine4Lamp", desc: "Tacky. That's the only polite way to put it honestly."},
     {name: "Dine4Window", desc: "At least the view is nice to look at._No bullshit, no pomp...just the sea of stars out there."},
-    {name: "paperScrap1", desc: "...? Is that...paper tucked into the wall?_The board was pulled enough to wedge it in. Pulling it out without a tool is just going to rip the damn thing..."},
+    {name: "papeitemlScrap1", desc: "...? Is that...paper tucked into the wall?_The board was pulled enough to wedge it in. Pulling it out without a tool is just going to rip the damn thing..."},
     {name: "largeFloat", desc: "An artificial sea of stars...at least, that's what it looks like to me._Kinda embarrassing when the real deal is right outside the window."},
     {name: "bigSky", desc: "...._Makes you realize all the shit down here doesn't matter much."},
     {name: "umbrella", desc: "I'm sure they're nice to have on a day flight, but right now they're just taking up the view."},
-    {name: "poolSeat", desc: "I can imagine some pretty dames soaking up the sun on these things."}]
+    {name: "poolSeat", desc: "I can imagine some pretty dames soaking up the sun on these things."},
+    {name: "brokenWall", desc: "The evidence of my dedication to seeing a case through to the end._Sounds better than tearing a hole in the wall for a damn piece of paper."}]
     console.log("Loading clickables test:" + clickable[2].name);
 
     const item = [
-      {name: "crowbar", label: "Crowbar", inInv: false, desc: "It's a crowbar...makes it easy to get into things that don't wanna open up."},
-      {name: "paperScrap1", label: "Paper Scrap", inInv: false, desc: "A half of something. Might be important, might not be."}]
+      {name: "crowbar", inInv: false, desc: "It's a crowbar...makes it easy to get into things that don't wanna open up."},
+      {name: "paperScrap1", inInv: false, desc: "A half of a paper scrap. Might be important, might not be."}]
       console.log("Loading item test:" + item[0].name);

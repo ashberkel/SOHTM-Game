@@ -39,12 +39,13 @@
                     id="newspaper" src="images/objects/newspaper.png">
                 <img style="position:absolute; top:62px; left:280px; width:280px;" class="characters hide" id="charCapn"
                     src="images/characters/Capn.png">
-                <img style="position:absolute; top:-90px; left:400px; width:330px;" class="characters hide"
+                <img style="z-index:7; position:absolute; top:-90px; left:400px; width:330px;" class="characters hide"
                     id="charHugh" src="images/characters/Hugh.png">
                 <img style="position:absolute; top:-104px; left:20px; width:340px;" class="characters hide"
                     id="charMads" src="images/characters/Mads.png">
                 <img style="position:absolute; top:300px; left:150px; width:90px;transform: rotate(-15deg);" class="items hide" id="crowbar"
                     src="images/objects/crowbar.png">
+                <img style="z-index:5; position:absolute; top:243px; left:550px; width:50px;" class="items Dining4Right dining4Wall hide" id="paperScrap1" src="images/rooms/Dining4RgtCover.jpg">
                 <svg width="2000px" height="2000px">
                     <rect class="hide" id="roomFade" width="2000" height="2000" fill="rgba(0,0,0, .8)" />
                     <rect class="clickables MCRoom hide" id="bed" x="500" y="50" width="350" height="400"
@@ -81,8 +82,8 @@
                         fill="rgba(0,0,0,.0)" />
                     <rect class="clickables Dining4Right hide" id="Dine4Lamp" x="690" y="130" width="135" height="150"
                         fill="rgba(0,0,0,.0)" />
-                    <rect class="items Dining4Right" id="paperScrap1" x="570" y="260" width="30" height="50"
-                        fill="rgba(100,0,0,.5)" />
+                    <rect class="clickables Dining4Right hide" id="brokenWall" x="555" y="243" width="45" height="120"
+                        fill="rgba(0,0,0,.0)" />
                     <rect class="clickables Dining6Left hide" id="floatLights" x="80" y="10" width="75" height="100"
                         fill="rgba(0,0,0,.0)" />
                     <rect class="clickables Dining6Left hide" id="floatLights" x="315" y="10" width="75" height="100"
@@ -114,14 +115,14 @@
         </div>
         <div id="invBox">
             <p>Inventory</p>
-            <div class="invItems" id="1"></div>
-            <div class="invItems" id="2"></div>
-            <div class="invItems" id="3"></div>
-            <div class="invItems" id="4"></div>
-            <div class="invItems" id="5"></div>
-            <div class="invItems" id="6"></div>
-            <div class="invItems" id="7"></div>
-            <div class="invItems" id="8"></div>
+            <div class="invItems 1" id="1"></div>
+            <div class="invItems 2" id="2"></div>
+            <div class="invItems 3" id="3"></div>
+            <div class="invItems 4" id="4"></div>
+            <div class="invItems 5" id="5"></div>
+            <div class="invItems 6" id="6"></div>
+            <div class="invItems 7" id="7"></div>
+            <div class="invItems 8" id="8"></div>
         </div>
         <div id="diaBox"></div>
         <!--keep diaButton out of diaBox;diaBox needs to be empty to load dialogue from-->
