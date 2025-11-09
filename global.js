@@ -1,6 +1,6 @@
 //assets
 const MCChoice = localStorage.getItem("MCChoice");
-let floorUnlock = false;
+let floorUnlock = true;
 let floor6First = true;
 let invCount = 0;
 const woodCrack = new Audio("assets/WoodCrack.mp3");
@@ -146,8 +146,6 @@ $(document).ready(function () {
                 room = "HallO1"
                 $(".clickables").addClass("hide");
                 $(".clickables.HallO1").removeClass("hide");
-                $(".clickables").addClass("hide");
-                $(".clickables.elevator").removeClass("hide");
                 $("#moveRight, #moveDown").addClass("hide");
                 $("#moveLeft, #moveUp").removeClass("hide");
                 $("#playView").css("background-image", "url('images/rooms/HallO1.png')");
@@ -155,9 +153,7 @@ $(document).ready(function () {
             case "7,2,2":
                 room = "HallO1Out"
                 $(".clickables").addClass("hide");
-                $(".clickables.HallO1Out, #badOmen").removeClass("hide");
-                $(".clickables").addClass("hide");
-                $(".clickables.elevator").removeClass("hide");
+                $(".clickables.HallO1Out").removeClass("hide");
                 $("#moveUp, #moveLeft").addClass("hide");
                 $(" #moveDown").removeClass("hide");
                 $("#playView").css("background-image", "url('images/rooms/HallO1Out.jpg')");
@@ -218,12 +214,12 @@ $(document).ready(function () {
                 case "6,1,1":
                     room = "Elevator6"
                     if (floor6First === true) {
-                        firstDia = "???: Excuse me, may I see your holocard?_Knock yourself out._???: ...I see. Third Class up to First Class? You must be someone particularly special._I'm a...friend of the captain I guess._???: A friend. I suppose then we are friends too. Call me Mads."
+                        firstDia = "???: Excuse me, may I see your holocard?_Knock yourself out._???: ...Third Class up to First Class? You must be someone particularly special._I'm a...friend of the captain I guess._???: A friend. I suppose then we are friends too. You may call me Mads. Please, I won't interrupt any further."
                         $("#roomFade").removeClass("hide");
                         diaSplit(firstDia);
                         floor6First = false;
                     }
-                    $(".clickables").addClass("hide");
+                    $(".clickables, #charSci").addClass("hide");
                     $(".clickables.elevator, #charMads").removeClass("hide");
                     $("#moveDown").addClass("hide");
                     $("#moveLeft, #moveRight, #moveUp").removeClass("hide");
@@ -233,15 +229,14 @@ $(document).ready(function () {
                     break;
                 case "6,0,1":
                     room = "Dining6Lft"
-                    $(".clickables, #charMads").addClass("hide");
-                    $(".clickables.elevator").removeClass("hide");
+                    $(".clickables, #charMads, #charSci").addClass("hide");
                     $("#moveLeft, #moveUp").addClass("hide");
                     $("#playView").css("background-image", "url('images/rooms/Dining6Lft.jpg')");
                     break;
                 case "6,2,1":
                     room = "Dining6Rgt"
                     $(".clickables, #charMads").addClass("hide");
-                    $(".clickables.elevator").removeClass("hide");
+                    $("#charSci").removeClass("hide");
                     $("#moveRight, #moveUp").addClass("hide");
                     $("#playView").css("background-image", "url('images/rooms/Dining6Rgt.jpg')");
                     break;
@@ -306,6 +301,9 @@ $(".characters").click(function () {
             console.log("BAD OMEN INCOMING")
             setTimeout(() => {
             $("#charMon").attr("src", "images/characters/Mon2.gif");
+            $("#diaButton").addClass("hide");
+            dia = "BADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMEN"
+            diaSplit(dia);
             errorSound.play();
             errorSound.volume = .5;
             }, 3000);
@@ -315,10 +313,11 @@ $(".characters").click(function () {
             setTimeout(() => {
             window.parent.badOmenClear();
             $("#charMon").addClass("deleted");
+            $("#diaButton").removeClass("hide");
             errorSound.volume = .0;
             }, 11000);
             setTimeout(() => {
-            dia = "...?_Huh. Thought I saw...nevermind."
+            dia = "...?_Huh. Thought I saw someone._...nevermind."
             diaSplit(dia);
             }, 11500);
             }

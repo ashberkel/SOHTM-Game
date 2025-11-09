@@ -1,7 +1,5 @@
 //array of characters, items, points of interest
-let madsTalk = false;
-let sciTalk = false;
-
+let giveEnvelope = false;
 console.log("Are floors unlocked?" + floorUnlock);
 
 const character = [
@@ -22,11 +20,51 @@ const character = [
           return dia;
         }}
     },
+    {name: "charSci", firstTalk: true, 
+      diaOptions: function()
+      {
+        var dia;
+        if (this.firstTalk == true)
+        {
+          console.log("First time you've met this character?" + this.firstTalk);
+          dia = "Excuse me...are you Gwen?_Gwen: I don't recognize you so I can't understand why you're being so informal with me. Can I help you, sir?_Yeah. Captain Murdoch sent me about a hunch I have regarding the ship. Said to give you this to prove he sent me._Gwen:...oh really? He sent you up here...based on a hunch of some kind?_I wouldn't really call 14 solved cases under my belt a hunch. Seems like you guys have a...delicate situation on your hands and he just wants some professional help that's not so..._Gwen: Close to the source?_Yeah, that._Gwen: Hm._Gwen:...._Gwen: I suppose I can humor you. There's really not any other choice as without the culprit...we could be stuck here much longer._Gwen: But I also can't just let a random citizen waltz around sensitive areas...especially when it comes to the delicate nature of how this airship gets around._Can't argue with that. I wouldn't do it either._Gwen: For now...here's what I suggest. Go talk to the engineer on Level B1. Apparently he saw some information regarding the hours before this incident._Right...thanks, m'am._Gwen: Ugh, no. Just call me Gwen if the alternative is that."
+          dia = "Scientist test. REMOVE THIS."
+          return dia;
+        }
+        else {
+          console.log("First time you've met this character?" + this.firstTalk);
+          dia = "Gwen: Well? Unless you have actual news, I'd prefer you not waste my time.";
+          return dia;
+        }}
+    },
+        {name: "charMads", firstTalk: true, 
+      diaOptions: function()
+      {
+        var dia;
+        if (character[1].firstTalk == true)
+        {
+          console.log("First time you've met this character?" + this.firstTalk);
+          dia = "Mads: By the way...did you happen to come across a grumpy looking ram? His name is Hugh._Maybe...not sure._Mads: Might I ask a favor? I have a letter I've been meaning to give him...unfortunately, it's been impossible to get ahold of him lately._Mads: Likely because he is avoiding me._And you want me to be your errand boy?_I assure you that it won't be for nothing. I overheard your chat with Miss Gwen._Eavesdropping too?_Mads: It's my job to be on the lookout for anything suspicious. I can't help but...oversee many things._Uh huh.._)Mads: Regardless. It might interest you to know there's someone of interest that may have...taken something._Taken something?_Mads: Yes, rather important. Out of the senior technicians pocket._...that's not considered suspicious?_Mads: It is. But that particular technician was awfully rude to me the other day. And I dont tolerate the rude._...._Mads: Regardless, you should know this thief is extremely...nosy. If they knew something most don't, and the theft had something to do with it.._Right. And you think that's considered a lead?_Mads: Perhaps, but that's for you to decide detective. Well? I look forward to your return after you talk to Hugh. "
+          dia = "Mads wants Hugh test. REMOVE THIS."
+          return dia;
+        }
+        if (giveEnvelope == true)
+        {
+          dia = "Mads: You shouldn't be so irate. And you even left your post.._Hug: I don't give a damn, Mads. Don't go sending shit like this with random strangers. What if he opened it??_Mads: Of course he wouldn't. We had a deal after all._Hugh: Do I want to know?_Mads: Don't worry, dear Hugh. Well, thank you detective...just for you, I'll let you know the culprit was...._Mads: Miss Penelope Parker._Penelope Parker, the tabloid reporter?? Yeah, if anyone's snooping around, it's her. I'll keep my eye out for her..._Mads: Please do. And thank you again."
+          dia = "Mads and Hugh finish. Penelope unlocked. REMOVE THIS."
+          return dia;
+        }
+        else {
+          console.log("First time you've met this character?" + this.firstTalk);
+          dia = "He doesn't seem interested in addressing you anymore. He's too busy looking around the ballroom.";
+          return dia;
+        }}
+    },
     {name: "charHugh", firstTalk: true, 
       diaOptions: function()
       {
         var dia;
-            if (this.firstTalk == true)
+        if (this.firstTalk == true)
         {
           console.log("First time you've met this character?" + this.firstTalk);
           dia = "????:...what? You need something?_Not really...ehh, I guess...what's your opinion on this situation?_???: I don't really know, or care. All I know is we're dead in the water; they can keep saying it's navigational issues but that's a lot of shit._Yeah, my sentiments exactly."
@@ -35,6 +73,14 @@ const character = [
         else {
           console.log("First time you've met this character?" + this.firstTalk);
           dia = "???:Don't you have anything better to do than standing around and botherin' me?";
+          return dia;
+        }
+      if (items[X].inInv == true)
+        {
+          console.log("You've got the letter" + this.firstTalk);
+          dia = "Hugh:..What's that?_I don't know. The First Class chauffer named Mads told me to give it to you._Hugh: That idiot. Making people do his errand work....give me that._Hugh: ....._Hugh: Wh...who the hell does he think he is?!_Hugh: I'm about to give him a piece of my mind!"
+          giveEnvelope = true;
+          dia = "GIVEN THE ENVELOPE. Delete this."
           return dia;
         }}
     },

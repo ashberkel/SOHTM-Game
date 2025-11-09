@@ -31,10 +31,12 @@ span {
   overflow-wrap: anywhere;
   word-break: break-word;
   margin: 0;
+  top: -20px;
+  left: -5%;
+  width: 110%;
+  right: auto;
   text-align: right;
   direction: rtl;
-  top: -20px;
-  right: -30px;
   font-family: "Special Elite", system-ui;
   font-size: 9vmin;
   line-height: 145%;
@@ -44,6 +46,9 @@ span {
   -webkit-text-stroke: 1px #ff2525;
   margin: 0;
   padding-top: 10px;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 h1 {
