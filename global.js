@@ -1,6 +1,6 @@
 //assets
 const MCChoice = localStorage.getItem("MCChoice");
-let floorUnlock = true;
+let floorUnlock = false;
 let floor6First = true;
 let invCount = 0;
 const woodCrack = new Audio("assets/WoodCrack.mp3");
@@ -9,6 +9,7 @@ const dining3Music = new Audio("assets/Ragtime_Annie.mp3");
 const dining6Music = new Audio("assets/Intro_And_Tarantelle.mp3");
 const pickupSound = new Audio("assets/clickSoundPick.mp3");
 const useSound = new Audio("assets/clickSoundUse.mp3");
+const errorSound = new Audio("assets/Error.mp3");
 
 console.log("Your MCChoice is: " + MCChoice);
 //movement logic
@@ -154,12 +155,12 @@ $(document).ready(function () {
             case "7,2,2":
                 room = "HallO1Out"
                 $(".clickables").addClass("hide");
-                $(".clickables.HallO1Out").removeClass("hide");
+                $(".clickables.HallO1Out, #badOmen").removeClass("hide");
                 $(".clickables").addClass("hide");
                 $(".clickables.elevator").removeClass("hide");
                 $("#moveUp, #moveLeft").addClass("hide");
                 $(" #moveDown").removeClass("hide");
-                $("#playView").css("background-image", "url('images/rooms/ObsvOut.jpg')");
+                $("#playView").css("background-image", "url('images/rooms/HallO1Out.jpg')");
                 break;
         }
         if (floorUnlock) {
@@ -295,12 +296,32 @@ $(".clickables").click(function () {
         }
     }
 });
-//Characters
+//Special Characters
 $(".characters").click(function () {
     const thisChar = this;
     $("#roomFade").removeClass("hide");
     for (const ch of character) {
         if (thisChar.id === ch.name) {
+            if (thisChar.id === "charMon") {
+            console.log("BAD OMEN INCOMING")
+            setTimeout(() => {
+            $("#charMon").attr("src", "images/characters/Mon2.gif");
+            errorSound.play();
+            errorSound.volume = .5;
+            }, 3000);
+            setTimeout(() => {
+            window.parent.badOmenAdd();
+            }, 3500);
+            setTimeout(() => {
+            window.parent.badOmenClear();
+            $("#charMon").addClass("deleted");
+            errorSound.volume = .0;
+            }, 11000);
+            setTimeout(() => {
+            dia = "...?_Huh. Thought I saw...nevermind."
+            diaSplit(dia);
+            }, 11500);
+            }
             dia = ch.diaOptions();
             diaSplit(dia);
             ch.firstTalk = false;

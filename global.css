@@ -17,7 +17,7 @@
 }
 
 #playView {
-    background-image: url('images/rooms/MCRoom.jpg');
+    background-image: url('images/rooms/HallO1Out.jpg');
     background-size: 825px 425px;
     grid-area: playView;
 }
