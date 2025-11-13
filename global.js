@@ -1,6 +1,6 @@
 //assets
 const MCChoice = localStorage.getItem("MCChoice");
-let floorUnlock = true;
+let floorUnlock = false;
 let floor6First = true;
 let invCount = 0;
 const woodCrack = new Audio("assets/WoodCrack.mp3");
@@ -221,6 +221,9 @@ $(document).ready(function () {
                     }
                     $(".clickables, #charSci").addClass("hide");
                     $(".clickables.elevator, #charMads").removeClass("hide");
+                    if (character[2].withHugh = true) {
+                    $(".clickables.elevator, #charMads2").removeClass("hide");
+                    }
                     $("#moveDown").addClass("hide");
                     $("#moveLeft, #moveRight, #moveUp").removeClass("hide");
                     $("#playView").css("background-image", "url('images/rooms/Elev.jpg')");
@@ -258,6 +261,7 @@ $(document).ready(function () {
 //Clickables
 $(".clickables").click(function () {
     const thisClick = this;
+    const Hugh = $("#charHugh");
     let desc
     console.log("Clickable activated:" + thisClick.id)
     for (const c of clickable) {
@@ -283,6 +287,12 @@ $(".clickables").click(function () {
             desc = "I'm already on that floor.";
             diaSplit(desc);
             break;
+        }
+        if (thisClick.id === Hugh && character[2].envelopeTalk === true) {
+            desc = c.desc;
+            diaSplit(desc);
+            $(Hugh).addClass("deleted");
+            break; // stop searching after match
         }
         if (thisClick.id === c.name) {
             desc = c.desc;
@@ -371,7 +381,6 @@ $(".items").click(function () {
                     console.log("Count is", invCount)
                     $(thisItem).addClass("hide");
                     $("#" + invCount).addClass(obj.id);
-                    $("#" + invCount).prepend(obj.label);
                     $("#" + invCount).append("<img width= '70px' src='images/objects/" + i.name + ".png' />")
                     $("#" + invCount).addClass("filled");
                     pickupSound.play();
@@ -399,17 +408,17 @@ $(".invItems").click(function () {
 });
 
 //Inventory remove each slot
-$("#door").click(function () {
+function removeItem(id) {
+    var id
     $(".invItems").each(function () {
-        if ($(this).hasClass("filled")) {
-            $(this).empty("Yo!");
+        if ($(this).hasClass("filled") && $(this).hasClass(id)) {
+            $(this).empty();
             $(this).removeClass("filled");
             useSound.play();
             return false;
         }
     }
-    )
-});
+    )};
 
 //Inventory click
 function invClick(dia, onDone) {

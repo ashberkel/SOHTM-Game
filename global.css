@@ -94,9 +94,11 @@
     background-color: rgb(31, 31, 31);
     width: 100px;
     height: 100px;
-    text-align: center;
     margin:auto;
     overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .filled {
