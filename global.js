@@ -221,8 +221,8 @@ $(document).ready(function () {
                     }
                     $(".clickables, #charSci").addClass("hide");
                     $(".clickables.elevator, #charMads").removeClass("hide");
-                    if (character[2].withHugh = true) {
-                    $(".clickables.elevator, #charMads2").removeClass("hide");
+                    if (character[3].giveEnvelope == true) {
+                    $("#charHugh2").removeClass("hide");
                     }
                     $("#moveDown").addClass("hide");
                     $("#moveLeft, #moveRight, #moveUp").removeClass("hide");
@@ -261,8 +261,7 @@ $(document).ready(function () {
 //Clickables
 $(".clickables").click(function () {
     const thisClick = this;
-    const Hugh = $("#charHugh");
-    let desc
+    let desc;
     console.log("Clickable activated:" + thisClick.id)
     for (const c of clickable) {
         if (thisClick.id === "mirror") {
@@ -288,12 +287,6 @@ $(".clickables").click(function () {
             diaSplit(desc);
             break;
         }
-        if (thisClick.id === Hugh && character[2].envelopeTalk === true) {
-            desc = c.desc;
-            diaSplit(desc);
-            $(Hugh).addClass("deleted");
-            break; // stop searching after match
-        }
         if (thisClick.id === c.name) {
             desc = c.desc;
             diaSplit(desc);
@@ -306,6 +299,17 @@ $(".characters").click(function () {
     const thisChar = this;
     $("#roomFade").removeClass("hide");
     for (const ch of character) {
+        if (thisChar.id === "charHugh" && character[2].envelopeTalk) {
+            console.log('Hugh was clicked with envelope!')
+            dia = "Hugh:..What's that?_I don't know. The First Class chauffer named Mads told me to give it to you._Hugh: That idiot. Making people do his errand work....give me that._Hugh: ....._Hugh: Wh...who the hell does he think he is?!_Hugh: I'm about to give him a piece of my mind!"
+            dia = "GIVEN THE ENVELOPE. Delete this."
+        diaSplit(dia, () => {
+            $("#charHugh").addClass("deleted");
+            });
+            removeItem("envelope");
+            character[3].giveEnvelope = true;
+            break; // stop searching after match
+        }
         if (thisChar.id === ch.name) {
             if (thisChar.id === "charMon") {
             console.log("BAD OMEN INCOMING")

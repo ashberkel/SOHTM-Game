@@ -86,14 +86,6 @@ const character = [
         dia = "????:...what? You need something?_Not really...ehh, I guess...what's your opinion on this situation?_???: I don't really know, or care. All I know is we're dead in the water; they can keep saying it's navigational issues but that's a lot of shit._Yeah, my sentiments exactly."
         return dia;
       }
-      if (character[2] && character[2].envelopeTalk == true) {
-        console.log("You've got the letter" + this.firstTalk);
-        dia = "Hugh:..What's that?_I don't know. The First Class chauffer named Mads told me to give it to you._Hugh: That idiot. Making people do his errand work....give me that._Hugh: ....._Hugh: Wh...who the hell does he think he is?!_Hugh: I'm about to give him a piece of my mind!"
-        dia = "GIVEN THE ENVELOPE. Delete this."
-        removeItem("envelope");
-        this.giveEnvelope = true;
-        return dia;
-      }
       else {
         console.log("First time you've met this character?" + this.firstTalk);
         dia = "???:Don't you have anything better to do than standing around and botherin' me?";
