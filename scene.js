@@ -7,7 +7,7 @@ const character = [
       var dia;
       if (this.firstTalk == true) {
         console.log("First time you've met this character?" + this.firstTalk);
-        dia = "???: G'evening, sir. I hope you're enjoying the refreshments._Enjoying it enough. What's the deal anyways?_???: We've had some issues with our heading, that's all. Bad data. We're trying to figure out how to get back on course._Hm._???: Sir?_Gotta call bullshit when I hear it. The wind doesn't sound like we're moving, and the clouds are near stopped out the window._???: ...interesting. I don't think I have your name._I didn't give it. But it's Nicholas Carter._???: That’s...Detective Carter, isn’t it? I’m Captain Niccals._Captain Niccals: I couldn't quite place that face until you said it. Quite famous work you do._I just like making sure problems get solved._Captain Niccals: Problems.._Captain Niccals: ...._Captain Niccals: Look, I'll be frank. Normally I wouldn't even be humoring you, but these are...odd circumstances._Captain Niccals: It's...looking like someone from our own crew is causing the issue. It's the only explanation._Causing the problem?_ Captain Niccals: Basically, our engines are dead in the water. Someone sabotaged it._Captain Niccals: And the narrow group of people who could even get close to the reactor is..._So...basically. It may not be smart to rely on inside help only._ Captain Niccals: Mm. Seems so. I can't exactly just let you waltz in just like that...it isn't my authority. _ Captain Niccals: But...may I see your holocard for a moment._Knock yourself out._ ...._ Captain Niccals: There. I've given you access to a few more floors, notably the first class ballroom._Captain Niccals: Head scientist Gven is up there now trying to keep the peace._Why is she there and the captain down uh...here in the slums?_Captain Niccals: I might be captain, but I'm really just pointing the nose ahead. She's the one actually keeping us afloat._ Right..._Captain Niccals: Talk to her. Show her your holocard...I've left a note so that she'll humor you. From there, who knows.._Captain Niccals: But it's the only real place to start. She knows more about this mess than I do._...and she can be trusted?_Captain Niccals: This ship is her magnum opus. I hardly believe she'd sabotage things after all this._Right...fine. Not really one for R&R anyways. I'll be back if I have anything._ Captain Niccals: Good man."
+        dia = "???: G’evening, sir. I hope you’re enjoying the refreshments._Carter: Enjoying it enough. What’s the deal, anyway?_???: We’ve had some issues with our heading—bad data, or so my experts say._Carter: Hm._???: Sir?_Carter: Gotta call bullshit when I hear it. I’ve heard breathing from the next room louder than the wind outside, and those clouds out the window haven’t even budged._???: …Sharp eye. Most of the other passengers seem content to ignore that detail if they’ve noticed. I don’t believe I have your name._Carter: I didn’t give it. But it’s Nicholas Carter._???: Detective Carter… right. I’m Captain Niccals._Captain Niccals: I've heard of your reputation. You do good work._Carter: Just like making sure problems get solved._Captain Niccals: Problems… yes. Got plenty of those to spare these days._Captain Niccals: I wouldn’t usually trouble a guest with this, but circumstances have turned strange as you’ve guessed._Captain Niccals: It’s starting to look like someone on the crew may have caused the accident._Carter: What do you mean?_Captain Niccals: Our engines are dead in the water. Someone either pulled something they shouldn’t have… or they meant to._Captain Niccals: And the list of those who can even get close to the reactor is small._Carter: So it might not be smart banking on inside help alone._Captain Niccals: A fair assessment. I can’t give you a free run of the place—captain or not, I’ve still got rules to follow._Captain Niccals: But…could see your holocard for just a moment?_Carter: Knock yourself out._…_Captain Niccals: There we are. I’ve granted you a bit more clearance. Enough to get you up to the first-class ballroom._Captain Niccals: Head Scientist Gwen’s up there doing her best to keep folks calm._Carter: Why’s she up there and the captain’s down here? Seems like you’re more important._Captain Niccals: Because pointing the nose forward is easy. Keeping the ship flying… that’s her art, not mine. She built half of what keeps us aloft._Carter: Right…_Captain Niccals: Talk to her. Show her your holocard. Tell her I sent you—she’ll give you a fair shake. Might even listen, if you’re lucky._Carter: …And she can be trusted?_Captain Niccals: With my life. And yours. This ship is her magnum opus—she wouldn’t let it fall apart, not after all she’s poured into it._Carter: Right… fine. Not much for R&R anyway. I’ll be back if I dig up anything._Captain Niccals: Good man."
         dia = "Captain test. REMOVE THIS."
         return dia;
       }
@@ -24,7 +24,7 @@ const character = [
       var dia;
       if (this.firstTalk == true) {
         console.log("First time you've met this character?" + this.firstTalk);
-        dia = "Excuse me...are you Gwen?_Gwen: I don't recognize you so I can't understand why you're being so informal with me. Can I help you, sir?_Yeah. Captain Murdoch sent me about a hunch I have regarding the ship. Said to give you this to prove he sent me._Gwen:...oh really? He sent you up here...based on a hunch of some kind?_I wouldn't really call 14 solved cases under my belt a hunch. Seems like you guys have a...delicate situation on your hands and he just wants some professional help that's not so..._Gwen: Close to the source?_Yeah, that._Gwen: Hm._Gwen:...._Gwen: I suppose I can humor you. There's really not any other choice as without the culprit...we could be stuck here much longer._Gwen: But I also can't just let a random citizen waltz around sensitive areas...especially when it comes to the delicate nature of how this airship gets around._Can't argue with that. I wouldn't do it either._Gwen: For now...here's what I suggest. Go talk to the engineer on Level B1. Apparently he saw some information regarding the hours before this incident._Right...thanks, m'am._Gwen: Ugh, no. Just call me Gwen if the alternative is that."
+        dia = "Carter: Excuse me...are you Gwen?_Gwen: I don't recognize you so I can't understand why you're being so informal with me. Can I help you, sir?_Carter: Yeah. Captain Niccals sent me about a hunch I have regarding the ship. Said to give you this to prove he sent me._Gwen:...oh really? He sent you up here...based on a hunch of some kind?_Carter: I wouldn't really call 14 solved cases under my belt a hunch. Seems like you guys have a...delicate situation on your hands and he just wants some professional help that's not so..._Gwen: Close to the source?_Carter: Yeah, that._Gwen: Hm._Gwen:...._Gwen: I suppose I can humor you. There's really not any other choice as without any leads...we could be stuck here much longer._Gwen: But I also can't just let citizens waltz around sensitive areas...especially when it comes to the delicate nature of how this airship gets around._Carter: Can't argue with that. I wouldn't do it neither._Gwen: For now...here's what I suggest. Go talk to the engineer on Level B1. Apparently he saw some information regarding the hours before this incident._Carter: Right...thanks, m'am._Gwen: No. Nevber m'am. Just call me Gwen if the alternative is that."
         dia = "Scientist test. REMOVE THIS."
         return dia;
       }
@@ -53,20 +53,12 @@ const character = [
     },
     diaOptions: function () {
       var dia;
-      if (character[1].firstTalk == false && this.envelopeTalk == false) {
-        dia = "Mads: By the way...did you happen to come across a grumpy looking ram? His name is Hugh._Maybe...not sure._Mads: Might I ask a favor? I have a letter I've been meaning to give him...unfortunately, it's been impossible to get ahold of him lately._Mads: Likely because he is avoiding me._And you want me to be your errand boy?_I assure you that it won't be for nothing. I overheard your chat with Miss Gwen._Eavesdropping too?_Mads: It's my job to be on the lookout for anything suspicious. I can't help but...oversee many things._Uh huh.._)Mads: Regardless. It might interest you to know there's someone of interest that may have...taken something._Taken something?_Mads: Yes, rather important. Out of the senior technicians pocket._...that's not considered suspicious?_Mads: It is. But that particular technician was awfully rude to me the other day. And I dont tolerate the rude._...._Mads: Regardless, you should know this thief is extremely...nosy. If they knew something most don't, and the theft had something to do with it.._Right. And you think that's considered a lead?_Mads: Perhaps, but that's for you to decide detective. Well? I look forward to your return after you talk to Hugh. "
-        dia = "Mads wants Hugh test. REMOVE THIS."
-        this.addEnvelope();
-        this.envelopeTalk = true;
-        return dia;
-      }
       if (this.withHugh == true) {
         dia = "Hannibal: I cannot thank you enough for helping with my letter. I think this worked out quite well."
         return dia;
       }
       if (character[3] && character[3].giveEnvelope == true) {
-        dia = "Mads: You shouldn't be so irate. And you even left your post.._Hug: I don't give a damn, Mads. Don't go sending shit like this with random strangers. What if he opened it??_Mads: Of course he wouldn't. We had a deal after all._Hugh: Do I want to know?_Mads: Don't worry, dear Hugh. Well, thank you detective...just for you, I'll let you know the culprit was...._Mads: Miss Penelope Parker._Penelope Parker, the tabloid reporter?? Yeah, if anyone's snooping around, it's her. I'll keep my eye out for her..._Mads: Please do. And thank you again."
-        this.withHugh = true;
+        dia = "Mads: You shouldn’t be so irate. And you even left your post…_Hugh: I don’t give a shit, Mads. Don’t go sending crap like this with random strangers. What if he opened it??_Mads: Of course he wouldn’t. We had a deal, after all._Hugh: …Do I want to know?_Mads: Don’t worry, dear Hugh.Mads: Well—thank you, Detective. Just for you, I’ll let you know the culprit was…_Miss Penelope Parker._Carter: Penelope Parker...the reporter?? Yeah, that tracks why she’s snooping around. I’ll keep my eye out for her…_Mads: Please do. And thank you again."        this.withHugh = true;
         dia = "Mads and Hugh finish. Penelope unlocked. REMOVE THIS."
         return dia;
       }
@@ -83,7 +75,7 @@ const character = [
       var dia;
       if (this.firstTalk == true) {
         console.log("First time you've met this character?" + this.firstTalk);
-        dia = "????:...what? You need something?_Not really...ehh, I guess...what's your opinion on this situation?_???: I don't really know, or care. All I know is we're dead in the water; they can keep saying it's navigational issues but that's a lot of shit._Yeah, my sentiments exactly."
+        dia = "???: …What? You need something?_Carter: Not really… though I guess…what’s your opinion on this situation?_???:  I don’t really care. All I know is we’re dead in the water. They can keep saying it’s “navigational issues,” but that’s a load of shit._Carter: At least someone around here’s singing my tune..."        return dia;
         return dia;
       }
       else {
@@ -93,30 +85,56 @@ const character = [
       }
     }
   },
-  {name:"charHugh2",
+  {
+    name: "charHugh2",
     diaOptions: function () {
-        dia = "Hugh: Sorry you had to put up with this idiot."
-        return dia;
-      }},
+      dia = "Hugh: Sorry you had to put up with this idiot."
+      return dia;
+    }
+  },
   {
     name: "charPen", firstTalk: true,
-      diaOptions: function () {
+    diaOptions: function () {
       var dia;
       if (this.firstTalk == true) {
         console.log("First time you've met this character?" + this.firstTalk);
-        dia = "????:...what? You need something?_Not really...ehh, I guess...what's your opinion on this situation?_???: I don't really know, or care. All I know is we're dead in the water; they can keep saying it's navigational issues but that's a lot of shit._Yeah, my sentiments exactly."
+        dia = "Carter: Well well. I finally found you._Penelope: Am I supposed to know you were looking for me, sir…?_Carter:  I mean, you’re certainly making people talk._Penelope: A lot of people talk about me… I am a reporter for The Donlynn Times._Carter:  Right. I recall a few times you’ve interrupted our work._Penelope: So what, you’re police then?_Carter:  Detective. Detective Carter._Penelope: Carter… Carter. Oh! I have heard of you. Adrian Gorer—your case, wasn’t it?_Carter:  Yes… suppose that’s my “best” work._Penelope: Be that as it may, it doesn’t tell me why you’re hunting me down. Unless you think I’m your bad guy._Carter: I don’t think you’re bad, Miss Penelope. I just think reporters tend to stick their nose in places it doesn’t belong._Carter: A little too much._Carter: The doorman on Floor 6 saw you… rummaging around someone’s pocket._Penelope: …Shit._Carter: Care to explain what little goodie you dug up?_Penelope: And I’m supposed to hand that kind of information out for free?_Carter: I’d sure appreciate it._Penelope: Well… doesn’t matter much anyway. All I found was a scrap of paper._Carter: Just a scrap of paper?_Penelope: Looks like it was torn in half. Even if someone had the other piece, the handwriting is terrible._Carter: Hm. Maybe I’ll keep my eye out."
+        dia = "Met penelope. DELETE THIS."
+        return dia;
+      }
+      if (     ) {
+        console.log("First time you've met this character?" + this.firstTalk);
+        dia = "Carter: First outside my room, now up here… you really don’t stop, huh?_Penelope: Guess I don’t._Penelope: …? Is that—?_Carter:  Yup. The missing part to yours. Can’t say for sure unless we put ’em together._Penelope: Then what are we waiting for?_Carter:  Hold on. I’m not just handing this over like candy._Penelope: Lucky for you, detective—I am handing mine over. Just like that._Carter:  Why?_Penelope: Honestly? I don’t even know where to go with it. Could be a grocery list for all I know._Penelope: And let’s just say… I have a feeling I’ll need a favor later._Penelope: You wouldn’t leave a lady in need high and dry, would you?_Carter:  Hmph._Penelope: Well, it was nice seeing you, detective."
+        dia = "Talked to penelope about paper. DELETE THIS."
         return dia;
       }
       else {
         console.log("First time you've met this character?" + this.firstTalk);
-        dia = "???:Don't you have anything better to do than standing around and botherin' me?";
+        dia = "Penelope: There’s something weird about all this… I can feel it.";
         return dia;
       }
-  }},
+    }
+  },
+  {
+    name: "charGuard", firstTalk: true,
+    diaOptions: function () {
+      var dia;
+      if (this.firstTalk == true) {
+        console.log("First time you've met this character?" + this.firstTalk);
+        dia = "???: Hey… hey! What are you doing down here??__Carter: I was told to come down here and dig up some info on what the hell’s going on around here._???: That ain’t my problem. And we sure as hell don’t need some nobody stickin’ their nose in our business.__Carter: Sounds like you’ve got something to hide._???: Sounds like I’m trying to save your sorry ass. This ain’t a playground down here—there’s a reason us nobodies gotta sign waivers just to take this job._Carter: Right…_???: Anyways, get out of here. I ain’t humoring you—not even for the big wigs upstairs."
+        return dia;
+      }
+      else {
+        console.log("First time you've met this character?" + this.firstTalk);
+        dia = "???: Didn’t I tell ya to scram? I’m still not lettin’ you past.";
+        return dia;
+      }
+    }
+  },
   {
     name: "charMon", firstTalk: true,
     diaOptions: function () {
-      var dia = "...?_???: BAD OMEN._Excuse me, are you alright?";
+      var dia = "...?_???: BAD OMEN._Carter: Excuse me, are you alright?";
       return dia;
     }
   },]

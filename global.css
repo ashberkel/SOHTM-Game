@@ -36,6 +36,9 @@
     pointer-events: auto; 
 }
 
+.disabled {
+    pointer-events: none; 
+}
 #moveUp {
     z-index: 99;
     width: 40px;

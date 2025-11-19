@@ -203,7 +203,7 @@ $(document).ready(function () {
                     room = "Floor6"
                     $(".floors").removeClass("current");
                     $("#floor6").addClass("current");
-                    $(".clickables, #charMads").addClass("hide");
+                    $(".clickables, #charMads, #charHugh2").addClass("hide");
                     $(".clickables.floors").removeClass("hide");
                     $("#moveUp, #moveRight").addClass("hide");
                     $("#moveDown").removeClass("hide");
@@ -214,7 +214,7 @@ $(document).ready(function () {
                 case "6,1,1":
                     room = "Elevator6"
                     if (floor6First === true) {
-                        firstDia = "???: Excuse me, may I see your holocard?_Knock yourself out._???: ...Third Class up to First Class? You must be someone particularly special._I'm a...friend of the captain I guess._???: A friend. I suppose then we are friends too. You may call me Mads. Please, I won't interrupt any further."
+                        firstDia = "???: Excuse me. May I see your holocard?_Carter: Knock yourself out._???: …Hm. Third Class with access up to First? You must be someone… particularly special._Carter: I’m a… friend of the captain, I guess._???: A friend of the captain. Then I suppose that makes us friends as well. Call me Mads._Please, I won't interrupt any further."
                         $("#roomFade").removeClass("hide");
                         diaSplit(firstDia);
                         floor6First = false;
@@ -222,7 +222,7 @@ $(document).ready(function () {
                     $(".clickables, #charSci").addClass("hide");
                     $(".clickables.elevator, #charMads").removeClass("hide");
                     if (character[3].giveEnvelope == true) {
-                    $("#charHugh2").removeClass("hide");
+                        $("#charHugh2").removeClass("hide");
                     }
                     $("#moveDown").addClass("hide");
                     $("#moveLeft, #moveRight, #moveUp").removeClass("hide");
@@ -232,13 +232,13 @@ $(document).ready(function () {
                     break;
                 case "6,0,1":
                     room = "Dining6Lft"
-                    $(".clickables, #charMads, #charSci").addClass("hide");
+                    $(".clickables, #charMads, #charHugh2, #charSci").addClass("hide");
                     $("#moveLeft, #moveUp").addClass("hide");
                     $("#playView").css("background-image", "url('images/rooms/Dining6Lft.jpg')");
                     break;
                 case "6,2,1":
                     room = "Dining6Rgt"
-                    $(".clickables, #charMads").addClass("hide");
+                    $(".clickables, #charMads, #charHugh2").addClass("hide");
                     $("#charSci").removeClass("hide");
                     $("#moveRight, #moveUp").addClass("hide");
                     $("#playView").css("background-image", "url('images/rooms/Dining6Rgt.jpg')");
@@ -278,12 +278,12 @@ $(".clickables").click(function () {
             break; // stop searching after mirror
         }
         if ($(this).hasClass("inactive")) {
-            desc = "Locked out. Looks like some floors are off-limits._Maybe they don't like the creaturefolk mixing with the elites.";
+            desc = "Carter: Locked out. Looks like some floors are off-limits._Carter: Maybe they don't like different creaturefolk classes interacting.";
             diaSplit(desc);
             break;
         }
         if ($(this).hasClass("current")) {
-            desc = "I'm already on that floor.";
+            desc = "Carter: I'm already on that floor.";
             diaSplit(desc);
             break;
         }
@@ -299,41 +299,50 @@ $(".characters").click(function () {
     const thisChar = this;
     $("#roomFade").removeClass("hide");
     for (const ch of character) {
+        if (thisChar.id === "charMads" && character[1].firstTalk == false && thisChar.envelopeTalk == false) {
+            dia = "Mads: By the way… did you happen to come across a grumpy-looking ram? His name is Hugh._Carter: Maybe… not sure._Mads: Might I ask a favor? I have a letter I’ve been meaning to give him. Unfortunately, he’s been impossible to get ahold of lately._Mads: Likely because he’s avoiding me._Carter: And you want me to be your errand boy?_Mads: I assure you it won’t be for nothing. I overheard your chat with Ms. Gwen._Carter:  Eavesdropping too?_Mads: It’s my job to watch for anything suspicious. I can’t help but… oversee many things._Carter: Uh-huh…_Mads: Regardless. It may interest you to know someone of interest might have… taken something._Carter:  Taken something?_Mads: Yes. Something rather important—from the senior technician’s pocket._Carter: …That’s not considered suspicious?_Mads: It is. But the senior technician was awfully rude to me the other day. And I don’t tolerate the rude._…_Mads: Regardless, you should know this person is extremely… nosy. If they knew something most don’t—and the theft ties into it…_Carter:  Right. And you think that’s a lead?_Mads: Perhaps. But that’s for you to decide, Detective._Mads: Well? I look forward to your return after you talk to Hugh."
+            dia = "Mads REALLY wants Hugh test. REMOVE THIS."
+            diaSplit(dia, () => {
+                character[2].addEnvelope();
+                character[2].envelopeTalk = true;
+                character[3].giveEnvelope = true;
+            });
+            break; // stop searching after match
+        }
         if (thisChar.id === "charHugh" && character[2].envelopeTalk) {
             console.log('Hugh was clicked with envelope!')
-            dia = "Hugh:..What's that?_I don't know. The First Class chauffer named Mads told me to give it to you._Hugh: That idiot. Making people do his errand work....give me that._Hugh: ....._Hugh: Wh...who the hell does he think he is?!_Hugh: I'm about to give him a piece of my mind!"
+            dia = "Hugh: …What’s that?_Carter:  I don’t know. The First Class chauffeur...Mads? He told me to give it to you._Hugh: That idiot. Making people do his damn errands… give me that._…_Hugh: Wh—who the hell does he think he is?!_Hugh: I’m about to give him a piece of my mind!"
             dia = "GIVEN THE ENVELOPE. Delete this."
-        diaSplit(dia, () => {
-            $("#charHugh").addClass("deleted");
+            diaSplit(dia, () => {
+                processItem('envelope');
+                this.envelopeTalk = true;
             });
-            removeItem("envelope");
-            character[3].giveEnvelope = true;
             break; // stop searching after match
         }
         if (thisChar.id === ch.name) {
             if (thisChar.id === "charMon") {
-            console.log("BAD OMEN INCOMING")
-            setTimeout(() => {
-            $("#charMon").attr("src", "images/characters/Mon2.gif");
-            $("#diaButton").addClass("hide");
-            dia = "BADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMEN"
-            diaSplit(dia);
-            errorSound.play();
-            errorSound.volume = .5;
-            }, 3000);
-            setTimeout(() => {
-            window.parent.badOmenAdd();
-            }, 3500);
-            setTimeout(() => {
-            window.parent.badOmenClear();
-            $("#charMon").addClass("deleted");
-            $("#diaButton").removeClass("hide");
-            errorSound.volume = .0;
-            }, 11000);
-            setTimeout(() => {
-            dia = "...?_Huh. Thought I saw someone._...nevermind."
-            diaSplit(dia);
-            }, 11500);
+                console.log("BAD OMEN INCOMING")
+                setTimeout(() => {
+                    $("#charMon").attr("src", "images/characters/Mon2.gif");
+                    $("#diaButton").addClass("hide");
+                    dia = "BADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMEN"
+                    diaSplit(dia);
+                    errorSound.play();
+                    errorSound.volume = .5;
+                }, 3000);
+                setTimeout(() => {
+                    window.parent.badOmenAdd();
+                }, 3500);
+                setTimeout(() => {
+                    window.parent.badOmenClear();
+                    $("#charMon").addClass("deleted");
+                    $("#diaButton").removeClass("hide");
+                    errorSound.volume = .0;
+                }, 11000);
+                setTimeout(() => {
+                    dia = "...?_Carter: Huh. Thought I saw… never mind._..._Carter: Damn—my head feels like it’s gonna split open._Carter: I don’t have the best lead yet, but… hell, maybe a nap wouldn’t kill me. Little rest might shake something loose, help me see what I’m missing."
+                    diaSplit(dia);
+                }, 11500);
             }
             dia = ch.diaOptions();
             diaSplit(dia);
@@ -348,9 +357,9 @@ $(".characters").click(function () {
     }
 });
 //MAJOR - Item Handling
-$(".items").click(function () {
+$(".items").click(function processItem(id) {
     const thisItem = this;
-    const id = thisItem.id;
+    var id = thisItem.id;
     const obj = item.find(x => x.name === thisItem.id);
     const crowbar = item.find(x => x.name === 'crowbar');
     item.forEach(i => {
@@ -364,7 +373,7 @@ $(".items").click(function () {
                 woodCrack.play();
                 console.log("You DO have the crowbar.");
                 obj.inInv = true;
-                diaSplit("Ugh! Right...well._I hope that no one important saw that. I'd rather not pay for damages because of this.");
+                diaSplit("...!_Carter: Right...well._Carter: I hope that no one important saw that. I'd rather not pay for damages because of this.");
                 woodCrack.play();
                 //INSERT CROWBAR REMOVE FROM INVENTORY HERE
                 $('.dining4Wall').addClass('deleted');
@@ -396,21 +405,6 @@ $(".items").click(function () {
     })
 });
 
-
-//adds to the inventory slot
-
-//Inventory desc click
-$(".invItems").click(function () {
-    const thisPic = this;
-    console.log("Click on:", thisPic.id);
-    item.forEach(i => {
-        if ($(thisPic).hasClass(i.name)) {
-            desc = i.desc;
-            invClick(desc);
-        }
-    })
-});
-
 //Inventory remove each slot
 function removeItem(id) {
     var id
@@ -422,7 +416,8 @@ function removeItem(id) {
             return false;
         }
     }
-    )};
+    )
+};
 
 //Inventory click
 function invClick(dia, onDone) {
@@ -440,6 +435,7 @@ function diaSplit(dia, onDone) {
     diaButton.style.display = "inline";
     document.getElementById('diaBox').innerHTML = splitUp[n];
     $('#moveIcons').addClass("hide");
+    $('.characters, .items').addClass("disabled");
     $("#diaButton").off("click");
     $("#diaButton").click(function () {
         n += 1;
@@ -450,6 +446,7 @@ function diaSplit(dia, onDone) {
             document.getElementById('diaBox').innerHTML = "";
             diaButton.style.display = "none";
             $('#moveIcons').removeClass("hide");
+            $('.characters, .items').removeClass("disabled");
             $("#roomFade").addClass("hide");
             n = 0;
         }
