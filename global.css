@@ -47,7 +47,7 @@
     left: 37%;   
 }
 
-#moveRight {
+#moveRight, #moveRightB1 {
     z-index: 98;
     transform: rotate(90deg);
     width: 40px;
@@ -159,6 +159,9 @@
 }
 .movement:hover {
     cursor: none;
+}
+.itemFade {
+    opacity: 0.8;
 }
 .poi:hover {
     cursor: url('./images/cursors/curLook.svg'), auto;}

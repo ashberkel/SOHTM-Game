@@ -2,6 +2,7 @@
 const MCChoice = localStorage.getItem("MCChoice");
 let floorUnlock = false;
 let floor6First = true;
+let badOmenTrigger = false;
 let invCount = 0;
 const woodCrack = new Audio("assets/WoodCrack.mp3");
 const walkNoise = new Audio("assets/footSteps.wav");
@@ -43,7 +44,16 @@ $(document).ready(function () {
                 $(".clickables.MCRoom").removeClass("hide");
                 $("#moveUp, #moveDown, #moveLeft").addClass("hide");
                 $("#moveRight").toggleClass("hide");
+                if (badOmenTrigger === true) {
+                $("#playView").css("background-image", "url('images/rooms/MCRoomBld.jpg')");
+                bloodDia = "…What… what is this?_This isn’t from some small cut… it’s all over the damn room. And the mirror…_“Meet me at midnight. Tell....?”_And that handwriting…it looks like…mine?_…_...what the hell is going on around here?"
+                diaSplit(bloodDia);
+                //INSERT FUNCTION THAT WILL CHANGE THE WINDOW TO THE END
+                console.log("INSERT FUNCTION THAT WILL CHANGE THE WINDOW TO THE END. REMOVE THIS.");
+                }
+                else {
                 $("#playView").css("background-image", "url('images/rooms/MCRoom.jpg')");
+                }
                 break;
             case "3,1,0":
                 room = "MCHall"
@@ -51,7 +61,14 @@ $(document).ready(function () {
                 $(".clickables.MCHall").removeClass("hide");
                 $("#moveDown, #moveRight").addClass("hide");
                 $("#moveUp, #moveLeft").removeClass("hide");
+                if (badOmenTrigger === true) {
+                $("#playView").css("background-image", "url('images/rooms/MCHallBld.jpg')");
+                bloodDia = "…that's not good._I might be old, but I know that door handle wasn’t covered in blood when I left."
+                diaSplit(bloodDia);
+                }
+                else {
                 $("#playView").css("background-image", "url('images/rooms/MCHall.jpg')");
+                }
                 break;
             case "3,1,1":
                 room = "Elevator3"
@@ -162,7 +179,9 @@ $(document).ready(function () {
             switch (coord) {
                 case "0,1,2":
                     room = "FloorB1"
-                    $(".clickables").addClass("hide");
+                    $(".floors").removeClass("current");
+                    $("#floorB1").addClass("current");
+                    $(".clickables, #moveRightB1").addClass("hide");
                     $(".clickables.floors").removeClass("hide");
                     $("#moveUp, #moveLeft, #crowbar").addClass("hide");
                     $("#moveDown").removeClass("hide");
@@ -171,8 +190,8 @@ $(document).ready(function () {
                 case "0,1,1":
                     room = "ElevatorB1"
                     $(".clickables").addClass("hide");
-                    $(".clickables.elevator, #crowbar").removeClass("hide");
-                    $("#moveDown, #moveLeft").addClass("hide");
+                    $("#elevatorB, #crowbar, #moveRightB1").removeClass("hide");
+                    $("#moveDown").addClass("hide");
                     $("#moveUp").removeClass("hide");
                     $("#playView").css("background-image", "url('images/rooms/ElevB.jpg')");
                     break;
@@ -293,68 +312,6 @@ $(".clickables").click(function () {
         }
     }
 });
-//Special Characters
-$(".characters").click(function () {
-    const thisChar = this;
-    $("#roomFade").removeClass("hide");
-    for (const ch of character) {
-        if (thisChar.id === "charMads" && character[1].firstTalk == false && thisChar.envelopeTalk == false) {
-            dia = "Mads: By the way… did you happen to come across a grumpy-looking ram? His name is Hugh._Carter: Maybe… not sure._Mads: Might I ask a favor? I have a letter I’ve been meaning to give him. Unfortunately, he’s been impossible to get ahold of lately._Mads: Likely because he’s avoiding me._Carter: And you want me to be your errand boy?_Mads: I assure you it won’t be for nothing. I overheard your chat with Ms. Gven._Carter:  Eavesdropping too?_Mads: It’s my job to watch for anything suspicious. I can’t help but… oversee many things._Carter: Uh-huh…_Mads: Regardless. It may interest you to know someone of interest might have… taken something._Carter:  Taken something?_Mads: Yes. Something rather important—from the senior technician’s pocket._Carter: …That’s not considered suspicious?_Mads: It is. But the senior technician was awfully rude to me the other day. And I don’t tolerate the rude._…_Mads: Regardless, you should know this person is extremely… nosy. If they knew something most don’t—and the theft ties into it…_Carter:  Right. And you think that’s a lead?_Mads: Perhaps. But that’s for you to decide, Detective._Mads: Well? I look forward to your return after you talk to Hugh."
-            dia = "Mads REALLY wants Hugh test. REMOVE THIS."
-            diaSplit(dia, () => {
-                character[2].addEnvelope();
-                character[2].envelopeTalk = true;
-                character[3].giveEnvelope = true;
-            });
-            break; // stop searching after match
-        }
-        if (thisChar.id === "charHugh" && character[2].envelopeTalk) {
-            console.log('Hugh was clicked with envelope!')
-            dia = ""
-            dia = "GIVEN THE ENVELOPE. Delete this."
-            diaSplit(dia, () => {
-                processItem('envelope');
-                this.envelopeTalk = true;
-            });
-            break; // stop searching after match
-        }
-        if (thisChar.id === ch.name) {
-            if (thisChar.id === "charMon") {
-                console.log("BAD OMEN INCOMING")
-                setTimeout(() => {
-                    $("#charMon").attr("src", "images/characters/Mon2.gif");
-                    $("#diaButton").addClass("hide");
-                    dia = "BADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMEN"
-                    diaSplit(dia);
-                    errorSound.play();
-                    errorSound.volume = .5;
-                }, 3000);
-                setTimeout(() => {
-                    window.parent.badOmenAdd();
-                }, 3500);
-                setTimeout(() => {
-                    window.parent.badOmenClear();
-                    $("#charMon").addClass("deleted");
-                    $("#diaButton").removeClass("hide");
-                    errorSound.volume = .0;
-                }, 11000);
-                setTimeout(() => {
-                    dia = "...?_Carter: Huh. Thought I saw… never mind._..._Carter: Damn—my head feels like it’s gonna split open._Carter: I don’t have the best lead yet, but… hell, maybe a nap wouldn’t kill me. Little rest might shake something loose, help me see what I’m missing."
-                    diaSplit(dia);
-                }, 11500);
-            }
-            dia = ch.diaOptions();
-            diaSplit(dia);
-            ch.firstTalk = false;
-            if (thisChar.id === "charCapn") {
-                floorUnlock = true;
-                $("#floorB1, #floor6").removeClass("inactive");
-            }
-            console.log("Are floors unlocked?" + floorUnlock);
-            break; // stop searching after match
-        }
-    }
-});
 //MAJOR - Item Handling
 $(".items").click(function processItem(id) {
     const thisItem = this;
@@ -403,7 +360,6 @@ $(".items").click(function processItem(id) {
         }
     })
 });
-
 //Inventory remove each slot
 function removeItem(id) {
     var id
@@ -417,7 +373,6 @@ function removeItem(id) {
     }
     )
 };
-
 //Inventory click
 function invClick(dia, onDone) {
     document.getElementById('diaBox').innerHTML = dia;
@@ -426,7 +381,6 @@ function invClick(dia, onDone) {
     }
     const myTimeout = setTimeout(clear, 2000);
 }
-
 //Dialogue splitting
 function diaSplit(dia, onDone) {
     const splitUp = dia.split("_");

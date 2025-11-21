@@ -113,12 +113,19 @@ const character = [
     }
 },
 {
-  name: "charGuard", firstTalk: true,
+  name: "charMon", firstTalk: true,
+    diaOptions: function () {
+      var dia = "...?_???: BAD OMEN._Carter: Excuse me, are you alright?";
+      return dia;
+    }
+},
+{
+  name: "charEngineer", firstTalk: true,
     diaOptions: function () {
       var dia;
       if (this.firstTalk == true) {
         console.log("First time you've met this character?" + this.firstTalk);
-        dia = "???: Hey… hey! What are you doing down here??__Carter: I was told to come down here and dig up some info on what the hell’s going on around here._???: That ain’t my problem. And we sure as hell don’t need some nobody stickin’ their nose in our business.__Carter: Sounds like you’ve got something to hide._???: Sounds like I’m trying to save your sorry ass. This ain’t a playground down here—there’s a reason us nobodies gotta sign waivers just to take this job._Carter: Right…_???: Anyways, get out of here. I ain’t humoring you—not even for the big wigs upstairs."
+        dia = "???: Hey… hey! What are you doing down here??_Carter: I was told to come down here and dig up some info on what the hell’s going on around here._???: That ain’t my problem. And we sure as hell don’t need some nobody stickin’ their nose in our business._Carter: Sounds like you’ve got something to hide._???: Sounds like I’m trying to save your sorry ass. This ain’t a playground down here—there’s a reason us nobodies gotta sign waivers just to take this job._Carter: Right…_???: Anyways, get out of here. I ain’t humoring you—not even for the big wigs upstairs."
         return dia;
       }
       else {
@@ -127,14 +134,7 @@ const character = [
         return dia;
       }
     }
-},
-{
-  name: "charMon", firstTalk: true,
-    diaOptions: function () {
-      var dia = "...?_???: BAD OMEN._Carter: Excuse me, are you alright?";
-      return dia;
-    }
-}]
+},]
 console.log("Loading char test:" + character[0].name);
 
 const clickable = [
@@ -145,6 +145,7 @@ const clickable = [
   { name: "doorNum", desc: "Numbers with no real meaning._Besides telling me where I'm supposed to sleep, there's nothing else to figure out." },
   { name: "carpet", desc: "Maybe the ship stopped cuz the crew’s just sittin’ somewhere, mesmerized by these godawful carpet patterns." },
   { name: "elevator", desc: "Real pretty design. Hope it works better than the rest of this ship." },
+  { name: "elevatorB", desc: "Guess the workers don't deserve to look at the fancy door pattern." },
   { name: "floatLights", desc: "The lights in there just float. I don't really understand how it works.." },
   { name: "Dine4Lamp", desc: "Tacky. That's the only polite way to put it honestly." },
   { name: "Dine4Window", desc: "At least the view is nice to look at._No bullshit, no pomp...just the sea of stars out there." },
@@ -161,3 +162,77 @@ const item = [
   { name: "paperScrap1", inInv: false, desc: "A half of a paper scrap. Might be important, might not be." },
   { name: "envelope", inInv: false, desc: "An envelope. It's sealed with wax and smells of cologne." }]
 console.log("Loading item test:" + item[0].name);
+//Special Character Handling
+$(".characters").click(function () {
+    const thisChar = this;
+    $("#roomFade").removeClass("hide");
+    for (const ch of character) {
+        if (thisChar.id === "charMads" && character[1].firstTalk == false && thisChar.envelopeTalk == false) {
+            dia = "Mads: By the way… did you happen to come across a grumpy-looking ram? His name is Hugh._Carter: Maybe… not sure._Mads: Might I ask a favor? I have a letter I’ve been meaning to give him. Unfortunately, he’s been impossible to get ahold of lately._Mads: Likely because he’s avoiding me._Carter: And you want me to be your errand boy?_Mads: I assure you it won’t be for nothing. I overheard your chat with Ms. Gven._Carter:  Eavesdropping too?_Mads: It’s my job to watch for anything suspicious. I can’t help but… oversee many things._Carter: Uh-huh…_Mads: Regardless. It may interest you to know someone of interest might have… taken something._Carter:  Taken something?_Mads: Yes. Something rather important—from the senior technician’s pocket._Carter: …That’s not considered suspicious?_Mads: It is. But the senior technician was awfully rude to me the other day. And I don’t tolerate the rude._…_Mads: Regardless, you should know this person is extremely… nosy. If they knew something most don’t—and the theft ties into it…_Carter:  Right. And you think that’s a lead?_Mads: Perhaps. But that’s for you to decide, Detective._Mads: Well? I look forward to your return after you talk to Hugh."
+            dia = "Mads REALLY wants Hugh test. REMOVE THIS."
+            diaSplit(dia, () => {
+                character[2].addEnvelope();
+                character[2].envelopeTalk = true;
+                character[3].giveEnvelope = true;
+            });
+            break; // stop searching after match
+        }
+        if (thisChar.id === "charHugh" && character[2].envelopeTalk) {
+            console.log('Hugh was clicked with envelope!')
+            dia = ""
+            dia = "GIVEN THE ENVELOPE. Delete this."
+            diaSplit(dia, () => {
+                processItem('envelope');
+                this.envelopeTalk = true;
+            });
+            break; // stop searching after match
+        }
+        if (thisChar.id === ch.name) {
+            if (thisChar.id === "charMon") {
+                console.log("BAD OMEN INCOMING")
+                setTimeout(() => {
+                    $("#charMon").attr("src", "images/characters/Mon2.gif");
+                    $("#diaButton").addClass("hide");
+                    dia = "BADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMEN"
+                    diaSplit(dia);
+                    errorSound.play();
+                    errorSound.volume = .5;
+                }, 3000);
+                setTimeout(() => {
+                    window.parent.badOmenAdd();
+                }, 3500);
+                setTimeout(() => {
+                    window.parent.badOmenClear();
+                    $("#charMon").addClass("deleted");
+                    $("#diaButton").removeClass("hide");
+                    errorSound.volume = .0;
+                    badOmenTrigger = true;
+                }, 11000);
+                setTimeout(() => {
+                    dia = "...?_Carter: Huh. Thought I saw…never mind._..._Carter: Damn—my head feels like it’s gonna split open._Carter: I don’t have the best lead yet, but… hell, maybe a nap wouldn’t kill me. Little rest might shake something loose, help me see what I’m missing."
+                    diaSplit(dia);
+                }, 11500);
+            }
+            dia = ch.diaOptions();
+            diaSplit(dia);
+            ch.firstTalk = false;
+            if (thisChar.id === "charCapn") {
+                floorUnlock = true;
+                $("#floorB1, #floor6").removeClass("inactive");
+            }
+            console.log("Are floors unlocked?" + floorUnlock);
+            break; // stop searching after match
+        }
+    }
+});
+$("#moveRightB1").click(function () {
+$('#charEngineer').removeClass("hide");
+$('#crowbar').addClass("itemFade")
+dia = character[character.length - 1].diaOptions();
+$("#roomFade").removeClass("hide");
+diaSplit(dia, () => {
+$('#charEngineer').addClass("hide");
+$('#crowbar').removeClass("itemFade")
+character[character.length - 1].firstTalk = false;
+});
+});
