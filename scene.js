@@ -1,5 +1,3 @@
-console.log("Are floors unlocked?" + floorUnlock);
-
 const character = [
   {
     name: "charCapn", firstTalk: true,
@@ -58,24 +56,23 @@ const character = [
         return dia;
       }
       if (character[3] && character[3].giveEnvelope == true) {
-        dia = "Mads: You shouldn’t be so irate. And you even left your post…_Hugh: I don’t give a shit, Mads. Don’t go sending crap like this with random strangers. What if he opened it??_Mads: Of course he wouldn’t. We had a deal, after all._Hugh: …Do I want to know?_Mads: Don’t worry, dear Hugh.Mads: Well—thank you, Detective. Just for you, I’ll let you know the culprit was…_Miss Penelope Parker._Carter: Penelope Parker...the reporter?? Yeah, that tracks why she’s snooping around. I’ll keep my eye out for her…_Mads: Please do. And thank you again."        this.withHugh = true;
+        dia = "Mads: You shouldn’t be so irate. And you even left your post…_Hugh: I don’t give a shit, Mads. Don’t go sending crap like this with random strangers. What if he opened it??_Mads: Of course he wouldn’t. We had a deal, after all._Hugh: …Do I want to know?_Mads: Don’t worry, dear Hugh.Mads: Well—thank you, Detective. Just for you, I’ll let you know the culprit was…_Miss Penelope Parker._Carter: Penelope Parker...the reporter?? Yeah, that tracks why she’s snooping around. I’ll keep my eye out for her…_Mads: Please do. And thank you again."
         dia = "Mads and Hugh finish. Penelope unlocked. REMOVE THIS."
         return dia;
       }
       else {
-        console.log("First time you've met this character?" + this.firstTalk);
-        dia = "He doesn't seem interested in addressing you anymore. He's too busy looking around the ballroom.";
-        return dia;
-      }
+      console.log("First time you've met this character?" + this.firstTalk);
+      dia = "He doesn't seem interested in addressing you anymore. He's too busy looking around the ballroom.";
+      return dia;
     }
-  },
-  {
-    name: "charHugh", firstTalk: true, giveEnvelope: false,
+  }},
+{
+  name: "charHugh", firstTalk: true, giveEnvelope: false,
     diaOptions: function () {
       var dia;
       if (this.firstTalk == true) {
         console.log("First time you've met this character?" + this.firstTalk);
-        dia = "???: …What? You need something?_Carter: Not really… though I guess…what’s your opinion on this situation?_???:  I don’t really care. All I know is we’re dead in the water. They can keep saying it’s “navigational issues,” but that’s a load of shit._Carter: At least someone around here’s singing my tune..."        return dia;
+        dia = "???: …What? You need something?_Carter: Not really… though I guess…what’s your opinion on this situation?_???:  I don’t really care. All I know is we’re dead in the water. They can keep saying it’s “navigational issues,” but that’s a load of shit._Carter: At least someone around here’s singing my tune..."
         return dia;
       }
       else {
@@ -84,16 +81,16 @@ const character = [
         return dia;
       }
     }
-  },
-  {
-    name: "charHugh2",
+},
+{
+  name: "charHugh2",
     diaOptions: function () {
       dia = "Hugh: Sorry you had to put up with this idiot."
       return dia;
     }
-  },
-  {
-    name: "charPen", firstTalk: true,
+},
+{
+  name: "charPen", firstTalk: true,
     diaOptions: function () {
       var dia;
       if (this.firstTalk == true) {
@@ -102,21 +99,21 @@ const character = [
         dia = "Met penelope. DELETE THIS."
         return dia;
       }
-      if (     ) {
+      /*if (     ) {
         console.log("First time you've met this character?" + this.firstTalk);
         dia = "Carter: First outside my room, now up here… you really don’t stop, huh?_Penelope: Guess I don’t._Penelope: …? Is that—?_Carter:  Yup. The missing part to yours. Can’t say for sure unless we put ’em together._Penelope: Then what are we waiting for?_Carter:  Hold on. I’m not just handing this over like candy._Penelope: Lucky for you, detective—I am handing mine over. Just like that._Carter:  Why?_Penelope: Honestly? I don’t even know where to go with it. Could be a grocery list for all I know._Penelope: And let’s just say… I have a feeling I’ll need a favor later._Penelope: You wouldn’t leave a lady in need high and dry, would you?_Carter:  Hmph._Penelope: Well, it was nice seeing you, detective."
         dia = "Talked to penelope about paper. DELETE THIS."
         return dia;
-      }
+      }*/
       else {
         console.log("First time you've met this character?" + this.firstTalk);
         dia = "Penelope: There’s something weird about all this… I can feel it.";
         return dia;
       }
     }
-  },
-  {
-    name: "charGuard", firstTalk: true,
+},
+{
+  name: "charGuard", firstTalk: true,
     diaOptions: function () {
       var dia;
       if (this.firstTalk == true) {
@@ -130,14 +127,14 @@ const character = [
         return dia;
       }
     }
-  },
-  {
-    name: "charMon", firstTalk: true,
+},
+{
+  name: "charMon", firstTalk: true,
     diaOptions: function () {
       var dia = "...?_???: BAD OMEN._Carter: Excuse me, are you alright?";
       return dia;
     }
-  },]
+}]
 console.log("Loading char test:" + character[0].name);
 
 const clickable = [

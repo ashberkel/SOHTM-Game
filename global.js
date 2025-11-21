@@ -121,8 +121,7 @@ $(document).ready(function () {
                 $(".clickables.DiningLeft, #charHugh, .dining4Wall").removeClass("hide");
                 $("#moveRight, #moveDown").addClass("hide");
                 $("#moveLeft").removeClass("hide");
-                if (item[1].inInv == false) { $("#playView").css("background-image", "url('images/rooms/Dining4Rgt.jpg')"); }
-                else { $("#playView").css("background-image", "url('images/rooms/Dining4RgtAft.jpg')"); }
+                $("#playView").css("background-image", "url('images/rooms/Dining4Rgt.jpg')");
                 break;
             case "7,1,2":
                 room = "FloorO1"
@@ -300,7 +299,7 @@ $(".characters").click(function () {
     $("#roomFade").removeClass("hide");
     for (const ch of character) {
         if (thisChar.id === "charMads" && character[1].firstTalk == false && thisChar.envelopeTalk == false) {
-            dia = "Mads: By the way… did you happen to come across a grumpy-looking ram? His name is Hugh._Carter: Maybe… not sure._Mads: Might I ask a favor? I have a letter I’ve been meaning to give him. Unfortunately, he’s been impossible to get ahold of lately._Mads: Likely because he’s avoiding me._Carter: And you want me to be your errand boy?_Mads: I assure you it won’t be for nothing. I overheard your chat with Ms. Gwen._Carter:  Eavesdropping too?_Mads: It’s my job to watch for anything suspicious. I can’t help but… oversee many things._Carter: Uh-huh…_Mads: Regardless. It may interest you to know someone of interest might have… taken something._Carter:  Taken something?_Mads: Yes. Something rather important—from the senior technician’s pocket._Carter: …That’s not considered suspicious?_Mads: It is. But the senior technician was awfully rude to me the other day. And I don’t tolerate the rude._…_Mads: Regardless, you should know this person is extremely… nosy. If they knew something most don’t—and the theft ties into it…_Carter:  Right. And you think that’s a lead?_Mads: Perhaps. But that’s for you to decide, Detective._Mads: Well? I look forward to your return after you talk to Hugh."
+            dia = "Mads: By the way… did you happen to come across a grumpy-looking ram? His name is Hugh._Carter: Maybe… not sure._Mads: Might I ask a favor? I have a letter I’ve been meaning to give him. Unfortunately, he’s been impossible to get ahold of lately._Mads: Likely because he’s avoiding me._Carter: And you want me to be your errand boy?_Mads: I assure you it won’t be for nothing. I overheard your chat with Ms. Gven._Carter:  Eavesdropping too?_Mads: It’s my job to watch for anything suspicious. I can’t help but… oversee many things._Carter: Uh-huh…_Mads: Regardless. It may interest you to know someone of interest might have… taken something._Carter:  Taken something?_Mads: Yes. Something rather important—from the senior technician’s pocket._Carter: …That’s not considered suspicious?_Mads: It is. But the senior technician was awfully rude to me the other day. And I don’t tolerate the rude._…_Mads: Regardless, you should know this person is extremely… nosy. If they knew something most don’t—and the theft ties into it…_Carter:  Right. And you think that’s a lead?_Mads: Perhaps. But that’s for you to decide, Detective._Mads: Well? I look forward to your return after you talk to Hugh."
             dia = "Mads REALLY wants Hugh test. REMOVE THIS."
             diaSplit(dia, () => {
                 character[2].addEnvelope();
@@ -311,7 +310,7 @@ $(".characters").click(function () {
         }
         if (thisChar.id === "charHugh" && character[2].envelopeTalk) {
             console.log('Hugh was clicked with envelope!')
-            dia = "Hugh: …What’s that?_Carter:  I don’t know. The First Class chauffeur...Mads? He told me to give it to you._Hugh: That idiot. Making people do his damn errands… give me that._…_Hugh: Wh—who the hell does he think he is?!_Hugh: I’m about to give him a piece of my mind!"
+            dia = ""
             dia = "GIVEN THE ENVELOPE. Delete this."
             diaSplit(dia, () => {
                 processItem('envelope');
@@ -449,8 +448,8 @@ function diaSplit(dia, onDone) {
             $('.characters, .items').removeClass("disabled");
             $("#roomFade").addClass("hide");
             n = 0;
+            if (onDone) onDone();
         }
         console.log(`Current n count is` + n);
-        if (onDone) onDone();
     })
 }
