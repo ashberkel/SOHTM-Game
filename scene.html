@@ -34,26 +34,28 @@
                 <img class="movement hide" id="moveLeft" src="images\cursors\curNav.svg" />
             </div>
             <div id="mapMove">
-                <img style="position:absolute; top:85px; left:70px; width:700px;" id="newspaperHand"
-                    src="images\newspaperHold.png">
-                <img style="position:absolute; top:62px; left:280px; width:280px;" class="characters hide" id="charCapn"
-                    src="images/characters/Capn.png">
-                <img style="z-index:7; position:absolute; top:-86px; left:400px; width:330px;" class="characters hide"
-                    id="charHugh" src="images/characters/Hugh.png">
-                <img style="z-index:7; position:absolute; top:-86px; left:400px; width:330px;" class="characters hide"
-                    id="charHugh2" src="images/characters/Hugh.png">
-                <img style="position:absolute; top:-99px; left:20px; width:340px;" class="characters hide"
-                    id="charMads" src="images/characters/Mads.png">
-                <img style="position:absolute; top:-104px; left:320px; width:340px;" class="characters hide"
-                    id="charSci" src="images/characters/Scientist.png">
-                <img style="z-index:7; position:absolute; top:-90px; left:450px; width:330px;" class="characters hide deleted"
-                    id="charPen" src="images/characters/Reporter.png">
-                <img style="position:absolute; top:62px; left:180px; width:280px;" class="characters hide" id="charMon"
-                    src="images/characters/Mon1.png">
+                <img style="position:absolute; top:85px; left:70px; width:700px;"
+                id="newspaperHand" src="images\newspaperHold.png">
+                <img style="position:absolute; top:62px; left:280px; width:280px;"
+                class="characters hide" id="charCapn" src="images/characters/Capn.png">
+                <img style="z-index:7; position:absolute; top:-86px; left:400px; width:330px;"
+                class="characters hide" id="charHugh" src="images/characters/Hugh.png">
+                <img style="z-index:7; position:absolute; top:-86px; left:400px; width:330px;"
+                class="characters hide" id="charHugh2" src="images/characters/Hugh.png">
+                <img style="position:absolute; top:-99px; left:20px; width:340px;"
+                class="characters hide" id="charMads" src="images/characters/Mads.png">
+                <img style="position:absolute; top:-104px; left:320px; width:340px;"
+                class="characters hide" id="charSci" src="images/characters/Scientist.png">
+                <img style="z-index:7; position:absolute; top:-90px; left:450px; width:330px;"
+                class="characters hide deleted" id="charPen" src="images/characters/Reporter.png">
+                <img style="z-index:7; position:absolute; top:-90px; left:150px; width:330px;"
+                class="characters hide deleted" id="charPen2" src="images/characters/Reporter.png">
+                <img style="position:absolute; top:62px; left:180px; width:280px;"
+                class="characters hide" id="charMon" src="images/characters/Mon1.png">
                 <img style="position:absolute; top:-206px; left:450px; width:420px;" class="characters hide"
                     id="charEngineer" src="images/characters/Engineer.png">
-                <img style="z-index:5; position:absolute; top:243px; left:550px; width:50px;" class="items Dining4Right dining4Wall hide" id="paperScrap1" src="images/rooms/Dining4RgtCover.jpg">
                 <svg width="2000px" height="2000px">
+                    <rect id="endFade" width="2000" height="2000" fill="rgba(0,0,0, 0.0)" />
                     <rect class="hide" id="roomFade" width="2000" height="2000" fill="rgba(0,0,0, .8)" />
                     <rect class="clickables MCRoom" id="bed" x="500" y="50" width="350" height="400"
                         fill="rgba(0,0,0,.0)" />
@@ -121,10 +123,12 @@
                     <rect class="clickables floors inactive hide" id="floorO2" x="790" y="325" width="50" height="50"
                         fill="rgba(0,0,0,.0)" />
                 </svg>
-            <img style="position:absolute; top:280px; left:25px; width:150px;" class="clickables MCRoom hide"
-                    id="newspaper" src="images/objects/newspaper.png">
-            <img style="position:absolute; top:300px; left:150px; width:90px;transform: rotate(-15deg);" class="items hide" id="crowbar"
-                    src="images/objects/crowbar.png">
+            <img style="position:absolute; top:280px; left:25px; width:150px;"
+            class="clickables MCRoom hide" id="newspaper" src="images/objects/newspaper.png">
+            <img style="z-index:5; position:absolute; top:243px; left:550px; width:50px;"
+            class="items Dining4Right dining4Wall hide" id="paperScrap" src="images/rooms/Dining4RgtCover.jpg">
+            <img style="position:absolute; top:300px; left:150px; width:90px;transform: rotate(-15deg);"
+            class="items hide" id="crowbar" src="images/objects/crowbar.png">
             </div>
         </div>
         <div id="invBox">
@@ -149,7 +153,6 @@
         window.onload = function () {
             console.log("The Window onload is working!")
             firstDia = "..._Well, that would be mighty impressive._...if I wasn’t stuck on the damn thing out in the middle of who knows where._ATTENTION ALL PASSENGERS...WE AGAIN APOLOGIZE FOR THE DELAY. FOR CLASS B AND UP, REFRESHMENTS ARE BEING OFFERED IN..._Fine. Might as well get some grub and see if anyone around here knows what the Hell’s going on...."
-            firstDia = "Intro skip.REMOVE THIS"
             splitUp = firstDia.split("_");
             var n = 0;
             diaBox = document.getElementById('diaBox')

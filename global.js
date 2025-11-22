@@ -1,8 +1,9 @@
 //assets
 const MCChoice = localStorage.getItem("MCChoice");
-let floorUnlock = true;
+let floorUnlock = false;
 let floor6First = true;
 let badOmenTrigger = false;
+let endingTrigger = false;
 let invCount = 0;
 const woodCrack = new Audio("assets/WoodCrack.mp3");
 const walkNoise = new Audio("assets/footSteps.wav");
@@ -44,13 +45,19 @@ $(document).ready(function () {
                 $(".clickables.MCRoom").removeClass("hide");
                 $("#moveUp, #moveDown, #moveLeft").addClass("hide");
                 $("#moveRight").toggleClass("hide");
-                if (badOmenTrigger === true) {
+                if (endingTrigger) {
                 $("#playView").css("background-image", "url('images/rooms/MCRoomBld.jpg')");
+                $('#moveRight').addClass("deleted");
                 bloodDia = "…What… what is this?_This isn’t from some small cut… it’s all over the damn room. And the mirror…_“Meet me at midnight. Tell....?”_And that handwriting…it looks like…mine?_…_...what the hell is going on around here?"
-                diaSplit(bloodDia);
-                //INSERT FUNCTION THAT WILL CHANGE THE WINDOW TO THE END
-                console.log("INSERT FUNCTION THAT WILL CHANGE THE WINDOW TO THE END. REMOVE THIS.");
-                }
+                diaSplit(bloodDia, () => {
+                console.log("GAME END LOADING.");
+                setTimeout(() => {$("#endFade").attr("fill", "rgba(0,0,0,0.2)");}, 300);
+                setTimeout(() => {$("#endFade").attr("fill", "rgba(0,0,0,0.4)");}, 600);
+                setTimeout(() => {$("#endFade").attr("fill", "rgba(0,0,0,0.6)"); $('#newspaper').addClass("deleted");}, 900);
+                setTimeout(() => {$("#endFade").attr("fill", "rgba(0,0,0,0.8)");}, 1200);
+                setTimeout(() => {$("#endFade").attr("fill", "rgba(0,0,0,1.0)");}, 1500);
+                setTimeout(() => {window.location.href = "outro.html";}, 3000);
+            });}
                 else {
                 $("#playView").css("background-image", "url('images/rooms/MCRoom.jpg')");
                 }
@@ -61,7 +68,7 @@ $(document).ready(function () {
                 $(".clickables.MCHall, #charPen").removeClass("hide");
                 $("#moveDown, #moveRight").addClass("hide");
                 $("#moveUp, #moveLeft").removeClass("hide");
-                if (badOmenTrigger === true) {
+                if (endingTrigger) {
                 $("#playView").css("background-image", "url('images/rooms/MCHallBld.jpg')");
                 bloodDia = "…that's not good._I might be old, but I know that door handle wasn’t covered in blood when I left."
                 diaSplit(bloodDia);
@@ -133,7 +140,7 @@ $(document).ready(function () {
             case "4,3,2":
                 room = "Dining4Right"
                 $(".clickables, #charCapn").addClass("hide");
-                $(".clickables.Dining4Right, #paperScrap1, #charHugh").removeClass("hide");
+                $(".clickables.Dining4Right, #paperScrap, #charHugh").removeClass("hide");
                 $("#moveRight, #moveDown").addClass("hide");
                 $("#moveLeft").removeClass("hide");
                 $("#playView").css("background-image", "url('images/rooms/Dining4Rgt.jpg')");
@@ -168,6 +175,9 @@ $(document).ready(function () {
                 room = "HallO1Out"
                 $(".clickables").addClass("hide");
                 $(".clickables.HallO1Out").removeClass("hide");
+                if (badOmenTrigger) {
+                    $("#charMon").removeClass("hide");
+                }
                 $("#moveUp, #moveLeft").addClass("hide");
                 $(" #moveDown").removeClass("hide");
                 $("#playView").css("background-image", "url('images/rooms/HallO1Out.jpg')");
@@ -235,7 +245,7 @@ $(document).ready(function () {
                         diaSplit(firstDia);
                         floor6First = false;
                     }
-                    $(".clickables, #charSci").addClass("hide");
+                    $(".clickables, #charSci, #charPen2").addClass("hide");
                     $(".clickables.elevator, #charMads").removeClass("hide");
                     if (character[3].giveEnvelope == true) {
                         $("#charHugh2").removeClass("hide");
@@ -249,6 +259,9 @@ $(document).ready(function () {
                 case "6,0,1":
                     room = "Dining6Lft"
                     $(".clickables, #charMads, #charHugh2, #charSci").addClass("hide");
+                    if (!$('#charPen2').hasClass('deleted')) {
+                        $('#charPen2').removeClass("hide");
+                    }
                     $("#moveLeft, #moveUp").addClass("hide");
                     $("#playView").css("background-image", "url('images/rooms/Dining6Lft.jpg')");
                     break;
@@ -318,8 +331,7 @@ $(".characters").click(function () {
     for (const ch of character) {
         //Mads Envelope Give
         if (thisChar.id === "charMads" && !character[1].firstTalk && !character[2].envelopeTalk) {
-            //dia = "Mads: By the way… did you happen to come across a grumpy-looking ram? His name is Hugh._Carter: Maybe… not sure._Mads: Might I ask a favor? I have a letter I’ve been meaning to give him. Unfortunately, he’s been impossible to get ahold of lately._Mads: Likely because he’s avoiding me._Carter: And you want me to be your errand boy?_Mads: I assure you it won’t be for nothing. I overheard your chat with Ms. Gven._Carter:  Eavesdropping too?_Mads: It’s my job to watch for anything suspicious. I can’t help but… oversee many things._Carter: Uh-huh…_Mads: Regardless. It may interest you to know someone of interest might have… taken something._Carter:  Taken something?_Mads: Yes. Something rather important—from the senior technician’s pocket._Carter: …That’s not considered suspicious?_Mads: It is. But the senior technician was awfully rude to me the other day. And I don’t tolerate the rude._…_Mads: Regardless, you should know this person is extremely… nosy. If they knew something most don’t—and the theft ties into it…_Carter:  Right. And you think that’s a lead?_Mads: Perhaps. But that’s for you to decide, Detective._Mads: Well? I look forward to your return after you talk to Hugh."
-            dia = "Mads REALLY wants Hugh test._REMOVE THIS."
+            dia = "Mads: By the way… did you happen to come across a grumpy-looking ram? His name is Hugh._Carter: Maybe… not sure._Mads: Might I ask a favor? I have a letter I’ve been meaning to give him. Unfortunately, he’s been impossible to get ahold of lately._Mads: Likely because he’s avoiding me._Carter: And you want me to be your errand boy?_Mads: I assure you it won’t be for nothing. I overheard your chat with Ms. Gven._Carter:  Eavesdropping too?_Mads: It’s my job to watch for anything suspicious. I can’t help but… oversee many things._Carter: Uh-huh…_Mads: Regardless. It may interest you to know someone of interest might have… taken something._Carter:  Taken something?_Mads: Yes. Something rather important—from the senior technician’s pocket._Carter: …That’s not considered suspicious?_Mads: It is. But the senior technician was awfully rude to me the other day. And I don’t tolerate the rude._…_Mads: Regardless, you should know this person is extremely… nosy. If they knew something most don’t—and the theft ties into it…_Carter:  Right. And you think that’s a lead?_Mads: Perhaps. But that’s for you to decide, Detective._Mads: Well? I look forward to your return after you talk to Hugh."
             diaSplit(dia, () => {
                 console.log("onDone working after convo about Hugh");
                 console.log(typeof thisChar.addEnvelope);
@@ -331,8 +343,7 @@ $(".characters").click(function () {
         //Hugh Envelope Take
         if (thisChar.id === "charHugh" && character[2].envelopeTalk) {
             console.log('Hugh was clicked with envelope!')
-            dia = ""
-            dia = "GIVEN THE ENVELOPE. Delete this."
+            dia = "Hugh: …What’s that?_Carter:  I don’t know. The First Class chauffeur, Mads, told me to give it to you._Hugh: That idiot. Making people do his damn errands… give me that._……_Hugh: Wh—who the hell does he think he is?!_Hugh: I’m about to give him a piece of my mind!"
             diaSplit(dia, () => {
                 removeItem('envelope');
                 character[3].giveEnvelope = true;
@@ -340,8 +351,21 @@ $(".characters").click(function () {
             });
             break;
         }
+        //Penelope Scrap Papers
+        if (thisChar.id === "charPen2" && character[character.length - 3].firstTalk) {
+            console.log('Penelope was talked to with scraps!')
+            dia = character[character.length - 3].diaOptions();
+            diaSplit(dia, () => {
+                removeItem('paperScrap');
+                setTimeout(() => {addToInventory(item[3])}, 100);
+                badOmenTrigger = true;
+            });
+            break;
+        }
         //Bad Omen
         if (thisChar.id === "charMon") {
+                dia = character[7].diaOptions();
+                diaSplit(dia);
                 console.log("BAD OMEN INCOMING")
                 setTimeout(() => {
                     $("#charMon").attr("src", "images/characters/Mon2.gif");
@@ -364,6 +388,8 @@ $(".characters").click(function () {
                 setTimeout(() => {
                     dia = "...?_Carter: Huh. Thought I saw…never mind._..._Carter: Damn—my head feels like it’s gonna split open._Carter: I don’t have the best lead yet, but… hell, maybe a nap wouldn’t kill me. Little rest might shake something loose, help me see what I’m missing."
                     diaSplit(dia);
+                    badOmenTrigger = false;
+                    endingTrigger = true;
                 }, 11500);
                 break;
             };
@@ -391,16 +417,19 @@ $(".items").click(function processItem() {
         console.warn('No data object found for', id);
         return;
     }
-    // Special case: paperScrap1
-    if (id === 'paperScrap1') {
+    // Special case: paperScrap
+    if (id === 'paperScrap') {
         if (crowbar && crowbar.inInv) {
             woodCrack.play();
             console.log("You DO have the crowbar.");
             diaSplit("...!_Carter: Right...well._Carter: I hope that no one important saw that. I'd rather not pay for damages because of this.");
-            addToInventory('paperScrap1');
             removeItem('crowbar');
-            $('.dining4Wall').addClass('deleted');
-            $('#brokenWall').removeClass('deleted');
+            setTimeout(() => {addToInventory(item[2])}, 100);
+            $('.dining4Wall, #charPen').addClass('deleted');
+            $('#brokenWall, #charPen2').removeClass('deleted');
+
+            item[1].inInv = false;
+            item[2].inInv = true;
         } else {
             console.log("You DON'T have the crowbar.");
             diaSplit(clickable[11].desc);
@@ -416,6 +445,7 @@ $(".items").click(function processItem() {
 });
 //Inventory Adding
 function addToInventory(obj, thisItem) {
+    invCount = 0;
     $(".invItems").each(function (index) {
         if (!$(this).hasClass("hide")) {
             invCount += 1;
@@ -432,7 +462,7 @@ function addToInventory(obj, thisItem) {
         }
     })};
 //Inventory remove each slot
-function removeItem(id) {
+function removeItem(id, onDone) {
     var id
     $(".invItems").each(function () {
         if ($(this).hasClass("filled") && $(this).hasClass(id)) {
@@ -440,6 +470,8 @@ function removeItem(id) {
             $(this).removeClass(id);
             $(this).removeClass("filled");
             useSound.play();
+            if (onDone) onDone();
+            console.log("Removed:", id, "to inventory");
             return false;
         }
     }
@@ -456,7 +488,7 @@ function removeItem(id) {
             })
      });
 //Dialogue hover
-    function diaClick(dia, onDone) {
+    function diaClick(dia) {
         document.getElementById('diaBox').innerHTML = dia;
         const clear = () => {
         document.getElementById('diaBox').innerHTML = "";}
