@@ -1,6 +1,6 @@
 //assets
 const MCChoice = localStorage.getItem("MCChoice");
-let floorUnlock = false;
+let floorUnlock = true;
 let floor6First = true;
 let badOmenTrigger = false;
 let invCount = 0;
@@ -40,7 +40,7 @@ $(document).ready(function () {
         switch (coord) {
             case "3,0,0":
                 room = "MCRoom"
-                $(".clickables").addClass("hide");
+                $(".clickables, #charPen").addClass("hide");
                 $(".clickables.MCRoom").removeClass("hide");
                 $("#moveUp, #moveDown, #moveLeft").addClass("hide");
                 $("#moveRight").toggleClass("hide");
@@ -58,7 +58,7 @@ $(document).ready(function () {
             case "3,1,0":
                 room = "MCHall"
                 $(".clickables").addClass("hide");
-                $(".clickables.MCHall").removeClass("hide");
+                $(".clickables.MCHall, #charPen").removeClass("hide");
                 $("#moveDown, #moveRight").addClass("hide");
                 $("#moveUp, #moveLeft").removeClass("hide");
                 if (badOmenTrigger === true) {
@@ -72,7 +72,7 @@ $(document).ready(function () {
                 break;
             case "3,1,1":
                 room = "Elevator3"
-                $(".clickables").addClass("hide");
+                $(".clickables, #charPen").addClass("hide");
                 $(".clickables.elevator").removeClass("hide");
                 $("#moveLeft").addClass("hide");
                 $("#moveDown, #moveUp").removeClass("hide");
@@ -132,10 +132,8 @@ $(document).ready(function () {
                 break;
             case "4,3,2":
                 room = "Dining4Right"
-                $(".clickables").addClass("hide");
-                $(".clickables.Dining4Right").removeClass("hide");
                 $(".clickables, #charCapn").addClass("hide");
-                $(".clickables.DiningLeft, #charHugh, .dining4Wall").removeClass("hide");
+                $(".clickables.Dining4Right, #paperScrap1, #charHugh").removeClass("hide");
                 $("#moveRight, #moveDown").addClass("hide");
                 $("#moveLeft").removeClass("hide");
                 $("#playView").css("background-image", "url('images/rooms/Dining4Rgt.jpg')");
@@ -312,60 +310,134 @@ $(".clickables").click(function () {
         }
     }
 });
-//MAJOR - Item Handling
-$(".items").click(function processItem(id) {
-    const thisItem = this;
-    var id = thisItem.id;
-    const obj = item.find(x => x.name === thisItem.id);
-    const crowbar = item.find(x => x.name === 'crowbar');
-    item.forEach(i => {
-        //special cases
-        if (!obj) {
-            console.warn('No data object found for', id);
-            return;
+//Character Handling
+$(".characters").click(function () {
+    const thisChar = this;
+    console.log('Clicked on character:' + thisChar.id)
+    $("#roomFade").removeClass("hide");
+    for (const ch of character) {
+        //Mads Envelope Give
+        if (thisChar.id === "charMads" && !character[1].firstTalk && !character[2].envelopeTalk) {
+            //dia = "Mads: By the way… did you happen to come across a grumpy-looking ram? His name is Hugh._Carter: Maybe… not sure._Mads: Might I ask a favor? I have a letter I’ve been meaning to give him. Unfortunately, he’s been impossible to get ahold of lately._Mads: Likely because he’s avoiding me._Carter: And you want me to be your errand boy?_Mads: I assure you it won’t be for nothing. I overheard your chat with Ms. Gven._Carter:  Eavesdropping too?_Mads: It’s my job to watch for anything suspicious. I can’t help but… oversee many things._Carter: Uh-huh…_Mads: Regardless. It may interest you to know someone of interest might have… taken something._Carter:  Taken something?_Mads: Yes. Something rather important—from the senior technician’s pocket._Carter: …That’s not considered suspicious?_Mads: It is. But the senior technician was awfully rude to me the other day. And I don’t tolerate the rude._…_Mads: Regardless, you should know this person is extremely… nosy. If they knew something most don’t—and the theft ties into it…_Carter:  Right. And you think that’s a lead?_Mads: Perhaps. But that’s for you to decide, Detective._Mads: Well? I look forward to your return after you talk to Hugh."
+            dia = "Mads REALLY wants Hugh test._REMOVE THIS."
+            diaSplit(dia, () => {
+                console.log("onDone working after convo about Hugh");
+                console.log(typeof thisChar.addEnvelope);
+                character[2].addEnvelope();
+                character[2].envelopeTalk = true;
+            });
+            break;
         }
-        if (id === 'paperScrap1') {
-            if (crowbar.inInv == true) {
-                woodCrack.play();
-                console.log("You DO have the crowbar.");
-                obj.inInv = true;
-                diaSplit("...!_Carter: Right...well._Carter: I hope that no one important saw that. I'd rather not pay for damages because of this.");
-                woodCrack.play();
-                //INSERT CROWBAR REMOVE FROM INVENTORY HERE
-                $('.dining4Wall').addClass('deleted');
-                return;
-            }
-            if (crowbar.inInv == false) {
-                diaSplit(clickable[10].desc);
-                console.log("You DON'T have the crowbar.");
-                return;
-            }
+        //Hugh Envelope Take
+        if (thisChar.id === "charHugh" && character[2].envelopeTalk) {
+            console.log('Hugh was clicked with envelope!')
+            dia = ""
+            dia = "GIVEN THE ENVELOPE. Delete this."
+            diaSplit(dia, () => {
+                removeItem('envelope');
+                character[3].giveEnvelope = true;
+                $("#charHugh").addClass("deleted");
+            });
+            break;
         }
-        if (obj && !obj.inInv) {
-            console.log("Comparing to item database:", thisItem.id, " = ", i.name);
-            obj.inInv = true;
-            for (t in $('.invItems')) {
-                invCount += 1;
-                if (!$('.invItems').hasClass("hide")) {
-                    console.log("Count is", invCount)
-                    $(thisItem).addClass("hide");
-                    $("#" + invCount).addClass(obj.id);
-                    $("#" + invCount).append("<img width= '70px' src='images/objects/" + i.name + ".png' />")
-                    $("#" + invCount).addClass("filled");
-                    pickupSound.play();
-                    console.log("Added:", i, " to inventory");
-                    return false;
-                }
+        //Bad Omen
+        if (thisChar.id === "charMon") {
+                console.log("BAD OMEN INCOMING")
+                setTimeout(() => {
+                    $("#charMon").attr("src", "images/characters/Mon2.gif");
+                    $("#diaButton").addClass("hide");
+                    dia = "BADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMEN"
+                    diaSplit(dia);
+                    errorSound.play();
+                    errorSound.volume = .5;
+                }, 3000);
+                setTimeout(() => {
+                    window.parent.badOmenAdd();
+                }, 3500);
+                setTimeout(() => {
+                    window.parent.badOmenClear();
+                    $("#charMon").addClass("deleted");
+                    $("#diaButton").removeClass("hide");
+                    errorSound.volume = .0;
+                    badOmenTrigger = true;
+                }, 11000);
+                setTimeout(() => {
+                    dia = "...?_Carter: Huh. Thought I saw…never mind._..._Carter: Damn—my head feels like it’s gonna split open._Carter: I don’t have the best lead yet, but… hell, maybe a nap wouldn’t kill me. Little rest might shake something loose, help me see what I’m missing."
+                    diaSplit(dia);
+                }, 11500);
+                break;
+            };
+        if (thisChar.id === ch.name) {
+            dia = ch.diaOptions();
+            diaSplit(dia);
+            ch.firstTalk = false;
+            if (thisChar.id === "charCapn") {
+                floorUnlock = true;
+                $("#floorB1, #floor6").removeClass("inactive");
             }
+            break; // stop searching after match
         }
-    })
+    }
 });
+//Item Handling
+$(".items").click(function processItem() {
+    const thisItem = this;
+    const id = thisItem.id;
+
+    const obj = item.find(x => x.name === id);
+    const crowbar = item.find(x => x.name === 'crowbar');
+
+    if (!obj) {
+        console.warn('No data object found for', id);
+        return;
+    }
+    // Special case: paperScrap1
+    if (id === 'paperScrap1') {
+        if (crowbar && crowbar.inInv) {
+            woodCrack.play();
+            console.log("You DO have the crowbar.");
+            diaSplit("...!_Carter: Right...well._Carter: I hope that no one important saw that. I'd rather not pay for damages because of this.");
+            addToInventory('paperScrap1');
+            removeItem('crowbar');
+            $('.dining4Wall').addClass('deleted');
+            $('#brokenWall').removeClass('deleted');
+        } else {
+            console.log("You DON'T have the crowbar.");
+            diaSplit(clickable[11].desc);
+        }
+        return; // we're done for this click
+    }
+    // Normal pickup case
+    if (!obj.inInv) {
+        console.log("Comparing to item database:", id, " = ", obj.name);
+        obj.inInv = true;
+        addToInventory(obj, thisItem);
+    }
+});
+//Inventory Adding
+function addToInventory(obj, thisItem) {
+    $(".invItems").each(function (index) {
+        if (!$(this).hasClass("hide")) {
+            invCount += 1;
+            console.log("Count is", invCount);
+            $(thisItem).addClass("hide");
+            $("#" + invCount).append(
+            "<img width='70px' src='images/objects/" + obj.name + ".png' />"
+            );
+            $("#" + invCount).addClass(obj.name);
+            $("#" + invCount).addClass("filled");
+            pickupSound.play();
+            console.log("Added:", obj, "to inventory");
+            return false;
+        }
+    })};
 //Inventory remove each slot
 function removeItem(id) {
     var id
     $(".invItems").each(function () {
         if ($(this).hasClass("filled") && $(this).hasClass(id)) {
             $(this).empty();
+            $(this).removeClass(id);
             $(this).removeClass("filled");
             useSound.play();
             return false;
@@ -373,14 +445,23 @@ function removeItem(id) {
     }
     )
 };
-//Inventory click
-function invClick(dia, onDone) {
-    document.getElementById('diaBox').innerHTML = dia;
-    const clear = () => {
-        document.getElementById('diaBox').innerHTML = "";
-    }
-    const myTimeout = setTimeout(clear, 2000);
-}
+//Inventory desc click
+     $(".invItems").click(function () {
+        const thisPic = this;
+        console.log("Clicked on:", thisPic.id);
+        item.forEach(i =>
+            {if ($(thisPic).hasClass(i.name)) {
+                desc = i.desc;
+                diaClick(desc);}
+            })
+     });
+//Dialogue hover
+    function diaClick(dia, onDone) {
+        document.getElementById('diaBox').innerHTML = dia;
+        const clear = () => {
+        document.getElementById('diaBox').innerHTML = "";}
+        const myTimeout = setTimeout(clear, 2000);
+        }
 //Dialogue splitting
 function diaSplit(dia, onDone) {
     const splitUp = dia.split("_");

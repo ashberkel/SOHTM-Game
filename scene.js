@@ -38,13 +38,13 @@ const character = [
     addEnvelope: function () {
       for (t in $('.invItems')) {
         invCount += 1;
-        if (!$('.invItems').hasClass("hide")) {
+        if (!$(this).hasClass("hide")) {
           console.log("Count is", invCount)
           $("#" + invCount).addClass("envelope");
           $("#" + invCount).append("<img width= '70px' src='images/objects/envelope.png' />")
           $("#" + invCount).addClass("filled");
           pickupSound.play();
-          console.log("Added envelope to inventory");
+          console.log("Added envelope to inventory to" + t.id);
           return false;
         }
       }
@@ -58,6 +58,7 @@ const character = [
       if (character[3] && character[3].giveEnvelope == true) {
         dia = "Mads: You shouldn’t be so irate. And you even left your post…_Hugh: I don’t give a shit, Mads. Don’t go sending crap like this with random strangers. What if he opened it??_Mads: Of course he wouldn’t. We had a deal, after all._Hugh: …Do I want to know?_Mads: Don’t worry, dear Hugh.Mads: Well—thank you, Detective. Just for you, I’ll let you know the culprit was…_Miss Penelope Parker._Carter: Penelope Parker...the reporter?? Yeah, that tracks why she’s snooping around. I’ll keep my eye out for her…_Mads: Please do. And thank you again."
         dia = "Mads and Hugh finish. Penelope unlocked. REMOVE THIS."
+        $("#charPen").removeClass("deleted");
         return dia;
       }
       else {
@@ -116,6 +117,7 @@ const character = [
   name: "charMon", firstTalk: true,
     diaOptions: function () {
       var dia = "...?_???: BAD OMEN._Carter: Excuse me, are you alright?";
+      $("#charPen").addClass("deleted");
       return dia;
     }
 },
@@ -149,7 +151,7 @@ const clickable = [
   { name: "floatLights", desc: "The lights in there just float. I don't really understand how it works.." },
   { name: "Dine4Lamp", desc: "Tacky. That's the only polite way to put it honestly." },
   { name: "Dine4Window", desc: "At least the view is nice to look at._No bullshit, no pomp...just the sea of stars out there." },
-  { name: "papeitemlScrap1", desc: "...? Is that...paper tucked into the wall?_The board was pulled enough to wedge it in. Pulling it out without a tool is just going to rip the damn thing..." },
+  { name: "paperScrap1", desc: "...? Is that...paper tucked into the wall?_The board was pulled enough to wedge it in. Pulling it out without a tool is just going to rip the damn thing..." },
   { name: "largeFloat", desc: "An artificial sea of stars...at least, that's what it looks like to me._Kinda embarrassing when the real deal is right outside the window." },
   { name: "bigSky", desc: "...._Makes you realize all the shit down here doesn't matter much." },
   { name: "umbrella", desc: "I'm sure they're nice to have on a day flight, but right now they're just taking up the view." },
@@ -162,69 +164,8 @@ const item = [
   { name: "paperScrap1", inInv: false, desc: "A half of a paper scrap. Might be important, might not be." },
   { name: "envelope", inInv: false, desc: "An envelope. It's sealed with wax and smells of cologne." }]
 console.log("Loading item test:" + item[0].name);
-//Special Character Handling
-$(".characters").click(function () {
-    const thisChar = this;
-    $("#roomFade").removeClass("hide");
-    for (const ch of character) {
-        if (thisChar.id === "charMads" && character[1].firstTalk == false && thisChar.envelopeTalk == false) {
-            dia = "Mads: By the way… did you happen to come across a grumpy-looking ram? His name is Hugh._Carter: Maybe… not sure._Mads: Might I ask a favor? I have a letter I’ve been meaning to give him. Unfortunately, he’s been impossible to get ahold of lately._Mads: Likely because he’s avoiding me._Carter: And you want me to be your errand boy?_Mads: I assure you it won’t be for nothing. I overheard your chat with Ms. Gven._Carter:  Eavesdropping too?_Mads: It’s my job to watch for anything suspicious. I can’t help but… oversee many things._Carter: Uh-huh…_Mads: Regardless. It may interest you to know someone of interest might have… taken something._Carter:  Taken something?_Mads: Yes. Something rather important—from the senior technician’s pocket._Carter: …That’s not considered suspicious?_Mads: It is. But the senior technician was awfully rude to me the other day. And I don’t tolerate the rude._…_Mads: Regardless, you should know this person is extremely… nosy. If they knew something most don’t—and the theft ties into it…_Carter:  Right. And you think that’s a lead?_Mads: Perhaps. But that’s for you to decide, Detective._Mads: Well? I look forward to your return after you talk to Hugh."
-            dia = "Mads REALLY wants Hugh test. REMOVE THIS."
-            diaSplit(dia, () => {
-                character[2].addEnvelope();
-                character[2].envelopeTalk = true;
-                character[3].giveEnvelope = true;
-            });
-            break; // stop searching after match
-        }
-        if (thisChar.id === "charHugh" && character[2].envelopeTalk) {
-            console.log('Hugh was clicked with envelope!')
-            dia = ""
-            dia = "GIVEN THE ENVELOPE. Delete this."
-            diaSplit(dia, () => {
-                processItem('envelope');
-                this.envelopeTalk = true;
-            });
-            break; // stop searching after match
-        }
-        if (thisChar.id === ch.name) {
-            if (thisChar.id === "charMon") {
-                console.log("BAD OMEN INCOMING")
-                setTimeout(() => {
-                    $("#charMon").attr("src", "images/characters/Mon2.gif");
-                    $("#diaButton").addClass("hide");
-                    dia = "BADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMENBADOMEN"
-                    diaSplit(dia);
-                    errorSound.play();
-                    errorSound.volume = .5;
-                }, 3000);
-                setTimeout(() => {
-                    window.parent.badOmenAdd();
-                }, 3500);
-                setTimeout(() => {
-                    window.parent.badOmenClear();
-                    $("#charMon").addClass("deleted");
-                    $("#diaButton").removeClass("hide");
-                    errorSound.volume = .0;
-                    badOmenTrigger = true;
-                }, 11000);
-                setTimeout(() => {
-                    dia = "...?_Carter: Huh. Thought I saw…never mind._..._Carter: Damn—my head feels like it’s gonna split open._Carter: I don’t have the best lead yet, but… hell, maybe a nap wouldn’t kill me. Little rest might shake something loose, help me see what I’m missing."
-                    diaSplit(dia);
-                }, 11500);
-            }
-            dia = ch.diaOptions();
-            diaSplit(dia);
-            ch.firstTalk = false;
-            if (thisChar.id === "charCapn") {
-                floorUnlock = true;
-                $("#floorB1, #floor6").removeClass("inactive");
-            }
-            console.log("Are floors unlocked?" + floorUnlock);
-            break; // stop searching after match
-        }
-    }
-});
+
+//SPECIAL CHARACTER - ENGINEER
 $("#moveRightB1").click(function () {
 $('#charEngineer').removeClass("hide");
 $('#crowbar').addClass("itemFade")
