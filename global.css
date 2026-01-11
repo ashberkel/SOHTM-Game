@@ -1,4 +1,7 @@
 /* styling for content containers*/
+body {
+    cursor: crosshair;
+}
 
 #uiCont {
     display: grid;
@@ -132,9 +135,9 @@
     letter-spacing: 7px;
 }
 /* styling for general interacting*/
-#diaButton {
+#diaButtonNEXT {
     position:absolute;
-    left:755px;
+    left:675px;
     bottom: 15px;
     background-color: rgba(255, 255, 255, 0.05);
     border:1.5px solid #e0e0e0;
@@ -146,19 +149,33 @@
     display:none;
     z-index:201;
 }
-#diaButton:hover {
+#diaButtonSKIP {
+    position:absolute;
+    left:745px;
+    bottom: 15px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border:1.5px solid #e0e0e0;
+    grid-area: dialogue;
+    padding: 5px 10px;
+    font-family: "Victor Mono", serif;
+    font-size:18px;
+    color:#CCFF00;
+    display:none;
+    z-index:201;
+}
+.diaButton:hover {
     background-color: black;
     border:2px solid #CCFF00;
     color: #e0e0e0;
 }
-#diaButton:active
+.diaButton:active
 {
     background-color: #CCFF00;
     border:2px solid black;
     color:black;
 }
 .movement:hover {
-    cursor: none;
+    cursor: move;
 }
 .itemFade {
     opacity: 0.8;
