@@ -1,14 +1,5 @@
-* Go into elevator, go to floor 4, leave elevator, go to the right once, go back, go into elevator, arrow on the right goes to the captain, only first time
-* arrows are still hard to click/easy to miss
-* o1: arrow hard to see among lights
-
 * might want to consider a quest tracker, I forgot what to do after talking to the technician
 
-* get the crowbar, talk to someone, click the crowbar mid sentence, hit next, talk to them again, the dialogue disappears after a second
-* "paper tucked into the wall", "the board was pulled", "pulling it out without a tool" "get into things that don't want to open up" These sentences don't exactly paint a clear picture of what I'm looking at especially since I just break the board off anyway
-
 * b1 is available immediately after speaking to the captain
-* infinite note glitch still possible if I talk to Penelope again
 * crowbar is available again
-* inventory does not place multiple objects in individual spots (everything was in 1 slot)
 * stuck at bad omen
