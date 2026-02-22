@@ -58,6 +58,11 @@ const character = [
     },
     diaOptions: function () {
       var dia;
+      if (character[2].withHugh) {
+        dia =
+          "Hannibal: I cannot thank you enough for helping with my letter. I think this worked out quite well.";
+        return dia;
+      }
       if (character[3] && character[3].giveEnvelope) {
         dia =
           "Mads: You shouldn’t be so irate. And you even left your post…_Hugh: I don’t give a shit, Mads. Don’t go sending crap like this with random strangers. What if he opened it??_Mads: Of course he wouldn’t. We had a deal, after all._Hugh: …Do I want to know?_Mads: Don’t worry, dear Hugh._Mads: Well—thank you, Detective. Just for you, I’ll let you know the culprit was…_Mads: Miss Penelope Parker._Carter: Penelope Parker...the reporter?? Yeah, that tracks why she’s snooping around. I’ll keep my eye out for her…_Mads: Please do. And thank you again.";
@@ -65,11 +70,7 @@ const character = [
         character[2].withHugh = true;
         return dia;
       }
-      if (character[2].withHugh) {
-        dia =
-          "Hannibal: I cannot thank you enough for helping with my letter. I think this worked out quite well.";
-        return dia;
-      } else {
+     else {
         console.log("First time you've met this character?" + this.firstTalk);
         dia =
           "He doesn't seem interested in addressing you anymore. He's too busy looking around the ballroom.";
@@ -135,10 +136,10 @@ const character = [
       var dia;
       if (this.firstTalk) {
         console.log("First time you've met this character?" + this.firstTalk);
-        crowbarFind = true;
         dia =
           "Carter: First outside my room, now up here… you really don’t stop, huh?_Penelope: Guess I don’t._Penelope: …? Is that—?_Carter:  Yup. The missing part to yours. Can’t say for sure unless we put ’em together._Penelope: Then what are we waiting for?_Carter:  Hold on. I’m not just handing this over like candy._Penelope: Lucky for you, detective—I am handing mine over. Just like that._Carter:  Why?_Penelope: Honestly? I don’t even know where to go with it. Could be a grocery list for all I know._Penelope: And let’s just say… I have a feeling I’ll need a favor later._Penelope: You wouldn’t leave a lady in need high and dry, would you?_Carter:  Hmph._Penelope: Well, it was nice seeing you, detective. If you'll excuse me...";
-        return dia;
+          firstTalk = false;
+          return dia;
       } else {
         console.log("First time you've met this character?" + this.firstTalk);
         dia =
@@ -223,7 +224,7 @@ const clickable = [
   },
   {
     name: "paperScrap",
-    desc: "...? Is that...paper tucked into the wall?_The board was pulled enough to wedge it in. Pulling it out without a tool is just going to rip the damn thing...",
+    desc: "...? Is that...paper tucked into the wall? How did that even happen?_The board was pulled enough to wedge it in. Pulling it out without a tool is just going to rip the damn thing...",
   },
   {
     name: "largeFloat",
